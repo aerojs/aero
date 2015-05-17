@@ -1,0 +1,36 @@
+{
+	"name": "aero",
+	"version": "0.3.0",
+	"description": "CMS based on Node, Express, Jade and Stylus.",
+	"main": "aero.js",
+	"dependencies": {
+		
+	},
+	"engines" : {
+		"node": ">= 0.12.0",
+		"iojs": ">= 2.0.0"
+	},
+	"scripts": {
+		"test": "node --harmony aero.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/freezingwind/aero.git"
+	},
+	"keywords": [
+		"website",
+		"framework",
+		"cms",
+		"express",
+		"jade",
+		"stylus",
+		"html5",
+		"mvc"
+	],
+	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
+	"license": "GPLv3",
+	"bugs": {
+		"url": "https://github.com/freezingwind/aero/issues"
+	},
+	"homepage": "https://github.com/freezingwind/aero"
+}
