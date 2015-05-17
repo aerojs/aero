@@ -11,7 +11,7 @@
 		"iojs": ">= 2.0.0"
 	},
 	"scripts": {
-		"test": "node --harmony src"
+		"test": "node --harmony --use_strict tests"
 	},
 	"repository": {
 		"type": "git",
