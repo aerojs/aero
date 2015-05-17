@@ -29,15 +29,10 @@ You can install aero via npm:
 npm install aero --save
 ```
 
-Load the module:
+Load the module and start it:
 
 ```node
 let aero = require("aero");
-```
-
-And start it:
-
-```node
 aero.run();
 ```
 
