@@ -25,60 +25,78 @@ It is a very high-level framework, you can decide what you're going to use under
 
 You can install aero via npm:
 
-	npm install aero --save
+```bash
+npm install aero --save
+```
 
 Load the module:
 
-	let aero = require("aero");
+```node
+let aero = require("aero");
+```
 
 And start it:
 
-	aero.run();
+```node
+aero.run();
+```
 
 That's all you need for your index.js file. Run it using:
 
-	node index.js
+```bash
+node index.js
+```
 
 ## Hello World
 
 Create your main file `index.js` if it doesn't exist yet:
 
-	let aero = require("aero");
-	aero.run();
-	
+```node
+let aero = require("aero");
+aero.run();
+```
+
 You can also specify a config file path by passing it to `aero.start(configFile)` which defaults to `config.json`.
 
 Create a file called `config.json` in your root directory:
 
-	{
-		"siteName": "Hello World",
-		"pages": [
-			"helloworld"
-		],
-		"port": 4000
-	}
+```json
+{
+	"siteName": "Hello World",
+	"pages": [
+		"helloworld"
+	],
+	"port": 4000
+}
+```
 
 Add a main layout file `layout.jade` in your root directory:
 
-	doctype html
-	html
-		head
-			title= siteName
-			style!= css
+```jade
+doctype html
+html
+	head
+		title= siteName
+		style!= css
 
-		body
-			#content!= content
-			script!= js
+	body
+		#content!= content
+		script!= js
+```
 
 `siteName` is the title you set up in your config before. The variables `css`, `js` and `content` are set by Aero.
 
 Install Aero:
 
-	npm install aero --save
+```bash
+npm install aero --save
+```
 
 Now run it using:
 
-	node index.js
+```bash
+node index.js
+```
 
 This should automatically create the `pages/helloworld/helloworld.jade` file and start your server on port 4000. Navigate your browser to [http://localhost:4000/helloworld](http://localhost:4000/helloworld) to see the "helloworld" from your automatically created page rendered into your layout.
 

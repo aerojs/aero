@@ -2,7 +2,7 @@
 	"name": "aero",
 	"version": "0.3.0",
 	"description": "CMS based on Node, Express, Jade and Stylus.",
-	"main": "aero.js",
+	"main": "src/index.js",
 	"dependencies": {
 		
 	},
@@ -11,7 +11,7 @@
 		"iojs": ">= 2.0.0"
 	},
 	"scripts": {
-		"test": "node --harmony aero.js"
+		"test": "node --harmony src"
 	},
 	"repository": {
 		"type": "git",
