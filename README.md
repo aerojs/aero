@@ -33,7 +33,7 @@ Load the module:
 
 And start it:
 
-	aero.start();
+	aero.run();
 
 That's all you need for your index.js file. Run it using:
 
@@ -44,7 +44,7 @@ That's all you need for your index.js file. Run it using:
 Create your main file `index.js` if it doesn't exist yet:
 
 	let aero = require("aero");
-	aero.start();
+	aero.run();
 	
 You can also specify a config file path by passing it to `aero.start(configFile)` which defaults to `config.json`.
 
