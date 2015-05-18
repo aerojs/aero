@@ -1,10 +1,13 @@
 // Modules
 let aero = require("../src");
 
-// Run
-aero.run(function(error) {
-	if(error)
-		throw error;
-	
-	console.log("Aero running.");
+// Change directory
+require("process").chdir(__dirname);
+
+// Print something when initialized
+aero.events.on("initialized", function(config) {
+	console.log(config.aero.siteName + " has been initialized now!");
 });
+
+// Run
+aero.run();

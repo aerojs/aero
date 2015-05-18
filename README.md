@@ -51,17 +51,19 @@ let aero = require("aero");
 aero.run();
 ```
 
-You can also specify a config file path by passing it to `aero.start(configFile)` which defaults to `config.json`.
+You can also specify a config file path by passing it to `aero.start(configFile)` which defaults to `package.json`.
 
-Create a file called `config.json` in your root directory:
+Create a file called `package.json` in your root directory:
 
 ```json
 {
-	"siteName": "Hello World",
-	"pages": [
-		"helloworld"
-	],
-	"port": 4000
+	"aero": {
+		"siteName": "Hello World",
+		"pages": [
+			"helloworld"
+		],
+		"port": 4000
+	}
 }
 ```
 

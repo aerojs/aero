@@ -1,7 +1,7 @@
 {
 	"name": "aero",
 	"version": "0.3.0",
-	"description": "CMS based on Node, Express, Jade and Stylus.",
+	"description": "Minimalist website framework based on Node, Jade and Stylus.",
 	"main": "src/index.js",
 	"dependencies": {
 		
@@ -11,7 +11,7 @@
 		"iojs": ">= 2.0.0"
 	},
 	"scripts": {
-		"test": "node --harmony --use_strict tests"
+		"test": "cd tests && node --harmony --use_strict index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -21,7 +21,6 @@
 		"website",
 		"framework",
 		"cms",
-		"express",
 		"jade",
 		"stylus",
 		"html5",
