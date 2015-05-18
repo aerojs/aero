@@ -1,7 +1,7 @@
 {
 	"name": "aero",
 	"version": "0.3.0",
-	"description": "Minimalist website framework based on Node, Jade and Stylus.",
+	"description": "High-performance website framework based on io.js, Jade and Stylus.",
 	"main": "src/index.js",
 	"dependencies": {
 		"async": "*",

@@ -1,5 +1,5 @@
 # Aero
-Web framework based on [Node](https://nodejs.org/), [Express](http://expressjs.com/), [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
+Web framework based on [Node](https://nodejs.org/), [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
 
 * Performance ([Page Speed](https://developers.google.com/speed/pagespeed/insights/) rank of **100 / 100**)
 * Productivity
