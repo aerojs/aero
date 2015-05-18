@@ -4,14 +4,16 @@
 	"description": "Minimalist website framework based on Node, Jade and Stylus.",
 	"main": "src/index.js",
 	"dependencies": {
-		
+		"async": "*",
+		"node-watch": "*",
+		"object-assign": "*"
 	},
 	"engines" : {
 		"node": ">= 0.12.0",
 		"iojs": ">= 2.0.0"
 	},
 	"scripts": {
-		"test": "cd tests && node --harmony --use_strict index.js"
+		"test": "node --harmony --use_strict tests"
 	},
 	"repository": {
 		"type": "git",

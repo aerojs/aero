@@ -1,13 +1,21 @@
+// Modules
+let fs = require("fs");
+let path = require("path");
 let async = require("async");
 let merge = require("object-assign");
-let fs = require("fs");
-//let Page = require("./classes/Page");
-let Server = require("./classes/Server");
+
+// Helpers
 let getFile = require("./helpers/getFile");
+
+// Classes
+let Page = require("./classes/Page");
+let Server = require("./classes/Server");
 let EventEmitter = require("./classes/EventEmitter");
 
+// Aero
 let aero = {
 	events: new EventEmitter(),
+	pages: new Map(),
 	
 	// run
 	run: function(configPath) {
@@ -48,7 +56,6 @@ let aero = {
 	
 	// registerEventListeners
 	registerEventListeners: function() {
-		// Load favicon
 		this.events.on("initialized", function(config) {
 			fs.readFile(config.favIcon, function(error, data) {
 				if(error)
@@ -60,16 +67,17 @@ let aero = {
 		
 		// Routes
 		this.events.on("initialized", function() {
-			aero.server.routes.set("users", function(request, response) {
-				response.writeHead(200, {
-					"Content-Type": "text/html"
-				});
+			let pagesPath = "pages";
+			
+			fs.readdir(pagesPath, function(error, files) {
+				if(error)
+					throw error;
 				
-				for(let param of request.params) {
-					response.write(param + "<br>");
+				for(let file of files) {
+					let page = new Page(file, path.join(pagesPath, file));
+					aero.pages.set(file, page);
+					aero.server.routes.set(page.id, page.controller.get);
 				}
-				
-				response.end();
 			});
 		});
 		
