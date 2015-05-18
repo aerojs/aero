@@ -1,15 +1,16 @@
 module.exports = {
+	init: function(page) {
+		this.render = page.renderTemplate;
+	},
+	
 	get: function(request, response) {
 		response.writeHead(200, {
 			"Content-Type": "text/html"
 		});
 		
-		for(let param of request.params) {
-			response.write(param + "<br>");
-		}
-		
-		response.write("Hello");
-		
-		response.end();
+		response.end(this.render({
+			user: request.params[0],
+			type: request.params[1]
+		}));
 	}
 };

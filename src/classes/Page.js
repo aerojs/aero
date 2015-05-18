@@ -1,14 +1,20 @@
 let path = require("path");
+let jade = require("jade");
 
 let Page = function(id, pagePath) {
 	this.id = id;
-	this.modulePath = path.resolve(path.join(pagePath, id + ".js"));
+	this.path = pagePath;
+	this.modulePath = path.resolve(path.join(this.path, id + ".js"));
+	this.templatePath = path.resolve(path.join(this.path, id + ".jade"));
 	
 	// Delete existing controller from cache
 	delete require.cache[this.modulePath];
 	
 	// Reload controller
 	this.controller = require(this.modulePath);
+	
+	// Load template
+	this.renderTemplate = jade.compileFile(this.templatePath);
 };
 
 module.exports = Page;

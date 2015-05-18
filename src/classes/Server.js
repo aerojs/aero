@@ -46,7 +46,7 @@ let Server = function() {
 			return;
 		}
 		
-		if(i === url.length)
+		if(i >= url.length - 1)
 			request.params = [];
 		else
 			request.params = url.substr(i + 1).split("/");

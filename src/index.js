@@ -108,8 +108,13 @@ let aero = {
 	loadPage: function(pageId) {
 		let page = new Page(pageId, path.join(aero.config.path.pages, pageId));
 		
+		// Call init on the page controller
+		if(page.controller.init)
+			page.controller.init(page);
+		
+		// Register a new route
 		aero.pages.set(pageId, page);
-		aero.server.routes.set(page.id, page.controller.get);
+		aero.server.routes.set(pageId, page.controller.get.bind(page.controller));
 	}
 };
 

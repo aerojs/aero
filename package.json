@@ -6,7 +6,8 @@
 	"dependencies": {
 		"async": "*",
 		"node-watch": "*",
-		"object-assign": "*"
+		"object-assign": "*",
+		"jade": "*"
 	},
 	"engines" : {
 		"node": ">= 0.12.0",
