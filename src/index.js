@@ -1,5 +1,6 @@
 let async = require("async");
 let merge = require("object-assign");
+let fs = require("fs");
 //let Page = require("./classes/Page");
 let Server = require("./classes/Server");
 let getFile = require("./helpers/getFile");
@@ -47,7 +48,32 @@ let aero = {
 	
 	// registerEventListeners
 	registerEventListeners: function() {
-		// Launch the server when we have the port info
+		// Load favicon
+		this.events.on("initialized", function(config) {
+			fs.readFile(config.favIcon, function(error, data) {
+				if(error)
+					return;
+				
+				aero.server.favIconData = data;
+			});
+		});
+		
+		// Routes
+		this.events.on("initialized", function() {
+			aero.server.routes.set("users", function(request, response) {
+				response.writeHead(200, {
+					"Content-Type": "text/html"
+				});
+				
+				for(let param of request.params) {
+					response.write(param + "<br>");
+				}
+				
+				response.end();
+			});
+		});
+		
+		// Launch the server
 		this.events.on("initialized", function(config) {
 			aero.server.run(config.port, function(error) {
 				if(error)

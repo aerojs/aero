@@ -1,6 +1,7 @@
 {
 	"aero": {
 		"siteName": "Aero tests",
+		"favIcon": "favicon.ico",
 		"port": 4000
 	}
 }

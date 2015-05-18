@@ -3,8 +3,9 @@
 		"node": true
 	},
 	"ecmaFeatures": {
-		"arrowFunctions": true,
-		"blockBindings": true
+		"arrowFunctions": false,
+		"blockBindings": true,
+		"forOf": true
 	},
 	"rules": {
 		"strict": 0,
