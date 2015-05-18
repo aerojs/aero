@@ -8,6 +8,8 @@ module.exports = {
 			response.write(param + "<br>");
 		}
 		
+		response.write("Hello");
+		
 		response.end();
 	}
 };

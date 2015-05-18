@@ -3,6 +3,7 @@ let fs = require("fs");
 let path = require("path");
 let async = require("async");
 let merge = require("object-assign");
+let watch = require("node-watch");
 
 // Helpers
 let getFile = require("./helpers/getFile");
@@ -51,11 +52,20 @@ let aero = {
 			
 			// Let the world know that we're ready
 			aero.events.emit("initialized", aero.config);
+			
+			// Watch for changes
+			watch(aero.config.path.pages, function(filePath) {
+				let relativeFilePath = path.relative(aero.config.path.pages, filePath);
+				let pageId = path.dirname(relativeFilePath);
+				
+				aero.events.emit("page modified", pageId);
+			});
 		});
 	},
 	
 	// registerEventListeners
 	registerEventListeners: function() {
+		// Load favicon
 		this.events.on("initialized", function(config) {
 			fs.readFile(config.favIcon, function(error, data) {
 				if(error)
@@ -67,16 +77,12 @@ let aero = {
 		
 		// Routes
 		this.events.on("initialized", function() {
-			let pagesPath = "pages";
-			
-			fs.readdir(pagesPath, function(error, files) {
+			fs.readdir(aero.config.path.pages, function(error, files) {
 				if(error)
 					throw error;
 				
-				for(let file of files) {
-					let page = new Page(file, path.join(pagesPath, file));
-					aero.pages.set(file, page);
-					aero.server.routes.set(page.id, page.controller.get);
+				for(let id of files) {
+					aero.loadPage(id);
 				}
 			});
 		});
@@ -90,6 +96,20 @@ let aero = {
 				aero.events.emit("server started", aero.server);
 			});
 		});
+		
+		// Page modifications
+		this.events.on("page modified", function(pageId) {
+			console.log("Recompiling page: " + pageId);
+			aero.loadPage(pageId);
+		});
+	},
+	
+	// loadPage
+	loadPage: function(pageId) {
+		let page = new Page(pageId, path.join(aero.config.path.pages, pageId));
+		
+		aero.pages.set(pageId, page);
+		aero.server.routes.set(page.id, page.controller.get);
 	}
 };
 
