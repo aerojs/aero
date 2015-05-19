@@ -12,6 +12,8 @@ let loadPageJSON = require("../functions/loadPageJSON");
 let Page = function(id, pagePath, pageLoadCallBack) {
 	this.id = id;
 	this.path = pagePath;
+	this.url = id;
+	
 	this.modulePath = path.resolve(path.join(this.path, id + ".js"));
 	this.templatePath = path.resolve(path.join(this.path, id + ".jade"));
 	this.stylePath = path.resolve(path.join(this.path, id + ".styl"));
@@ -29,12 +31,19 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 		this.controller = data.controller;
 		this.json = data.json;
 		
+		// URL overwrite in JSON file
+		if(typeof this.json.url !== "undefined")
+			this.url = this.json.url;
+		
+		// Live reload script
+		let liveReload = "<script>var ws = new WebSocket('ws://localhost:9000/');ws.onmessage = function(){location.reload();};</script>";
+		
 		// Default controller
 		if(!this.controller) {
 			if(this.render) {
 				// Static page controller
 				this.controller = {
-					code: "<style scoped>" + this.css + "</style>" + this.render(this.json),
+					code: "<style scoped>" + this.css + "</style>" + this.render(this.json) + liveReload,
 					
 					get: function(request, response) {
 						response.end(this.code);
@@ -44,7 +53,7 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 				// Empty controller
 				this.controller = {
 					get: function(request, response) {
-						response.end();
+						response.end(liveReload);
 					}
 				};
 			}

@@ -13,6 +13,7 @@ let launchServer = require("./functions/launchServer");
 // Classes
 let Page = require("./classes/Page");
 let Server = require("./classes/Server");
+let LiveReload = require("./classes/LiveReload");
 let EventEmitter = require("./classes/EventEmitter");
 
 // Aero
@@ -41,6 +42,10 @@ let aero = {
 			// server
 			server: function(asyncReturn) {
 				asyncReturn(null, new Server());
+			},
+			
+			liveReload: function(asyncReturn) {
+				asyncReturn(null, new LiveReload());
 			}
 		}, function(error, data) {
 			if(error)
@@ -91,14 +96,16 @@ let aero = {
 			console.log("Recompiling page: " + pageId);
 			async.parallel([function(next) {
 				aero.loadPage(pageId, next);
-			}]);
+			}], function() {
+				aero.liveReload.server.broadcast(pageId);
+			});
 		});
 		
 		// Page loaded
 		this.events.on("page loaded", function(page) {
 			// Register a new route
 			aero.pages.set(page.id, page);
-			aero.server.routes.set(page.id, page.controller.get.bind(page.controller));
+			aero.server.routes.set(page.url, page.controller.get.bind(page.controller));
 		});
 	},
 	
