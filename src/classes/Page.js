@@ -1,41 +1,60 @@
+// Modules
+let async = require("async");
 let path = require("path");
-let jade = require("jade");
 
-let Page = function(id, pagePath) {
+// Functions
+let loadController = require("../functions/loadController");
+let loadTemplate = require("../functions/loadTemplate");
+let loadStyle = require("../functions/loadStyle");
+
+// Page
+let Page = function(id, pagePath, pageLoadCallBack) {
 	this.id = id;
 	this.path = pagePath;
 	this.modulePath = path.resolve(path.join(this.path, id + ".js"));
 	this.templatePath = path.resolve(path.join(this.path, id + ".jade"));
+	this.stylePath = path.resolve(path.join(this.path, id + ".styl"));
+	this.css = "";
 	
-	// Load template
-	try {
-		this.renderTemplate = jade.compileFile(this.templatePath);
-	} catch(e) {
-		if(e.code !== "ENOENT")
-			console.error(e);
-	}
-	
-	// Delete existing controller from cache
-	delete require.cache[this.modulePath];
-	
-	// Load controller
-	try {
-		this.controller = require(this.modulePath);
-	} catch(e) {
-		if(e.code !== "MODULE_NOT_FOUND")
-			console.error(e);
+	async.parallel({
+		controller: loadController.bind(this),
+		render: loadTemplate.bind(this),
+		css: loadStyle.bind(this)
+	}, function(error, data) {
+		// Update myself
+		this.render = data.render;
+		this.css = data.css;
+		this.controller = data.controller;
 		
-		// Default static page controller
-		if(this.renderTemplate) {
-			this.controller = {
-				code: this.renderTemplate(),
-				
-				get: function(request, response) {
-					response.end(this.code);
-				}
-			};
+		// Default controller
+		if(!this.controller) {
+			if(this.render) {
+				// Static page controller
+				this.controller = {
+					code: "<style scoped>" + this.css + "</style>" + this.render(),
+					
+					get: function(request, response) {
+						response.end(this.code);
+					}
+				};
+			} else {
+				// Empty controller
+				this.controller = {
+					get: function(request, response) {
+						response.end();
+					}
+				};
+			}
 		}
-	}
+		
+		// Call init on the page controller
+		if(this.controller.init)
+			this.controller.init(this);
+		
+		// Callback
+		if(pageLoadCallBack)
+			pageLoadCallBack(this);
+	}.bind(this));
 };
 
 module.exports = Page;

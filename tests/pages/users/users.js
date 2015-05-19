@@ -1,6 +1,6 @@
 module.exports = {
 	init: function(page) {
-		this.render = page.renderTemplate;
+		this.page = page;
 	},
 	
 	get: function(request, response) {
@@ -8,7 +8,7 @@ module.exports = {
 			"Content-Type": "text/html"
 		});
 		
-		response.end(this.render({
+		response.end(this.page.render({
 			user: request.params[0],
 			type: request.params[1]
 		}));

@@ -1,12 +1,14 @@
 // Modules
-let fs = require("fs");
 let path = require("path");
 let async = require("async");
 let merge = require("object-assign");
 let watch = require("node-watch");
 
-// Helpers
-let getFile = require("./helpers/getFile");
+// Functions
+let getFile = require("./functions/getFile");
+let loadFavIcon = require("./functions/loadFavIcon");
+let loadPages = require("./functions/loadPages");
+let launchServer = require("./functions/launchServer");
 
 // Classes
 let Page = require("./classes/Page");
@@ -28,17 +30,17 @@ let aero = {
 		// Parallely load some stuff
 		async.parallel({
 			// package
-			package: function(callBack) {
+			package: function(asyncReturn) {
 				let defaultConfig = require("../default/config");
 				
 				getFile(configPath, defaultConfig, function(json) {
-					callBack(null, JSON.parse(json));
+					asyncReturn(null, JSON.parse(json));
 				});
 			},
 			
 			// server
-			server: function(callBack) {
-				callBack(null, new Server());
+			server: function(asyncReturn) {
+				asyncReturn(null, new Server());
 			}
 		}, function(error, data) {
 			if(error)
@@ -51,7 +53,7 @@ let aero = {
 			aero.config = data.package.aero;
 			
 			// Let the world know that we're ready
-			aero.events.emit("initialized", aero.config);
+			aero.events.emit("initialized", aero);
 			
 			// Watch for changes
 			watch(aero.config.path.pages, function(filePath) {
@@ -65,35 +67,22 @@ let aero = {
 	
 	// registerEventListeners
 	registerEventListeners: function() {
-		// Load favicon
-		this.events.on("initialized", function(config) {
-			fs.readFile(config.favIcon, function(error, data) {
-				if(error)
-					return;
-				
-				aero.server.favIconData = data;
-			});
-		});
-		
-		// Routes
 		this.events.on("initialized", function() {
-			fs.readdir(aero.config.path.pages, function(error, files) {
-				if(error)
-					throw error;
-				
-				for(let id of files) {
-					aero.loadPage(id);
+			async.parallel({
+				favIconData: function(next) {
+					loadFavIcon(aero.config.favIcon, next);
+				},
+				pages: function(next) {
+					loadPages(aero.config.path.pages, aero.loadPage, next);
 				}
-			});
-		});
-		
-		// Launch the server
-		this.events.on("initialized", function(config) {
-			aero.server.run(config.port, function(error) {
+			}, function(error, results) {
 				if(error)
 					throw error;
 				
-				aero.events.emit("server started", aero.server);
+				aero.server.favIconData = results.favIconData;
+				
+				// Launch the server
+				launchServer(aero);
 			});
 		});
 		
@@ -102,19 +91,20 @@ let aero = {
 			console.log("Recompiling page: " + pageId);
 			aero.loadPage(pageId);
 		});
+		
+		// Page loaded
+		this.events.on("page loaded", function(page) {
+			// Register a new route
+			aero.pages.set(page.id, page);
+			aero.server.routes.set(page.id, page.controller.get.bind(page.controller));
+		});
 	},
 	
 	// loadPage
-	loadPage: function(pageId) {
-		let page = new Page(pageId, path.join(aero.config.path.pages, pageId));
-		
-		// Call init on the page controller
-		if(page.controller.init)
-			page.controller.init(page);
-		
-		// Register a new route
-		aero.pages.set(pageId, page);
-		aero.server.routes.set(pageId, page.controller.get.bind(page.controller));
+	loadPage: function(pageId, next) {
+		next(null, new Page(pageId, path.join(aero.config.path.pages, pageId), function(page) {
+			aero.events.emit("page loaded", page);
+		}));
 	}
 };
 
