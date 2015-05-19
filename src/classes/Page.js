@@ -14,7 +14,12 @@ let Page = function(id, pagePath) {
 	this.controller = require(this.modulePath);
 	
 	// Load template
-	this.renderTemplate = jade.compileFile(this.templatePath);
+	try {
+		this.renderTemplate = jade.compileFile(this.templatePath);
+	} catch(e) {
+		if(e.code !== "ENOENT")
+			console.error(e);
+	}
 };
 
 module.exports = Page;
