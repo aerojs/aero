@@ -12,6 +12,7 @@ let launchServer = require("./functions/launchServer");
 
 // Classes
 let Page = require("./classes/Page");
+let Layout = require("./classes/Layout");
 let Server = require("./classes/Server");
 let LiveReload = require("./classes/LiveReload");
 let EventEmitter = require("./classes/EventEmitter");
@@ -76,6 +77,9 @@ let aero = {
 			async.parallel({
 				favIconData: function(next) {
 					loadFavIcon(aero.config.favIcon, next);
+				},
+				layout: function(next) {
+					next(null, new Layout("layout"));
 				},
 				pages: function(next) {
 					loadPages(aero.config.path.pages, aero.loadPage, next);

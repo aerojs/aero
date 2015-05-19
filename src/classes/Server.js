@@ -31,11 +31,10 @@ let Server = function() {
 		}
 		
 		// Determine which page has been requested
-		let i = 1;
-		for(; i < url.length; i++) {
-			if(url[i] === "/")
-				break;
-		}
+		let i = url.indexOf("/", 1);
+		
+		if(i === -1)
+			i = url.length;
 		
 		let page = url.substr(1, i - 1);
 		let route = this.routes.get(page);
@@ -47,7 +46,7 @@ let Server = function() {
 		}
 		
 		if(i >= url.length - 1)
-			request.params = [];
+			request.params = null;
 		else
 			request.params = url.substr(i + 1).split("/");
 		
