@@ -89,7 +89,9 @@ let aero = {
 		// Page modifications
 		this.events.on("page modified", function(pageId) {
 			console.log("Recompiling page: " + pageId);
-			aero.loadPage(pageId);
+			async.parallel([function(next) {
+				aero.loadPage(pageId, next);
+			}]);
 		});
 		
 		// Page loaded
