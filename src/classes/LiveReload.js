@@ -2,9 +2,9 @@
 let WebSocketServer = require("ws").Server;
 
 // LiveReload
-let LiveReload = function() {
+let LiveReload = function(port) {
 	this.server = new WebSocketServer({
-		port: 9000
+		port: port
 	});
 
 	this.server.broadcast = function(data) {

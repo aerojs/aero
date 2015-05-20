@@ -11,19 +11,19 @@ let Layout = function(layoutPath) {
 	this.path = layoutPath;
 	this.controllerPath = path.resolve(path.join(this.path, this.id + ".js"));
 	this.templatePath = path.resolve(path.join(this.path, this.id + ".jade"));
-	this.liveReloadScript = "<script>var ws = new WebSocket('ws://localhost:9000/');ws.onmessage = function(){location.reload();};</script>";
+	this.liveReloadScript = "var ws = new WebSocket('ws://localhost:9000/');ws.onmessage = function(){location.reload();};";
 	this.controller = null;
-	
+
 	// Template
 	loadTemplate.bind(this)(function(error, renderTemplate) {
 		this.renderTemplate = renderTemplate;
 	}.bind(this));
-	
+
 	// Controller
 	loadController.bind(this)(function(error, controller) {
 		this.controller = controller;
 	}.bind(this));
-	
+
 	// Controller.init
 	if(this.controller.init)
 		this.controller.init(this);

@@ -20,7 +20,6 @@ let aero = {
 	events: new EventEmitter(),
 	pages: new Map(),
 	server: new Server(),
-	liveReload: new LiveReload(),
 
 	// run
 	run: function(configPath) {
@@ -72,21 +71,24 @@ let aero = {
 
 			// Launch the server
 			launchServer(aero);
+
+			// Live reload
+			aero.liveReload = new LiveReload(aero.config.liveReloadPort);
 		});
 
 		// Page modifications
 		this.events.on("page modified", function(pageId) {
 			aero.loadPage(pageId);
-			aero.liveReload.server.broadcast(pageId);
 		});
 
 		// Layout modifications
 		this.events.on("layout modified", function() {
 			aero.layout = new Layout(aero.config.path.layout);
-			
+
 			for(let page of aero.pages.values()) {
-				if(!page.controller || page.controller.render)
+				if(!page.controller || page.controller.render) {
 					aero.events.emit("page loaded", page);
+				}
 			}
 		});
 
@@ -102,7 +104,8 @@ let aero = {
 					response.end(page.code);
 				};
 			}
-			
+
+			let js = aero.layout.liveReloadScript;
 			let renderLayoutTemplate = aero.layout.renderTemplate;
 			let contentType = {
 				"Content-Type": "text/html"
@@ -112,7 +115,7 @@ let aero = {
 			if(page.controller && page.controller.render) {
 				let renderPageTemplate = page.renderTemplate;
 				let renderPage = page.controller.render;
-				
+
 				if(aero.layout.controller) {
 					let renderLayout = aero.layout.controller.render.bind(aero.layout.controller);
 
@@ -129,7 +132,8 @@ let aero = {
 									response.end(renderLayoutTemplate(layoutControllerParams));
 								} else {
 									response.end(renderLayoutTemplate({
-										content: code
+										content: code,
+										js: js
 									}));
 								}
 							});
@@ -142,7 +146,8 @@ let aero = {
 
 						renderPage(request, function(params) {
 							response.end(renderLayoutTemplate({
-								content: renderPageTemplate(params)
+								content: renderPageTemplate(params),
+								js: js
 							}));
 						});
 					});
@@ -153,28 +158,34 @@ let aero = {
 					aero.get(page.url, page.controller.get.bind(page.controller));
 				} else if(aero.layout.controller) {
 					let renderLayout = aero.layout.controller.render.bind(aero.layout.controller);
-					
+
 					// Dynamic layout + Static page
 					aero.get(page.url, function(request, response) {
 						response.writeHead(200, contentType);
-						
+
 						renderLayout(request, function(layoutControllerParams) {
 							layoutControllerParams.content = page.code;
+							layoutControllerParams.js = js;
 							response.end(renderLayoutTemplate(layoutControllerParams));
 						});
 					});
 				} else {
 					// Static layout + Static page
 					let staticPageCode = renderLayoutTemplate({
-						content: page.code
+						content: page.code,
+						js: js
 					});
-					
+
 					aero.get(page.url, function(request, response) {
 						response.writeHead(200, contentType);
 						response.end(staticPageCode);
 					});
 				}
 			}
+
+			// Live reload
+			if(aero.liveReload && aero.liveReload.server)
+				aero.liveReload.server.broadcast(page.id);
 		});
 	},
 

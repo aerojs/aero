@@ -9,9 +9,13 @@ html
 			nav
 				each link in nav
 					a(href="/" + link)= link
-		
+
+		if user
+			p Logged in as 
+				span= user.name
+
 		h1 Layout
-		h2 New 3
-		
+		h2 Header
+
 		#content!= content
-		//- script!= js
+		script!= js
