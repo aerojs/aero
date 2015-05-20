@@ -5,8 +5,9 @@ let Server = function() {
 	// favIcon
 	this.favIconData = null;
 
-	// routes
+	// Routing
 	this.routes = new Map();
+	this.raw = new Map();
 
 	// handleRequest
 	this.handleRequest = function(request, response) {
@@ -36,32 +37,36 @@ let Server = function() {
 		if(i === -1)
 			i = url.length;
 
-		let page = url.substr(1, i - 1);
+		let page = url.substring(1, i);
 		let route = this.routes.get(page);
 
+		// 404
 		if(!route) {
 			if(page === "_") {
-				// Raw page request
-				i = url.indexOf("/", 3); // 3 characters prefix: /_/
+				// 3 characters prefix: /_/
+				i = url.indexOf("/", 3);
 
 				if(i === -1)
 					i = url.length;
 
-				page = url.substr(3, i - 1);
-				console.log(i);
-				console.log("RAW: " + page);
+				page = url.substring(3, i);
+				route = this.raw.get(page);
 			}
 
-			response.writeHead(404);
-			response.end();
-			return;
+			if(!route) {
+				response.writeHead(404);
+				response.end();
+				return;
+			}
 		}
 
+		// Page parameters
 		if(i >= url.length - 1)
-			request.params = null;
+			request.params = [];
 		else
 			request.params = url.substr(i + 1).split("/");
 
+		// Execute handler
 		route(request, response);
 	}.bind(this);
 

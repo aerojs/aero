@@ -77,9 +77,34 @@ let aero = {
 
 		// Page loaded
 		this.events.on("page loaded", function(page) {
-			// Register a new route
+			// Register a raw route
 			aero.pages.set(page.id, page);
-			aero.get(page.url, page.controller.get.bind(page.controller));
+			aero.server.raw.set(page.url, page.controller.get.bind(page.controller));
+			
+			let contentType = {
+				"Content-Type": "text/html"
+			};
+			
+			let staticLayoutDynamicPage = function(request, response) {
+				response.writeHead(200, contentType);
+				
+				page.controller.render(request, function(params) {
+					response.end(aero.layout.renderTemplate({
+						content: page.renderTemplate(params)
+					}));
+				});
+			};
+			
+			// Routing
+			if(aero.layout.controller) {
+				// TODO: ...
+			} else {
+				if(page.controller.render) {
+					aero.server.routes.set(page.url, staticLayoutDynamicPage);
+				} else { // Static layout + Completely user-controlled dynamic page
+					aero.server.routes.set(page.url, page.controller.get.bind(page.controller));
+				}
+			}
 		});
 	},
 
@@ -91,10 +116,8 @@ let aero = {
 	},
 
 	// get
-	get: function(route, handler) {
-		//console.log("New route: " + route);
-		//console.log(typeof route);
-		aero.server.routes.set(route, handler);
+	get: function() {
+		// Not implemented yet
 	}
 };
 

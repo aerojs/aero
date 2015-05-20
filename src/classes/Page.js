@@ -21,12 +21,12 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 
 	async.parallel({
 		controller: loadController.bind(this),
-		render: loadTemplate.bind(this),
+		renderTemplate: loadTemplate.bind(this),
 		css: loadStyle.bind(this),
 		json: loadPageJSON.bind(this)
 	}, function(error, data) {
 		// Update myself
-		this.render = data.render;
+		this.renderTemplate = data.renderTemplate;
 		this.css = data.css;
 		this.controller = data.controller;
 		this.json = data.json;
@@ -35,25 +35,45 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 		if(typeof this.json.url !== "undefined")
 			this.url = this.json.url;
 
-		// Live reload script
-		let liveReload = "<script>var ws = new WebSocket('ws://localhost:9000/');ws.onmessage = function(){location.reload();};</script>";
-
 		// Default controller
-		if(!this.controller) {
-			if(this.render) {
+		if(this.controller) {
+			// Automatic "get" creation
+			if(this.controller.render && !this.controller.get) {
+				let page = this;
+				
+				this.controller.get = function(request, response) {
+					this.render(request, function(params) {
+						response.end(page.renderTemplate(params));
+					});
+				};
+			}
+		} else {
+			if(this.renderTemplate) {
+				this.code = "<style scoped>" + this.css + "</style>" + this.renderTemplate(this.json);
+
 				// Static page controller
 				this.controller = {
-					code: "<style scoped>" + this.css + "</style>" + this.render(this.json) + liveReload,
+					code: this.code,
+					
+					render: function(request, render) {
+						render();
+					},
 
 					get: function(request, response) {
 						response.end(this.code);
 					}
 				};
 			} else {
+				this.code = "";
+
 				// Empty controller
 				this.controller = {
+					render: function(request, render) {
+						render();
+					},
+					
 					get: function(request, response) {
-						response.end(liveReload);
+						response.end();
 					}
 				};
 			}

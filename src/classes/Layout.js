@@ -1,5 +1,4 @@
 // Modules
-let async = require("async");
 let path = require("path");
 
 // Functions
@@ -10,11 +9,11 @@ let Layout = function(layoutPath) {
 	this.id = path.basename(layoutPath);
 	this.path = layoutPath;
 	this.templatePath = path.resolve(path.join(this.path, this.id + ".jade"));
-
-	async.parallel({
-		render: loadTemplate.bind(this)
-	}, function(error, data) {
-		this.render = data.render;
+	this.liveReloadScript = "<script>var ws = new WebSocket('ws://localhost:9000/');ws.onmessage = function(){location.reload();};</script>";
+	this.controller = null;
+	
+	loadTemplate.bind(this)(function(error, renderTemplate) {
+		this.renderTemplate = renderTemplate;
 	}.bind(this));
 };
 
