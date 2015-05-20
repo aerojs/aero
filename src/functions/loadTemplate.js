@@ -8,7 +8,7 @@ let loadTemplate = function(next) {
 	} catch(e) {
 		if(e.code !== "ENOENT")
 			console.error(e);
-		
+
 		next(null, null);
 	}
 };

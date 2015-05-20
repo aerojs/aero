@@ -4,7 +4,7 @@ module.exports = {
 		path: {
 			pages: "pages",
 			styles: "styles",
-			layouts: "layouts"
+			layout: "layout"
 		},
 		favIcon: "favicon.ico",
 		port: 4000

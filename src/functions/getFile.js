@@ -6,7 +6,7 @@ let writeFile = function(filePath, defaultData, callBack) {
 		if(writeError)
 			throw writeError;
 	});
-	
+
 	callBack(defaultData);
 };
 
@@ -15,7 +15,7 @@ let readFile = function(filePath, callBack) {
 	fs.readFile(filePath, "utf8", function(readError, data) {
 		if(readError)
 			throw readError;
-		
+
 		callBack(data);
 	});
 };
@@ -24,7 +24,7 @@ let readFile = function(filePath, callBack) {
 let getFile = function(filePath, defaultData, callBack) {
 	if(typeof defaultData === "object")
 		defaultData = JSON.stringify(defaultData, null, "\t");
-	
+
 	// File exists?
 	fs.stat(filePath, function(statError, stats) {
 		// If it doesn't exist we'll create it with the default data.

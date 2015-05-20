@@ -25,3 +25,8 @@ aero.events.on("ready", function() {
 // Run
 startUp = Date.now();
 aero.run();
+
+// Google+ style routing
+aero.get(/^\+(.*)/, function(request, response) {
+	response.end("Google+ style routing");
+});
