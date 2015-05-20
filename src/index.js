@@ -66,14 +66,14 @@ let aero = {
 			// Layout
 			aero.layout = new Layout(aero.config.path.layout);
 
+			// Live reload
+			aero.liveReload = new LiveReload(aero.config.liveReloadPort);
+
 			// Pages
 			loadPages(aero.config.path.pages, aero.loadPage);
 
 			// Launch the server
 			launchServer(aero);
-
-			// Live reload
-			aero.liveReload = new LiveReload(aero.config.liveReloadPort);
 		});
 
 		// Page modifications
@@ -105,7 +105,7 @@ let aero = {
 				};
 			}
 
-			let js = aero.layout.liveReloadScript;
+			let js = aero.liveReload.script;
 			let renderLayoutTemplate = aero.layout.renderTemplate;
 			let contentType = {
 				"Content-Type": "text/html"
@@ -115,6 +115,15 @@ let aero = {
 			if(page.controller && page.controller.render) {
 				let renderPageTemplate = page.renderTemplate;
 				let renderPage = page.controller.render;
+				
+				// Syntax error while compiling the template?
+				// Then let's send over a live reload script until it's fixed
+				if(!renderPageTemplate) {
+					aero.get(page.url, function(request, response) {
+						response.end("<script>" + aero.liveReload.script + "</script>");
+					});
+					return;
+				}
 
 				if(aero.layout.controller) {
 					let renderLayout = aero.layout.controller.render.bind(aero.layout.controller);
@@ -129,6 +138,8 @@ let aero = {
 
 								if(layoutControllerParams) {
 									layoutControllerParams.content = code;
+									layoutControllerParams.js = js;
+
 									response.end(renderLayoutTemplate(layoutControllerParams));
 								} else {
 									response.end(renderLayoutTemplate({
@@ -166,6 +177,7 @@ let aero = {
 						renderLayout(request, function(layoutControllerParams) {
 							layoutControllerParams.content = page.code;
 							layoutControllerParams.js = js;
+
 							response.end(renderLayoutTemplate(layoutControllerParams));
 						});
 					});
@@ -184,8 +196,7 @@ let aero = {
 			}
 
 			// Live reload
-			if(aero.liveReload && aero.liveReload.server)
-				aero.liveReload.server.broadcast(page.id);
+			aero.liveReload.server.broadcast(page.id);
 		});
 	},
 

@@ -13,6 +13,8 @@ let LiveReload = function(port) {
 			client.send(data);
 		});
 	}.bind(this);
+
+	this.script = "var ws = new WebSocket('ws://localhost:" + port + "/');ws.onmessage = function(){location.reload();};";
 };
 
 module.exports = LiveReload;

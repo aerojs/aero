@@ -11,7 +11,6 @@ let Layout = function(layoutPath) {
 	this.path = layoutPath;
 	this.controllerPath = path.resolve(path.join(this.path, this.id + ".js"));
 	this.templatePath = path.resolve(path.join(this.path, this.id + ".jade"));
-	this.liveReloadScript = "var ws = new WebSocket('ws://localhost:9000/');ws.onmessage = function(){location.reload();};";
 	this.controller = null;
 
 	// Template
