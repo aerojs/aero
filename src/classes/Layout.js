@@ -23,6 +23,10 @@ let Layout = function(layoutPath) {
 	loadController.bind(this)(function(error, controller) {
 		this.controller = controller;
 	}.bind(this));
+	
+	// Controller.init
+	if(this.controller.init)
+		this.controller.init(this);
 };
 
 module.exports = Layout;

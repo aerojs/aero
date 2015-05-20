@@ -1,7 +1,13 @@
 module.exports = {
+	nav: [
+		"home",
+		"products",
+		"contact"
+	],
+
 	render: function(request, render) {
 		render({
-			nav: ["home", "products", "contact"]
+			nav: this.nav
 		});
 	}
 };

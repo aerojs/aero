@@ -1,15 +1,17 @@
 doctype html
 html
 	head
-		//- title= siteName
-		//- style!= css
+		title= siteName
+		style!= css
 
 	body
-		nav
-			each link in nav
-				a(href="/" + link)= link
+		if nav
+			nav
+				each link in nav
+					a(href="/" + link)= link
 		
 		h1 Layout
+		h2 New 3
 		
 		#content!= content
 		//- script!= js

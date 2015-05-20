@@ -42,12 +42,17 @@ let aero = {
 			// Let the world know that we're ready
 			aero.events.emit("initialized", aero);
 
-			// Watch for changes
+			// Watch for page modifications
 			watch(aero.config.path.pages, function(filePath) {
 				let relativeFilePath = path.relative(aero.config.path.pages, filePath);
 				let pageId = path.dirname(relativeFilePath);
 
 				aero.events.emit("page modified", pageId);
+			});
+
+			// Watch for layout modifications
+			watch(aero.config.path.layout, function() {
+				aero.events.emit("layout modified");
 			});
 		});
 	},
@@ -75,62 +80,100 @@ let aero = {
 			aero.liveReload.server.broadcast(pageId);
 		});
 
+		// Layout modifications
+		this.events.on("layout modified", function() {
+			aero.layout = new Layout(aero.config.path.layout);
+			
+			for(let page of aero.pages.values()) {
+				if(!page.controller || page.controller.render)
+					aero.events.emit("page loaded", page);
+			}
+		});
+
 		// Page loaded
 		this.events.on("page loaded", function(page) {
 			// Register a raw route
 			aero.pages.set(page.id, page);
-			aero.server.raw.set(page.url, page.controller.get.bind(page.controller));
+
+			if(page.controller) {
+				aero.server.raw.set(page.url, page.controller.get.bind(page.controller));
+			} else {
+				aero.server.raw.set(page.url, function(request, response) {
+					response.end(page.code);
+				});
+			}
 			
+			let renderLayoutTemplate = aero.layout.renderTemplate;
 			let contentType = {
 				"Content-Type": "text/html"
 			};
-			
-			let renderLayout = aero.layout.controller.render;
-			let renderLayoutTemplate = aero.layout.renderTemplate;
-			let renderPage = page.controller.render;
-			let renderPageTemplate = page.renderTemplate;
-			
-			let staticLayoutDynamicPage = function(request, response) {
-				response.writeHead(200, contentType);
-				
-				renderPage(request, function(params) {
-					response.end(renderLayoutTemplate({
-						content: renderPageTemplate(params)
-					}));
-				});
-			};
-			
-			let dynamicLayoutDynamicPage = function(request, response) {
-				response.writeHead(200, contentType);
-				
-				renderLayout(request, function(layoutControllerParams) {
-					renderPage(request, function(params) {
-						let code = renderPageTemplate(params);
-						
-						if(layoutControllerParams) {
-							layoutControllerParams.content = code;
-							response.end(renderLayoutTemplate(layoutControllerParams));
-						} else {
-							response.end(renderLayoutTemplate({
-								content: code
-							}));
-						}
-					});
-				});
-			};
-			
+
 			// Routing
-			if(page.controller.render) {
+			if(page.controller && page.controller.render) {
+				let renderPageTemplate = page.renderTemplate;
+				let renderPage = page.controller.render;
+				
 				if(aero.layout.controller) {
+					let renderLayout = aero.layout.controller.render.bind(aero.layout.controller);
+
 					// Dynamic layout + Dynamic page
-					aero.server.routes.set(page.url, dynamicLayoutDynamicPage);
+					aero.server.routes.set(page.url, function(request, response) {
+						response.writeHead(200, contentType);
+
+						renderLayout(request, function(layoutControllerParams) {
+							renderPage(request, function(params) {
+								let code = renderPageTemplate(params);
+
+								if(layoutControllerParams) {
+									layoutControllerParams.content = code;
+									response.end(renderLayoutTemplate(layoutControllerParams));
+								} else {
+									response.end(renderLayoutTemplate({
+										content: code
+									}));
+								}
+							});
+						});
+					});
 				} else {
 					// Static layout + Dynamic page
-					aero.server.routes.set(page.url, staticLayoutDynamicPage);
+					aero.server.routes.set(page.url, function(request, response) {
+						response.writeHead(200, contentType);
+
+						renderPage(request, function(params) {
+							response.end(renderLayoutTemplate({
+								content: renderPageTemplate(params)
+							}));
+						});
+					});
 				}
 			} else {
-				// Completely user-controlled dynamic page (e.g. API calls)
-				aero.server.routes.set(page.url, page.controller.get.bind(page.controller));
+				if(page.controller) {
+					// Completely user-controlled dynamic page (e.g. API calls)
+					aero.server.routes.set(page.url, page.controller.get.bind(page.controller));
+				} else if(aero.layout.controller) {
+					let renderLayout = aero.layout.controller.render.bind(aero.layout.controller);
+					
+					// Dynamic layout + Static page
+					aero.server.routes.set(page.url, function(request, response) {
+						response.writeHead(200, contentType);
+						
+						renderLayout(request, function(layoutControllerParams) {
+							layoutControllerParams.content = page.code;
+							response.end(renderLayoutTemplate(layoutControllerParams));
+						});
+					});
+				} else {
+					// Static layout + Static page
+					let staticPageCode = renderLayoutTemplate({
+						content: page.code
+					});
+					
+					aero.server.routes.set(page.url, function(request, response) {
+						response.writeHead(200, contentType);
+						response.end(staticPageCode);
+					});
+				}
 			}
 		});
 	},

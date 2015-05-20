@@ -47,41 +47,17 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 					});
 				};
 			}
+			
+			// Call init on the page controller
+			if(this.controller.init)
+				this.controller.init(this);
 		} else {
 			if(this.renderTemplate) {
 				this.code = "<style scoped>" + this.css + "</style>" + this.renderTemplate(this.json);
-
-				// Static page controller
-				this.controller = {
-					code: this.code,
-					
-					render: function(request, render) {
-						render();
-					},
-
-					get: function(request, response) {
-						response.end(this.code);
-					}
-				};
 			} else {
 				this.code = "";
-
-				// Empty controller
-				this.controller = {
-					render: function(request, render) {
-						render();
-					},
-					
-					get: function(request, response) {
-						response.end();
-					}
-				};
 			}
 		}
-
-		// Call init on the page controller
-		if(this.controller.init)
-			this.controller.init(this);
 
 		// Callback
 		if(pageLoadCallBack)
