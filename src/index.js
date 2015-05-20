@@ -85,25 +85,52 @@ let aero = {
 				"Content-Type": "text/html"
 			};
 			
+			let renderLayout = aero.layout.controller.render;
+			let renderLayoutTemplate = aero.layout.renderTemplate;
+			let renderPage = page.controller.render;
+			let renderPageTemplate = page.renderTemplate;
+			
 			let staticLayoutDynamicPage = function(request, response) {
 				response.writeHead(200, contentType);
 				
-				page.controller.render(request, function(params) {
-					response.end(aero.layout.renderTemplate({
-						content: page.renderTemplate(params)
+				renderPage(request, function(params) {
+					response.end(renderLayoutTemplate({
+						content: renderPageTemplate(params)
 					}));
 				});
 			};
 			
+			let dynamicLayoutDynamicPage = function(request, response) {
+				response.writeHead(200, contentType);
+				
+				renderLayout(request, function(layoutControllerParams) {
+					renderPage(request, function(params) {
+						let code = renderPageTemplate(params);
+						
+						if(layoutControllerParams) {
+							layoutControllerParams.content = code;
+							response.end(renderLayoutTemplate(layoutControllerParams));
+						} else {
+							response.end(renderLayoutTemplate({
+								content: code
+							}));
+						}
+					});
+				});
+			};
+			
 			// Routing
-			if(aero.layout.controller) {
-				// TODO: ...
-			} else {
-				if(page.controller.render) {
+			if(page.controller.render) {
+				if(aero.layout.controller) {
+					// Dynamic layout + Dynamic page
+					aero.server.routes.set(page.url, dynamicLayoutDynamicPage);
+				} else {
+					// Static layout + Dynamic page
 					aero.server.routes.set(page.url, staticLayoutDynamicPage);
-				} else { // Static layout + Completely user-controlled dynamic page
-					aero.server.routes.set(page.url, page.controller.get.bind(page.controller));
 				}
+			} else {
+				// Completely user-controlled dynamic page (e.g. API calls)
+				aero.server.routes.set(page.url, page.controller.get.bind(page.controller));
 			}
 		});
 	},

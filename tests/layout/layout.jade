@@ -5,6 +5,11 @@ html
 		//- style!= css
 
 	body
+		nav
+			each link in nav
+				a(href="/" + link)= link
+		
 		h1 Layout
+		
 		#content!= content
 		//- script!= js

@@ -14,7 +14,7 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 	this.path = pagePath;
 	this.url = id;
 
-	this.modulePath = path.resolve(path.join(this.path, id + ".js"));
+	this.controllerPath = path.resolve(path.join(this.path, id + ".js"));
 	this.templatePath = path.resolve(path.join(this.path, id + ".jade"));
 	this.stylePath = path.resolve(path.join(this.path, id + ".styl"));
 	this.jsonPath = path.resolve(path.join(this.path, id + ".json"));
