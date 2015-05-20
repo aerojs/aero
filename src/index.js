@@ -96,11 +96,11 @@ let aero = {
 			aero.pages.set(page.id, page);
 
 			if(page.controller) {
-				aero.server.raw.set(page.url, page.controller.get.bind(page.controller));
+				aero.server.raw[page.url] = page.controller.get.bind(page.controller);
 			} else {
-				aero.server.raw.set(page.url, function(request, response) {
+				aero.server.raw[page.url] = function(request, response) {
 					response.end(page.code);
-				});
+				};
 			}
 			
 			let renderLayoutTemplate = aero.layout.renderTemplate;
@@ -117,7 +117,7 @@ let aero = {
 					let renderLayout = aero.layout.controller.render.bind(aero.layout.controller);
 
 					// Dynamic layout + Dynamic page
-					aero.server.routes.set(page.url, function(request, response) {
+					aero.get(page.url, function(request, response) {
 						response.writeHead(200, contentType);
 
 						renderLayout(request, function(layoutControllerParams) {
@@ -137,7 +137,7 @@ let aero = {
 					});
 				} else {
 					// Static layout + Dynamic page
-					aero.server.routes.set(page.url, function(request, response) {
+					aero.get(page.url, function(request, response) {
 						response.writeHead(200, contentType);
 
 						renderPage(request, function(params) {
@@ -150,12 +150,12 @@ let aero = {
 			} else {
 				if(page.controller) {
 					// Completely user-controlled dynamic page (e.g. API calls)
-					aero.server.routes.set(page.url, page.controller.get.bind(page.controller));
+					aero.get(page.url, page.controller.get.bind(page.controller));
 				} else if(aero.layout.controller) {
 					let renderLayout = aero.layout.controller.render.bind(aero.layout.controller);
 					
 					// Dynamic layout + Static page
-					aero.server.routes.set(page.url, function(request, response) {
+					aero.get(page.url, function(request, response) {
 						response.writeHead(200, contentType);
 						
 						renderLayout(request, function(layoutControllerParams) {
@@ -169,7 +169,7 @@ let aero = {
 						content: page.code
 					});
 					
-					aero.server.routes.set(page.url, function(request, response) {
+					aero.get(page.url, function(request, response) {
 						response.writeHead(200, contentType);
 						response.end(staticPageCode);
 					});
@@ -186,8 +186,8 @@ let aero = {
 	},
 
 	// get
-	get: function() {
-		// Not implemented yet
+	get: function(url, route) {
+		aero.server.routes[url] = route;
 	}
 };
 

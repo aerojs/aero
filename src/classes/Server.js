@@ -6,8 +6,8 @@ let Server = function() {
 	this.favIconData = null;
 
 	// Routing
-	this.routes = new Map();
-	this.raw = new Map();
+	this.routes = {};
+	this.raw = {};
 
 	// handleRequest
 	this.handleRequest = function(request, response) {
@@ -38,7 +38,7 @@ let Server = function() {
 			i = url.length;
 
 		let page = url.substring(1, i);
-		let route = this.routes.get(page);
+		let route = this.routes[page];
 
 		// 404
 		if(!route) {
@@ -50,7 +50,7 @@ let Server = function() {
 					i = url.length;
 
 				page = url.substring(3, i);
-				route = this.raw.get(page);
+				route = this.raw[page];
 			}
 
 			if(!route) {
