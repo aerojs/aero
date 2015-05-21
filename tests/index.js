@@ -1,5 +1,5 @@
 // Modules
-let aero = require("../src");
+let aero = require("../src/aero");
 
 // Measure startup time
 let startUp = 0;

@@ -40,14 +40,14 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 			// Automatic "get" creation
 			if(this.controller.render && !this.controller.get) {
 				let page = this;
-				
+
 				this.controller.get = function(request, response) {
 					this.render(request, function(params) {
 						response.end(page.renderTemplate(params));
 					});
 				};
 			}
-			
+
 			// Call init on the page controller
 			if(this.controller.init)
 				this.controller.init(this);

@@ -1,6 +1,7 @@
 // Modules
 let path = require("path");
 let watch = require("node-watch");
+let zlib = require("zlib");
 
 // Functions
 let getFile = require("./functions/getFile");
@@ -94,9 +95,10 @@ let aero = {
 
 		// Page loaded
 		this.events.on("page loaded", function(page) {
-			// Register a raw route
+			// Register page
 			aero.pages.set(page.id, page);
 
+			// Register a raw route
 			if(page.controller) {
 				aero.server.raw[page.url] = page.controller.get.bind(page.controller);
 			} else {
@@ -105,9 +107,11 @@ let aero = {
 				};
 			}
 
+			const gzipThreshold = 1024;
+			let useGzip = true;
 			let js = aero.liveReload.script;
 			let renderLayoutTemplate = aero.layout.renderTemplate;
-			let contentType = {
+			let headers = {
 				"Content-Type": "text/html"
 			};
 
@@ -115,7 +119,7 @@ let aero = {
 			if(page.controller && page.controller.render) {
 				let renderPageTemplate = page.renderTemplate;
 				let renderPage = page.controller.render;
-				
+
 				// Syntax error while compiling the template?
 				// Then let's send over a live reload script until it's fixed
 				if(!renderPageTemplate) {
@@ -130,7 +134,7 @@ let aero = {
 
 					// Dynamic layout + Dynamic page
 					aero.get(page.url, function(request, response) {
-						response.writeHead(200, contentType);
+						response.writeHead(200, headers);
 
 						renderLayout(request, function(layoutControllerParams) {
 							renderPage(request, function(params) {
@@ -153,7 +157,7 @@ let aero = {
 				} else {
 					// Static layout + Dynamic page
 					aero.get(page.url, function(request, response) {
-						response.writeHead(200, contentType);
+						response.writeHead(200, headers);
 
 						renderPage(request, function(params) {
 							response.end(renderLayoutTemplate({
@@ -172,7 +176,7 @@ let aero = {
 
 					// Dynamic layout + Static page
 					aero.get(page.url, function(request, response) {
-						response.writeHead(200, contentType);
+						response.writeHead(200, headers);
 
 						renderLayout(request, function(layoutControllerParams) {
 							layoutControllerParams.content = page.code;
@@ -188,10 +192,23 @@ let aero = {
 						js: js
 					});
 
-					aero.get(page.url, function(request, response) {
-						response.writeHead(200, contentType);
-						response.end(staticPageCode);
-					});
+					if(useGzip && staticPageCode.length >= gzipThreshold) {
+						headers["Content-Encoding"] = "gzip";
+
+						zlib.gzip(staticPageCode, {
+							level: zlib.Z_BEST_COMPRESSION
+						}, function(error, gzippedCode) {
+							aero.get(page.url, function(request, response) {
+								response.writeHead(200, headers);
+								response.end(gzippedCode);
+							});
+						});
+					} else {
+						aero.get(page.url, function(request, response) {
+							response.writeHead(200, headers);
+							response.end(staticPageCode);
+						});
+					}
 				}
 			}
 

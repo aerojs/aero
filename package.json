@@ -2,7 +2,7 @@
 	"name": "aero",
 	"version": "0.3.0",
 	"description": "High-performance website framework based on io.js, Jade and Stylus.",
-	"main": "src/index.js",
+	"main": "src/aero.js",
 	"dependencies": {
 		"async": "*",
 		"node-watch": "*",
