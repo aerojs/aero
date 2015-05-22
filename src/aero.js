@@ -108,11 +108,36 @@ let aero = {
 			}
 
 			const gzipThreshold = 1024;
-			let useGzip = true;
 			let js = aero.liveReload.script;
 			let renderLayoutTemplate = aero.layout.renderTemplate;
+
 			let headers = {
 				"Content-Type": "text/html"
+			};
+
+			let bestCompressionOptions = {
+				level: zlib.Z_BEST_COMPRESSION,
+				data_type: zlib.Z_TEXT
+			};
+
+			let fastCompressionOptions = {
+				level: zlib.Z_DEFAULT_COMPRESSION,
+				data_type: zlib.Z_TEXT
+			};
+
+			let respond = function(finalCode, response) {
+				if(finalCode.length >= gzipThreshold) {
+					headers["Content-Encoding"] = "gzip";
+
+					response.writeHead(200, headers);
+
+					zlib.gzip(finalCode, fastCompressionOptions, function(error, gzippedCode) {
+						response.end(gzippedCode);
+					});
+				} else {
+					response.writeHead(200, headers);
+					response.end(finalCode);
+				}
 			};
 
 			// Routing
@@ -134,8 +159,6 @@ let aero = {
 
 					// Dynamic layout + Dynamic page
 					aero.get(page.url, function(request, response) {
-						response.writeHead(200, headers);
-
 						renderLayout(request, function(layoutControllerParams) {
 							renderPage(request, function(params) {
 								let code = renderPageTemplate(params);
@@ -144,12 +167,12 @@ let aero = {
 									layoutControllerParams.content = code;
 									layoutControllerParams.js = js;
 
-									response.end(renderLayoutTemplate(layoutControllerParams));
+									respond(renderLayoutTemplate(layoutControllerParams), response);
 								} else {
-									response.end(renderLayoutTemplate({
+									respond(renderLayoutTemplate({
 										content: code,
 										js: js
-									}));
+									}), response);
 								}
 							});
 						});
@@ -157,13 +180,11 @@ let aero = {
 				} else {
 					// Static layout + Dynamic page
 					aero.get(page.url, function(request, response) {
-						response.writeHead(200, headers);
-
 						renderPage(request, function(params) {
-							response.end(renderLayoutTemplate({
+							respond(renderLayoutTemplate({
 								content: renderPageTemplate(params),
 								js: js
-							}));
+							}), response);
 						});
 					});
 				}
@@ -176,13 +197,11 @@ let aero = {
 
 					// Dynamic layout + Static page
 					aero.get(page.url, function(request, response) {
-						response.writeHead(200, headers);
-
 						renderLayout(request, function(layoutControllerParams) {
 							layoutControllerParams.content = page.code;
 							layoutControllerParams.js = js;
 
-							response.end(renderLayoutTemplate(layoutControllerParams));
+							respond(renderLayoutTemplate(layoutControllerParams), response);
 						});
 					});
 				} else {
@@ -192,12 +211,10 @@ let aero = {
 						js: js
 					});
 
-					if(useGzip && staticPageCode.length >= gzipThreshold) {
+					if(staticPageCode.length >= gzipThreshold) {
 						headers["Content-Encoding"] = "gzip";
 
-						zlib.gzip(staticPageCode, {
-							level: zlib.Z_BEST_COMPRESSION
-						}, function(error, gzippedCode) {
+						zlib.gzip(staticPageCode, bestCompressionOptions, function(error, gzippedCode) {
 							aero.get(page.url, function(request, response) {
 								response.writeHead(200, headers);
 								response.end(gzippedCode);

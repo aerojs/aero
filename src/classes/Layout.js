@@ -26,7 +26,6 @@ let Layout = function(layoutPath) {
 	// Controller.init
 	if(this.controller.init)
 		this.controller.init(this);
-	this.controller = null; // TEMPORARY
 };
 
 module.exports = Layout;
