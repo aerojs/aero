@@ -12,7 +12,7 @@ Usually websites generate a lot of HTTP requests, leading to very slow loading t
 
 ## Productivity
 
-Aero uses a dependency graph to find the resources that need to be recompiled when something changes. Controllers, templates, styles and configuration files are automatically reloaded when you save them in your editor.
+Aero automatically finds the resources that need to be recompiled when something changes. Controllers, templates, styles and configuration files are automatically reloaded when you save them in your editor.
 
 ## Simplicity
 
@@ -59,9 +59,6 @@ Create a file called `package.json` in your root directory:
 {
 	"aero": {
 		"siteName": "Hello World",
-		"pages": [
-			"helloworld"
-		],
 		"port": 4000
 	}
 }
@@ -92,7 +89,7 @@ npm install aero --save
 Now run it using:
 
 ```bash
-node index.js
+iojs --harmony --use_strict index.js
 ```
 
 This should automatically create the `pages/helloworld/helloworld.jade` file and start your server on port 4000. Navigate your browser to [http://localhost:4000/helloworld](http://localhost:4000/helloworld) to see the "helloworld" from your automatically created page rendered into your layout.

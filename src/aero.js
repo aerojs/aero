@@ -59,22 +59,28 @@ let aero = {
 
 	// registerEventListeners
 	registerEventListeners: function() {
+		// Aero initialized
 		this.events.on("initialized", function() {
 			loadFavIcon(aero.config.favIcon, function(imageData) {
 				aero.server.favIconData = imageData;
 			});
 
 			// Layout
-			aero.layout = new Layout(aero.config.path.layout);
+			aero.layout = new Layout(aero.config.path.layout, function(page) {
+				aero.events.emit("layout loaded", page);
+			});
 
 			// Live reload
 			aero.liveReload = new LiveReload(aero.config.liveReloadPort);
 
-			// Pages
-			loadPages(aero.config.path.pages, aero.loadPage);
-
 			// Launch the server
 			launchServer(aero);
+		});
+
+		// Layout loaded
+		this.events.on("layout loaded", function() {
+			// Pages
+			loadPages(aero.config.path.pages, aero.loadPage);
 		});
 
 		// Page modifications
@@ -84,7 +90,9 @@ let aero = {
 
 		// Layout modifications
 		this.events.on("layout modified", function() {
-			aero.layout = new Layout(aero.config.path.layout);
+			aero.layout = new Layout(aero.config.path.layout, function(page) {
+				aero.events.emit("layout loaded", page);
+			});
 
 			for(let page of aero.pages.values()) {
 				if(!page.controller || page.controller.render) {
