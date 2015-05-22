@@ -25,6 +25,9 @@ let Layout = function(layoutPath, layoutLoadCallBack) {
 		css: loadStyle.bind(this),
 		json: loadPageJSON.bind(this)
 	}, function(error, data) {
+		if(error)
+			console.error(error);
+
 		// Update myself
 		this.renderTemplate = data.renderTemplate;
 		this.css = data.css;

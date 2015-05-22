@@ -95,11 +95,11 @@ let aero = {
 				aero.events.emit("layout loaded", page);
 			});
 
-			for(let page of aero.pages.values()) {
+			/*for(let page of aero.pages.values()) {
 				if(!page.controller || page.controller.render) {
 					aero.events.emit("page loaded", page);
 				}
-			}
+			}*/
 		});
 
 		// Page loaded
@@ -117,6 +117,8 @@ let aero = {
 			}
 
 			const gzipThreshold = 1024;
+
+			let css = aero.layout.css;
 			let js = aero.liveReload.script;
 			let renderLayoutTemplate = aero.layout.renderTemplate;
 
@@ -177,12 +179,14 @@ let aero = {
 										layoutControllerParams = merge(aero.layout.json, layoutControllerParams);
 
 									layoutControllerParams.content = code;
+									layoutControllerParams.css = css;
 									layoutControllerParams.js = js;
 
 									respond(renderLayoutTemplate(layoutControllerParams), response);
 								} else {
 									respond(renderLayoutTemplate(merge(aero.layout.json, {
 										content: code,
+										css: css,
 										js: js
 									})), response);
 								}
@@ -195,6 +199,7 @@ let aero = {
 						renderPage(request, function(params) {
 							let layoutParams = {
 								content: renderPageTemplate(params),
+								css: css,
 								js: js
 							};
 
@@ -220,6 +225,7 @@ let aero = {
 
 							layoutControllerParams.content = page.code;
 							layoutControllerParams.js = js;
+							layoutControllerParams.css = css;
 
 							respond(renderLayoutTemplate(layoutControllerParams), response);
 						});
@@ -228,6 +234,7 @@ let aero = {
 					// Static layout + Static page
 					let layoutParams = {
 						content: page.code,
+						css: css,
 						js: js
 					};
 
