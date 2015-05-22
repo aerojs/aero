@@ -127,13 +127,11 @@ let aero = {
 			};
 
 			let bestCompressionOptions = {
-				level: zlib.Z_BEST_COMPRESSION,
-				data_type: zlib.Z_TEXT
+				level: zlib.Z_BEST_COMPRESSION
 			};
 
 			let fastCompressionOptions = {
-				level: zlib.Z_DEFAULT_COMPRESSION,
-				data_type: zlib.Z_TEXT
+				level: zlib.Z_DEFAULT_COMPRESSION
 			};
 
 			let respond = function(finalCode, response) {
@@ -276,6 +274,96 @@ let aero = {
 	// get
 	get: function(url, route) {
 		aero.server.routes[url] = route;
+	},
+
+	staticFileCache: {},
+	// static
+	static: function(directory) {
+		const staticFileSizeCachingThreshold = 512 * 1024; // 512 KB
+
+		let fs = require("fs");
+		let etag = require("etag");
+		let mmm = require("mmmagic");
+		let Magic = mmm.Magic;
+		let magic = new Magic(mmm.MAGIC_MIME_TYPE);
+
+		aero.get(directory, function(request, response) {
+			let url = request.url.substr(1);
+
+			// Let's not send the contents of our whole file system to potential hackers.
+			// Except for Windows because Windows servers deserve to be hacked. #opinionated
+			if(url.indexOf("../") !== -1) {
+				response.end();
+				return;
+			}
+
+			let cachedFile = aero.staticFileCache[url];
+
+			if(cachedFile) {
+				response.writeHead(200, cachedFile.headers);
+				response.end(cachedFile.data);
+			} else {
+				fs.stat(url, function(statError, stats) {
+					if(statError) {
+						console.error(statError);
+						response.writeHead(404);
+						response.end();
+						return;
+					}
+
+					if(!stats.isFile()) {
+						response.writeHead(404);
+						response.end();
+						return;
+					}
+
+					let headers = {
+						"Content-Length": stats.size,
+						"ETag": etag(stats)
+					};
+
+					magic.detectFile(url, function(mimeError, mimeType) {
+						if(mimeError) {
+							console.error(mimeError);
+							response.writeHead(404);
+							response.end();
+							return;
+						}
+
+						// Special exception: image/webp (instead of application/octet-stream)
+						if(url.substr(-5) === ".webp")
+							mimeType = "image/webp";
+
+						// Cache headers
+						headers["Content-Type"] = mimeType;
+
+						// Send file
+						response.writeHead(200, headers);
+						
+						// To cache or not to cache, that is the question!
+						if(stats.size <= staticFileSizeCachingThreshold) {
+							fs.readFile(url, function(readError, data) {
+								if(readError) {
+									console.error(readError);
+									response.writeHead(404);
+									response.end();
+									return;
+								}
+
+								aero.staticFileCache[url] = {
+									headers: headers,
+									data: data
+								};
+
+								response.end(data);
+							});
+						} else {
+							fs.createReadStream(url).pipe(response);
+						}
+					});
+				});
+			}
+		});
 	}
 };
 

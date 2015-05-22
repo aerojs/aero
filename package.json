@@ -4,11 +4,13 @@
 	"description": "High-performance website framework based on io.js, Jade and Stylus.",
 	"main": "src/aero.js",
 	"dependencies": {
+		"jade": "*",
+		"stylus": "*",
 		"async": "*",
 		"node-watch": "*",
 		"object-assign": "*",
-		"jade": "*",
-		"stylus": "*",
+		"etag": "*",
+		"mmmagic" : "*",
 		"ws": "*"
 	},
 	"engines" : {

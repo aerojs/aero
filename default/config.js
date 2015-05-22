@@ -6,6 +6,7 @@ module.exports = {
 			styles: "styles",
 			layout: "layout"
 		},
+		static: [],
 		favIcon: "favicon.ico",
 		liveReloadPort: 9000,
 		port: 4000
