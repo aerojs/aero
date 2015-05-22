@@ -1,4 +1,9 @@
 # Aero
+
+[![Build Status](https://travis-ci.org/freezingwind/aero.svg?branch=master)](https://travis-ci.org/freezingwind/aero)
+[![Coverage Status](https://coveralls.io/repos/freezingwind/aero/badge.svg)](https://coveralls.io/r/freezingwind/aero)
+[![Dependencies](https://david-dm.org/freezingwind/aero.svg)](https://david-dm.org/freezingwind/aero)
+
 Web framework based on [io.js](https://iojs.org/), [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
 
 * Performance ([Page Speed](https://developers.google.com/speed/pagespeed/insights/) rank of **100 / 100**)
