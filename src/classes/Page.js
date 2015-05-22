@@ -32,7 +32,7 @@ let Page = function(id, pagePath, pageLoadCallBack) {
 		this.json = data.json;
 
 		// URL overwrite in JSON file
-		if(typeof this.json.url !== "undefined")
+		if(this.json && typeof this.json.url !== "undefined")
 			this.url = this.json.url;
 
 		// Default controller

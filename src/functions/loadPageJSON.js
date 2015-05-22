@@ -7,7 +7,7 @@ let loadPageJSON = function(next) {
 			if(readError.code !== "ENOENT")
 				console.error(readError);
 
-			next(null, {});
+			next(null, null);
 			return;
 		}
 
@@ -18,7 +18,7 @@ let loadPageJSON = function(next) {
 			if(e)
 				console.error(e);
 
-			next(null, {});
+			next(null, null);
 		}
 	});
 };

@@ -1,7 +1,8 @@
 // Modules
 let path = require("path");
-let watch = require("node-watch");
 let zlib = require("zlib");
+let watch = require("node-watch");
+let merge = require("object-assign");
 
 // Functions
 let getFile = require("./functions/getFile");
@@ -172,15 +173,18 @@ let aero = {
 								let code = renderPageTemplate(params);
 
 								if(layoutControllerParams) {
+									if(aero.layout.json)
+										layoutControllerParams = merge(aero.layout.json, layoutControllerParams);
+
 									layoutControllerParams.content = code;
 									layoutControllerParams.js = js;
 
 									respond(renderLayoutTemplate(layoutControllerParams), response);
 								} else {
-									respond(renderLayoutTemplate({
+									respond(renderLayoutTemplate(merge(aero.layout.json, {
 										content: code,
 										js: js
-									}), response);
+									})), response);
 								}
 							});
 						});
@@ -189,10 +193,15 @@ let aero = {
 					// Static layout + Dynamic page
 					aero.get(page.url, function(request, response) {
 						renderPage(request, function(params) {
-							respond(renderLayoutTemplate({
+							let layoutParams = {
 								content: renderPageTemplate(params),
 								js: js
-							}), response);
+							};
+
+							if(aero.layout.json)
+								layoutParams = merge(aero.layout.json, layoutParams);
+
+							respond(renderLayoutTemplate(layoutParams), response);
 						});
 					});
 				}
@@ -206,6 +215,9 @@ let aero = {
 					// Dynamic layout + Static page
 					aero.get(page.url, function(request, response) {
 						renderLayout(request, function(layoutControllerParams) {
+							if(aero.layout.json)
+								layoutControllerParams = merge(aero.layout.json, layoutControllerParams);
+
 							layoutControllerParams.content = page.code;
 							layoutControllerParams.js = js;
 
@@ -214,10 +226,15 @@ let aero = {
 					});
 				} else {
 					// Static layout + Static page
-					let staticPageCode = renderLayoutTemplate({
+					let layoutParams = {
 						content: page.code,
 						js: js
-					});
+					};
+
+					if(aero.layout.json)
+						layoutParams = merge(aero.layout.json, layoutParams);
+
+					let staticPageCode = renderLayoutTemplate(layoutParams);
 
 					if(staticPageCode.length >= gzipThreshold) {
 						headers["Content-Encoding"] = "gzip";
