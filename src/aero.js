@@ -34,14 +34,14 @@ let aero = {
 		this.registerEventListeners();
 
 		// Load default aero configuration
-		let defaultConfig = require("../default/config");
+		let defaultPackage = require("../default/package");
 
 		// Load aero config from package.json
-		getFile(configPath, defaultConfig, function(json) {
+		getFile(configPath, defaultPackage, function(json) {
 			aero.package = JSON.parse(json);
 
 			// Set config to the data in the "aero" field
-			aero.config = aero.package.aero;
+			aero.config = merge(defaultPackage.aero, aero.package.aero);
 
 			// Let the world know that we're ready
 			aero.events.emit("initialized", aero);
@@ -204,13 +204,15 @@ let aero = {
 									layoutControllerParams.content = code;
 									layoutControllerParams.css = css;
 									layoutControllerParams.js = js;
+									layoutControllerParams.siteName = aero.config.siteName;
 
 									respond(renderLayoutTemplate(layoutControllerParams), response);
 								} else {
 									respond(renderLayoutTemplate(merge(aero.layout.json, {
 										content: code,
 										css: css,
-										js: js
+										js: js,
+										siteName: aero.config.siteName
 									})), response);
 								}
 							});
@@ -223,7 +225,8 @@ let aero = {
 							let layoutParams = {
 								content: renderPageTemplate(params),
 								css: css,
-								js: js
+								js: js,
+								siteName: aero.config.siteName
 							};
 
 							if(aero.layout.json)
@@ -249,6 +252,7 @@ let aero = {
 							layoutControllerParams.content = page.code;
 							layoutControllerParams.js = js;
 							layoutControllerParams.css = css;
+							layoutControllerParams.siteName = aero.config.siteName;
 
 							respond(renderLayoutTemplate(layoutControllerParams), response);
 						});
@@ -258,7 +262,8 @@ let aero = {
 					let layoutParams = {
 						content: page.code,
 						css: css,
-						js: js
+						js: js,
+						siteName: aero.config.siteName
 					};
 
 					if(aero.layout.json)
