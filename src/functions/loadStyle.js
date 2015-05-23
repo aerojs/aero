@@ -13,18 +13,15 @@ let loadStyle = function(next) {
 		}
 
 		stylus(data).set("compress", true).render(function(stylusError, css) {
-			// We intentionally don't change the CSS when there is a compilation error
-			// so that the website continues to be displayed correctly with the former
-			// CSS for all current visitors.
 			if(stylusError) {
 				console.error(stylusError);
-				next(null, this.css);
+				next(null, null);
 				return;
 			}
 
 			// Compiled CSS from the stylus file
 			next(null, css);
-		}.bind(this));
+		});
 	});
 };
 

@@ -1,13 +1,15 @@
 // Modules
 let path = require("path");
 let zlib = require("zlib");
+let async = require("async");
 let watch = require("node-watch");
 let merge = require("object-assign");
 
 // Functions
 let getFile = require("./functions/getFile");
+let loadStyle = require("./functions/loadStyle");
 let loadFavIcon = require("./functions/loadFavIcon");
-let loadPages = require("./functions/loadPages");
+let loadDirectory = require("./functions/loadDirectory");
 let launchServer = require("./functions/launchServer");
 
 // Classes
@@ -22,6 +24,7 @@ let aero = {
 	events: new EventEmitter(),
 	pages: new Map(),
 	server: new Server(),
+	staticFileCache: {},
 
 	// run
 	run: function(configPath) {
@@ -55,6 +58,14 @@ let aero = {
 			watch(aero.config.path.layout, function() {
 				aero.events.emit("layout modified");
 			});
+
+			// Watch for style modifications
+			watch(aero.config.path.styles, function(filePath) {
+				let relativeFilePath = path.relative(aero.config.path.styles, filePath);
+				let styleId = path.basename(relativeFilePath, ".styl");
+
+				aero.events.emit("style modified", styleId);
+			});
 		});
 	},
 
@@ -78,28 +89,42 @@ let aero = {
 			launchServer(aero);
 		});
 
-		// Layout loaded
-		this.events.on("layout loaded", function() {
-			// Pages
-			loadPages(aero.config.path.pages, aero.loadPage);
-		});
-
-		// Page modifications
-		this.events.on("page modified", function(pageId) {
-			aero.loadPage(pageId);
-		});
-
 		// Layout modifications
 		this.events.on("layout modified", function() {
 			aero.layout = new Layout(aero.config.path.layout, function(page) {
 				aero.events.emit("layout loaded", page);
 			});
+		});
 
-			/*for(let page of aero.pages.values()) {
-				if(!page.controller || page.controller.render) {
-					aero.events.emit("page loaded", page);
-				}
-			}*/
+		// Recompile styles
+		let recompileStyles = function() {
+			// Load all styles
+			let asyncTasks = aero.config.styles.map(function(styleId) {
+				return loadStyle.bind({
+					stylePath: path.join(aero.config.path.styles, styleId + ".styl"),
+					css: ""
+				});
+			});
+
+			async.parallel(asyncTasks, function(error, results) {
+				aero.css = results;
+				aero.events.emit("styles loaded");
+			});
+		};
+
+		// Recompile styles
+		this.events.on("layout loaded", recompileStyles);
+		this.events.on("style modified", recompileStyles);
+
+		// Styles loaded
+		this.events.on("styles loaded", function() {
+			// Reload all pages
+			loadDirectory(aero.config.path.pages, aero.loadPage);
+		});
+
+		// Page modifications
+		this.events.on("page modified", function(pageId) {
+			aero.loadPage(pageId);
 		});
 
 		// Page loaded
@@ -118,7 +143,7 @@ let aero = {
 
 			const gzipThreshold = 1024;
 
-			let css = aero.layout.css;
+			let css = aero.css.join(" ") + " " + aero.layout.css;
 			let js = aero.liveReload.script;
 			let renderLayoutTemplate = aero.layout.renderTemplate;
 
@@ -276,7 +301,6 @@ let aero = {
 		aero.server.routes[url] = route;
 	},
 
-	staticFileCache: {},
 	// static
 	static: function(directory) {
 		const staticFileSizeCachingThreshold = 512 * 1024; // 512 KB
@@ -339,9 +363,9 @@ let aero = {
 
 						// Send file
 						response.writeHead(200, headers);
-						
+
 						// To cache or not to cache, that is the question!
-						if(stats.size <= staticFileSizeCachingThreshold) {
+						if(mimeType.indexOf("image/") !== -1 && stats.size <= staticFileSizeCachingThreshold) {
 							fs.readFile(url, function(readError, data) {
 								if(readError) {
 									console.error(readError);
