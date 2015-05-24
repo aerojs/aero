@@ -4,6 +4,7 @@ let zlib = require("zlib");
 let async = require("async");
 let watch = require("node-watch");
 let merge = require("object-assign");
+let Promise = require("bluebird");
 
 // Functions
 let getFile = require("./functions/getFile");
@@ -26,8 +27,17 @@ let aero = {
 	server: new Server(),
 	staticFileCache: {},
 
+	run: Promise.coroutine(function*() {
+		let defaultPackage = require("../default/package");
+
+		this.package = yield getFile("package.json", defaultPackage).then(JSON.parse);
+		this.config = this.package.config;
+
+		console.log(this.package);
+	}),
+
 	// run
-	run: function(configPath) {
+	/*run2: function(configPath) {
 		configPath = configPath || "package.json";
 
 		// Register event listeners
@@ -37,7 +47,7 @@ let aero = {
 		let defaultPackage = require("../default/package");
 
 		// Load aero config from package.json
-		getFile(configPath, defaultPackage, function(json) {
+		getFile(configPath, defaultPackage, function(error, json) {
 			aero.package = JSON.parse(json);
 
 			// Set config to the data in the "aero" field
@@ -67,7 +77,7 @@ let aero = {
 				aero.events.emit("style modified", styleId);
 			});
 		});
-	},
+	},*/
 
 	// registerEventListeners
 	registerEventListeners: function() {

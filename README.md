@@ -1,5 +1,6 @@
 # Aero
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/freezingwind/aero)
 [![Build Status](https://travis-ci.org/freezingwind/aero.svg?branch=master)](https://travis-ci.org/freezingwind/aero)
 [![Coverage Status](https://coveralls.io/repos/freezingwind/aero/badge.svg)](https://coveralls.io/r/freezingwind/aero)
 [![Dependencies](https://david-dm.org/freezingwind/aero.svg)](https://david-dm.org/freezingwind/aero)

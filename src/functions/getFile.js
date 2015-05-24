@@ -1,38 +1,25 @@
 let fs = require("fs");
+let Promise = require("bluebird");
 
-// writeFile
-let writeFile = function(filePath, defaultData, callBack) {
-	fs.writeFile(filePath, defaultData, "utf8", function(writeError) {
-		if(writeError)
-			throw writeError;
-	});
-
-	callBack(defaultData);
-};
-
-// readFile
-let readFile = function(filePath, callBack) {
-	fs.readFile(filePath, "utf8", function(readError, data) {
-		if(readError)
-			throw readError;
-
-		callBack(data);
-	});
-};
+// Promisify
+Promise.promisifyAll(fs);
 
 // getFile
-let getFile = function(filePath, defaultData, callBack) {
+let getFile = function(filePath, defaultData) {
 	if(typeof defaultData === "object")
 		defaultData = JSON.stringify(defaultData, null, "\t");
 
-	// File exists?
-	fs.stat(filePath, function(statError, stats) {
+	return fs.statAsync(filePath).then(function(stats) {
+		// Directories
+		if(!stats.isFile())
+			return Promise.resolve(defaultData);
+
+		// Normal read
+		return fs.readFileAsync(filePath, "utf8");
+	}).error(function() {
 		// If it doesn't exist we'll create it with the default data.
-		// If it already exists we'll read it from the file system.
-		if(statError || !stats.isFile())
-			writeFile(filePath, defaultData, callBack);
-		else
-			readFile(filePath, callBack);
+		fs.writeFileAsync(filePath, defaultData, "utf8").catch(console.error);
+		return Promise.resolve(defaultData);
 	});
 };
 

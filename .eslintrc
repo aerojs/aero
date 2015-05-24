@@ -5,7 +5,8 @@
 	"ecmaFeatures": {
 		"arrowFunctions": false,
 		"blockBindings": true,
-		"forOf": true
+		"forOf": true,
+		"generators": true
 	},
 	"rules": {
 		"strict": 0,
