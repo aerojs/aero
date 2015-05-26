@@ -1,17 +1,16 @@
 // loadController
-let loadController = function(next) {
+let loadController = function(controllerPath) {
 	// Delete existing controller from cache
-	delete require.cache[this.controllerPath];
+	delete require.cache[controllerPath];
 
 	// Load the js file
 	try {
-		let controller = require(this.controllerPath);
-		next(null, controller);
+		return Promise.resolve(require(controllerPath));
 	} catch(e) {
 		if(e.code !== "MODULE_NOT_FOUND")
 			console.error(e);
 
-		next(null, null);
+		return Promise.resolve(null);
 	}
 };
 

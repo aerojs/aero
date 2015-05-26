@@ -1,25 +1,25 @@
 let fs = require("fs");
+let Promise = require("bluebird");
+
+// Promisify
+Promise.promisifyAll(fs);
 
 // loadPageJSON
-let loadPageJSON = function(next) {
-	fs.readFile(this.jsonPath, "utf8", function(readError, data) {
-		if(readError) {
-			if(readError.code !== "ENOENT")
-				console.error(readError);
-
-			next(null, null);
-			return;
-		}
-
+let loadPageJSON = function(jsonPath) {
+	return fs.readFileAsync(jsonPath, "utf8").then(function(fileContents) {
 		try {
-			let json = JSON.parse(data);
-			next(null, json);
+			return Promise.resolve(JSON.parse(fileContents));
 		} catch(e) {
 			if(e)
 				console.error(e);
 
-			next(null, null);
+			return Promise.resolve(null);
 		}
+	}).error(function(readError) {
+		if(readError.code !== "ENOENT")
+			console.error(readError);
+
+		return Promise.resolve(null);
 	});
 };
 

@@ -4,19 +4,18 @@
 	"description": "High-performance website framework based on io.js, Jade and Stylus.",
 	"main": "src/aero.js",
 	"dependencies": {
+		"ws": "*",
+		"etag": "*",
 		"jade": "*",
 		"stylus": "*",
-		"async": "*",
 		"bluebird": "*",
-		"node-watch": "*",
-		"object-assign": "*",
-		"etag": "*",
 		"mmmagic" : "*",
-		"ws": "*"
+		"node-watch": "*",
+		"object-assign": "*"
 	},
 	"engines" : {
-		"node": ">= 0.12.0",
-		"iojs": ">= 2.0.0"
+		"iojs": ">= 2.0.0",
+		"node": ">= 0.12.0"
 	},
 	"scripts": {
 		"test": "node --harmony --use_strict tests"
@@ -26,13 +25,12 @@
 		"url": "https://github.com/freezingwind/aero.git"
 	},
 	"keywords": [
-		"website",
+		"web",
 		"framework",
+		"website",
 		"cms",
 		"jade",
-		"stylus",
-		"html5",
-		"mvc"
+		"stylus"
 	],
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPLv3",

@@ -1,15 +1,15 @@
 let jade = require("jade");
+let Promise = require("bluebird");
 
 // loadTemplate
-let loadTemplate = function(next) {
+let loadTemplate = function(templatePath) {
 	try {
-		let compiler = jade.compileFile(this.templatePath);
-		next(null, compiler);
+		return Promise.resolve(jade.compileFile(templatePath));
 	} catch(e) {
 		if(e.code !== "ENOENT")
 			console.error(e);
 
-		next(null, null);
+		return Promise.resolve(null);
 	}
 };
 

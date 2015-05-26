@@ -1,7 +1,6 @@
 // Modules
 let path = require("path");
 let zlib = require("zlib");
-let async = require("async");
 let watch = require("node-watch");
 let merge = require("object-assign");
 let Promise = require("bluebird");
@@ -31,64 +30,30 @@ let aero = {
 		let defaultPackage = require("../default/package");
 
 		this.package = yield getFile("package.json", defaultPackage).then(JSON.parse);
-		this.config = this.package.config;
 
-		console.log(this.package);
-	}),
-
-	// run
-	/*run2: function(configPath) {
-		configPath = configPath || "package.json";
+		// Set config to the data in the "aero" field
+		this.config = merge(defaultPackage.aero, aero.package.aero);
 
 		// Register event listeners
 		this.registerEventListeners();
 
-		// Load default aero configuration
-		let defaultPackage = require("../default/package");
+		// Let the world know that we're ready
+		this.events.emit("initialized", aero);
 
-		// Load aero config from package.json
-		getFile(configPath, defaultPackage, function(error, json) {
-			aero.package = JSON.parse(json);
-
-			// Set config to the data in the "aero" field
-			aero.config = merge(defaultPackage.aero, aero.package.aero);
-
-			// Let the world know that we're ready
-			aero.events.emit("initialized", aero);
-
-			// Watch for page modifications
-			watch(aero.config.path.pages, function(filePath) {
-				let relativeFilePath = path.relative(aero.config.path.pages, filePath);
-				let pageId = path.dirname(relativeFilePath);
-
-				aero.events.emit("page modified", pageId);
-			});
-
-			// Watch for layout modifications
-			watch(aero.config.path.layout, function() {
-				aero.events.emit("layout modified");
-			});
-
-			// Watch for style modifications
-			watch(aero.config.path.styles, function(filePath) {
-				let relativeFilePath = path.relative(aero.config.path.styles, filePath);
-				let styleId = path.basename(relativeFilePath, ".styl");
-
-				aero.events.emit("style modified", styleId);
-			});
-		});
-	},*/
+		// Watch for modifications
+		this.watchFiles();
+	}),
 
 	// registerEventListeners
 	registerEventListeners: function() {
 		// Aero initialized
-		this.events.on("initialized", function() {
+		this.events.on("initialized", Promise.coroutine(function*() {
 			loadFavIcon(aero.config.favIcon, function(imageData) {
 				aero.server.favIconData = imageData;
 			});
 
 			// Layout
-			aero.layout = new Layout(aero.config.path.layout, function(page) {
+			aero.layout = yield new Layout(aero.config.path.layout, function(page) {
 				aero.events.emit("layout loaded", page);
 			});
 
@@ -97,26 +62,23 @@ let aero = {
 
 			// Launch the server
 			launchServer(aero);
-		});
+		}));
 
 		// Layout modifications
-		this.events.on("layout modified", function() {
-			aero.layout = new Layout(aero.config.path.layout, function(page) {
+		this.events.on("layout modified", Promise.coroutine(function*() {
+			aero.layout = yield new Layout(aero.config.path.layout, function(page) {
 				aero.events.emit("layout loaded", page);
 			});
-		});
+		}));
 
 		// Recompile styles
 		let recompileStyles = function() {
 			// Load all styles
-			let asyncTasks = aero.config.styles.map(function(styleId) {
-				return loadStyle.bind({
-					stylePath: path.join(aero.config.path.styles, styleId + ".styl"),
-					css: ""
-				});
+			let asyncStyleCompileTasks = aero.config.styles.map(function(styleId) {
+				return loadStyle(path.join(aero.config.path.styles, styleId + ".styl"));
 			});
 
-			async.parallel(asyncTasks, function(error, results) {
+			Promise.all(asyncStyleCompileTasks).then(function(results) {
 				aero.css = results;
 				aero.events.emit("styles loaded");
 			});
@@ -155,7 +117,7 @@ let aero = {
 
 			let css = aero.css.join(" ") + " " + aero.layout.css;
 			let js = aero.liveReload.script;
-			let renderLayoutTemplate = aero.layout.renderTemplate;
+			let renderLayoutTemplate = aero.layout.template;
 
 			let headers = {
 				"Content-Type": "text/html"
@@ -186,7 +148,7 @@ let aero = {
 
 			// Routing
 			if(page.controller && page.controller.render) {
-				let renderPageTemplate = page.renderTemplate;
+				let renderPageTemplate = page.template;
 				let renderPage = page.controller.render;
 
 				// Syntax error while compiling the template?
@@ -301,6 +263,29 @@ let aero = {
 
 			// Live reload
 			aero.liveReload.server.broadcast(page.id);
+		});
+	},
+
+	// watchFiles
+	watchFiles: function() {
+		watch(this.config.path.pages, function(filePath) {
+			let relativeFilePath = path.relative(aero.config.path.pages, filePath);
+			let pageId = path.dirname(relativeFilePath);
+
+			aero.events.emit("page modified", pageId);
+		});
+
+		// Watch for layout modifications
+		watch(this.config.path.layout, function() {
+			aero.events.emit("layout modified");
+		});
+
+		// Watch for style modifications
+		watch(this.config.path.styles, function(filePath) {
+			let relativeFilePath = path.relative(aero.config.path.styles, filePath);
+			let styleId = path.basename(relativeFilePath, ".styl");
+
+			aero.events.emit("style modified", styleId);
 		});
 	},
 
