@@ -2,15 +2,16 @@
 let path = require("path");
 let zlib = require("zlib");
 let watch = require("node-watch");
-let merge = require("object-assign");
 let Promise = require("bluebird");
+let merge = require("object-assign");
 
 // Functions
 let getFile = require("./functions/getFile");
 let loadStyle = require("./functions/loadStyle");
 let loadFavIcon = require("./functions/loadFavIcon");
-let loadDirectory = require("./functions/loadDirectory");
 let launchServer = require("./functions/launchServer");
+let loadDirectory = require("./functions/loadDirectory");
+let watchFlatDirectory = require("./functions/watchFlatDirectory");
 
 // Classes
 let Page = require("./classes/Page");
@@ -38,7 +39,7 @@ let aero = {
 		this.registerEventListeners();
 
 		// Let the world know that we're ready
-		this.events.emit("initialized", aero);
+		this.events.emit("config loaded", aero);
 
 		// Watch for modifications
 		this.watchFiles();
@@ -46,8 +47,8 @@ let aero = {
 
 	// registerEventListeners
 	registerEventListeners: function() {
-		// Aero initialized
-		this.events.on("initialized", Promise.coroutine(function*() {
+		// Aero config loaded
+		this.events.on("config loaded", Promise.coroutine(function*() {
 			loadFavIcon(aero.config.favIcon, function(imageData) {
 				aero.server.favIconData = imageData;
 			});
@@ -62,6 +63,9 @@ let aero = {
 
 			// Static files
 			aero.config.static.forEach(aero.static);
+
+			// Scripts
+			//aero.config.scripts.forEach();
 
 			// Launch the server
 			launchServer(aero);
@@ -271,6 +275,12 @@ let aero = {
 
 	// watchFiles
 	watchFiles: function() {
+		// Watch for layout modifications
+		watch(this.config.path.layout, function() {
+			aero.events.emit("layout modified");
+		});
+
+		// Watch for page modifications
 		watch(this.config.path.pages, function(filePath) {
 			let relativeFilePath = path.relative(aero.config.path.pages, filePath);
 			let pageId = path.dirname(relativeFilePath);
@@ -278,18 +288,11 @@ let aero = {
 			aero.events.emit("page modified", pageId);
 		});
 
-		// Watch for layout modifications
-		watch(this.config.path.layout, function() {
-			aero.events.emit("layout modified");
-		});
-
 		// Watch for style modifications
-		watch(this.config.path.styles, function(filePath) {
-			let relativeFilePath = path.relative(aero.config.path.styles, filePath);
-			let styleId = path.basename(relativeFilePath, ".styl");
+		watchFlatDirectory(aero.config.path.styles, ".styl", aero.events, "style modified");
 
-			aero.events.emit("style modified", styleId);
-		});
+		// Watch for script modifications
+		watchFlatDirectory(aero.config.path.scripts, ".js", aero.events, "script modified");
 	},
 
 	// loadPage
