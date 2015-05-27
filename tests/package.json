@@ -7,6 +7,9 @@
 		"styles": [
 			"base"
 		],
+		"scripts": [
+			"cash"
+		],
 		"port": 4000
 	}
 }

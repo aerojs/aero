@@ -60,6 +60,9 @@ let aero = {
 			// Live reload
 			aero.liveReload = new LiveReload(aero.config.liveReloadPort);
 
+			// Static files
+			aero.config.static.forEach(aero.static);
+
 			// Launch the server
 			launchServer(aero);
 		}));
