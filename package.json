@@ -33,7 +33,7 @@
 		"stylus"
 	],
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
-	"license": "GPLv3",
+	"license": "GPL-3.0",
 	"bugs": {
 		"url": "https://github.com/freezingwind/aero/issues"
 	},
