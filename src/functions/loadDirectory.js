@@ -1,15 +1,13 @@
 let fs = require("fs");
+let Promise = require("bluebird");
+
+// Promisify
+Promise.promisifyAll(fs);
 
 // loadDirectory
-let loadDirectory = function(directoryPath, loader, callBack) {
-	fs.readdir(directoryPath, function(error, files) {
-		if(error)
-			throw error;
-
-		let result = files.map(loader);
-
-		if(callBack)
-			callBack(result);
+let loadDirectory = function(directoryPath, loader) {
+	return fs.readdirAsync(directoryPath).then(function(files) {
+		return Promise.map(files, loader);
 	});
 };
 

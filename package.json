@@ -10,6 +10,7 @@
 		"stylus": "*",
 		"bluebird": "*",
 		"mmmagic" : "*",
+		"uglify-js": "*",
 		"node-watch": "*",
 		"object-assign": "*"
 	},

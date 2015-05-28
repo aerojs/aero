@@ -4,6 +4,7 @@ module.exports = {
 		path: {
 			pages: "pages",
 			styles: "styles",
+			scripts: "scripts",
 			layout: "layout"
 		},
 		static: [],

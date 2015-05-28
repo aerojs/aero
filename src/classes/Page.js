@@ -19,13 +19,13 @@ let Page = Promise.coroutine(function*(id, pagePath, pageLoadCallBack) {
 	this.id = id;
 	this.path = pagePath;
 	this.url = id;
-	
+
 	// TODO: Can we abstract this even better to follow the DRY principle?
 	this.controllerPath = path.resolve(path.join(this.path, id + ".js"));
 	this.templatePath = path.resolve(path.join(this.path, id + ".jade"));
 	this.stylePath = path.resolve(path.join(this.path, id + ".styl"));
 	this.jsonPath = path.resolve(path.join(this.path, id + ".json"));
-	
+
 	let components = yield {
 		controller: loadController(this.controllerPath),
 		template: loadTemplate(this.templatePath),
