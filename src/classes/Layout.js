@@ -13,7 +13,7 @@ let Layout = Promise.coroutine(function*(layoutPath, layoutLoadCallBack) {
 	this.id = path.basename(layoutPath);
 	this.path = layoutPath;
 	this.controller = null;
-	
+
 	// TODO: Can we abstract this even better to follow the DRY principle?
 	this.controllerPath = path.resolve(path.join(this.path, this.id + ".js"));
 	this.templatePath = path.resolve(path.join(this.path, this.id + ".jade"));
@@ -33,7 +33,7 @@ let Layout = Promise.coroutine(function*(layoutPath, layoutLoadCallBack) {
 	this.json = components.json;
 
 	// Controller.init
-	if(this.controller.init)
+	if(this.controller && this.controller.init)
 		this.controller.init(this);
 
 	// Send event that the layout is ready

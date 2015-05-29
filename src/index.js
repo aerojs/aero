@@ -1,6 +1,7 @@
 // Modules
 let path = require("path");
 let zlib = require("zlib");
+let etag = require("etag");
 let watch = require("node-watch");
 let Promise = require("bluebird");
 let merge = require("object-assign");
@@ -80,7 +81,7 @@ aero.registerEventListeners = function() {
 		// Reload all pages
 		loadDirectory(aero.config.path.pages, aero.loadPage);
 	};
-	
+
 	// Aero config loaded
 	this.events.on("config loaded", Promise.coroutine(function*() {
 		loadFavIcon(aero.config.favIcon, function(imageData) {
@@ -146,7 +147,7 @@ aero.registerEventListeners = function() {
 		let renderLayoutTemplate = aero.layout.template;
 
 		let headers = {
-			"Content-Type": "text/html"
+			"Content-Type": "text/html;charset=utf-8"
 		};
 
 		let bestCompressionOptions = {
@@ -161,12 +162,15 @@ aero.registerEventListeners = function() {
 			if(finalCode.length >= gzipThreshold) {
 				headers["Content-Encoding"] = "gzip";
 
-				response.writeHead(200, headers);
-
 				zlib.gzip(finalCode, fastCompressionOptions, function(error, gzippedCode) {
+					headers["Content-Length"] = Buffer.byteLength(gzippedCode, "raw");
+
+					response.writeHead(200, headers);
 					response.end(gzippedCode);
 				});
 			} else {
+				headers["Content-Length"] = Buffer.byteLength(finalCode, "utf8");
+
 				response.writeHead(200, headers);
 				response.end(finalCode);
 			}
@@ -273,12 +277,18 @@ aero.registerEventListeners = function() {
 					headers["Content-Encoding"] = "gzip";
 
 					zlib.gzip(staticPageCode, bestCompressionOptions, function(error, gzippedCode) {
+						headers["Content-Length"] = Buffer.byteLength(gzippedCode, "raw");
+						headers.ETag = etag(gzippedCode);
+
 						aero.get(page.url, function(request, response) {
 							response.writeHead(200, headers);
 							response.end(gzippedCode);
 						});
 					});
 				} else {
+					headers["Content-Length"] = Buffer.byteLength(staticPageCode, "utf8");
+					headers.ETag = etag(staticPageCode);
+
 					aero.get(page.url, function(request, response) {
 						response.writeHead(200, headers);
 						response.end(staticPageCode);
@@ -331,7 +341,6 @@ aero.static = function(directory) {
 	const staticFileSizeCachingThreshold = 512 * 1024; // 512 KB
 
 	let fs = require("fs");
-	let etag = require("etag");
 	let mmm = require("mmmagic");
 	let Magic = mmm.Magic;
 	let magic = new Magic(mmm.MAGIC_MIME_TYPE);

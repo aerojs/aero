@@ -19,7 +19,8 @@
 		"node": ">= 0.12.0"
 	},
 	"scripts": {
-		"test": "node --harmony --use_strict tests"
+		"test": "node --harmony --use_strict test",
+		"example": "node --harmony --use_strict example"
 	},
 	"repository": {
 		"type": "git",
