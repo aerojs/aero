@@ -1,4 +1,5 @@
 let http = require("http");
+let http2 = require("http2");
 
 // Server
 let Server = function() {
@@ -70,11 +71,14 @@ let Server = function() {
 		route(request, response);
 	}.bind(this);
 
-	// httpServer
-	this.httpServer = http.createServer(this.handleRequest);
-
 	// run
-	this.run = function(port, callBack) {
+	this.run = function(port, security, callBack) {
+		// httpServer
+		if(security && security.key && security.cert)
+			this.httpServer = http2.createServer(security, this.handleRequest);
+		else
+			this.httpServer = http.createServer(this.handleRequest);
+		
 		this.httpServer.listen(port, callBack);
 	};
 };

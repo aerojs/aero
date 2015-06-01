@@ -3,9 +3,14 @@ module.exports = {
 		siteName: "Untitled website",
 		path: {
 			pages: "pages",
+			layout: "layout",
 			styles: "styles",
 			scripts: "scripts",
-			layout: "layout"
+			security: "security"
+		},
+		security: {
+			key: "",
+			cert: ""
 		},
 		static: [],
 		styles: [],

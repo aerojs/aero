@@ -6,7 +6,8 @@
 		"arrowFunctions": false,
 		"blockBindings": true,
 		"forOf": true,
-		"generators": true
+		"generators": true,
+		"templateStrings": true
 	},
 	"rules": {
 		"strict": 0,

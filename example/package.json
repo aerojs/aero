@@ -10,6 +10,10 @@
 		"scripts": [
 			"cash"
 		],
+		"security": {
+			"key": "localhost.key",
+			"cert": "localhost.cert"
+		},
 		"port": 4000
 	}
 }

@@ -1,4 +1,5 @@
 // Modules
+let fs = require("fs");
 let path = require("path");
 let zlib = require("zlib");
 let etag = require("etag");
@@ -21,6 +22,9 @@ let Layout = require("./classes/Layout");
 let Server = require("./classes/Server");
 let LiveReload = require("./classes/LiveReload");
 let EventEmitter = require("./classes/EventEmitter");
+
+// Promisify
+Promise.promisifyAll(fs);
 
 // Aero definition
 let aero = {};
@@ -84,6 +88,7 @@ aero.registerEventListeners = function() {
 
 	// Aero config loaded
 	this.events.on("config loaded", Promise.coroutine(function*() {
+		// Favicon
 		loadFavIcon(aero.config.favIcon, function(imageData) {
 			aero.server.favIconData = imageData;
 		});
@@ -93,12 +98,20 @@ aero.registerEventListeners = function() {
 			aero.events.emit("layout loaded", page);
 			recompileStyles().then(recompileScripts).then(reloadPages);
 		});
-
-		// Live reload
-		aero.liveReload = new LiveReload(aero.config.liveReloadPort);
-
+		
 		// Static files
 		aero.config.static.forEach(aero.static);
+		
+		// Security
+		if(aero.config.security && aero.config.security.key && aero.config.security.cert) {
+			aero.security = yield Promise.props({
+				key: fs.readFileAsync(path.join(aero.config.path.security, aero.config.security.key), "ascii"),
+				cert: fs.readFileAsync(path.join(aero.config.path.security, aero.config.security.cert), "ascii")
+			});
+		}
+
+		// Live reload
+		aero.liveReload = new LiveReload(aero.security, aero.config.liveReloadPort);
 
 		// Launch the server
 		launchServer(aero);
