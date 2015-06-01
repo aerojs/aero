@@ -81,6 +81,11 @@ let Server = function() {
 		
 		this.httpServer.listen(port, callBack);
 	};
+	
+	// close
+	this.close = function() {
+		this.httpServer.close();
+	};
 };
 
 module.exports = Server;

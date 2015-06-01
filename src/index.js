@@ -34,11 +34,26 @@ aero.events = new EventEmitter();
 aero.pages = new Map();
 aero.server = new Server();
 aero.staticFileCache = {};
+aero.startUpTime = 0;
+
+aero.events.on("server started", function() {
+	aero.startUpTime = (new Date()) - aero.startDate;
+});
+
+aero.stop = function() {
+	if(this.server)
+		this.server.close();
+
+	if(this.liveReload && this.liveReload.server)
+		this.liveReload.server.close();
+};
 
 // run
 aero.run = Promise.coroutine(function*() {
+	aero.startDate = new Date();
+	
 	let defaultPackage = require("../default/package");
-
+	
 	this.package = yield getFile("package.json", defaultPackage).then(JSON.parse);
 
 	// Set config to the data in the "aero" field
@@ -98,10 +113,10 @@ aero.registerEventListeners = function() {
 			aero.events.emit("layout loaded", page);
 			recompileStyles().then(recompileScripts).then(reloadPages);
 		});
-		
+
 		// Static files
 		aero.config.static.forEach(aero.static);
-		
+
 		// Security
 		if(aero.config.security && aero.config.security.key && aero.config.security.cert) {
 			aero.security = yield Promise.props({

@@ -16,6 +16,7 @@
 		"quotes": [2, "double"],
 		"no-trailing-spaces": 0,
 		"no-extend-native": 0,
+		"no-process-exit": 0,
 		"eol-last": 0
 	}
 }
