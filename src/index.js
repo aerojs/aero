@@ -36,17 +36,10 @@ aero.server = new Server();
 aero.staticFileCache = {};
 aero.startUpTime = 0;
 
+// Save server startup time
 aero.events.on("server started", function() {
 	aero.startUpTime = (new Date()) - aero.startDate;
 });
-
-aero.stop = function() {
-	if(this.server)
-		this.server.close();
-
-	if(this.liveReload && this.liveReload.server)
-		this.liveReload.server.close();
-};
 
 // run
 aero.run = Promise.coroutine(function*() {
@@ -68,6 +61,15 @@ aero.run = Promise.coroutine(function*() {
 	// Watch for modifications
 	this.watchFiles();
 });
+
+// stop
+aero.stop = function() {
+	if(this.server)
+		this.server.close();
+
+	if(this.liveReload && this.liveReload.server)
+		this.liveReload.server.close();
+};
 
 // registerEventListeners
 aero.registerEventListeners = function() {
