@@ -10,7 +10,8 @@ describe("aero", function() {
 	
 	it("should have a valid package.json file", function() {
 		let fs = require("fs");
-		assert(JSON.parse(fs.readFileSync("package.json")));
+		let path = require("path");
+		assert(JSON.parse(fs.readFileSync(path.join(__dirname, "..", "package.json"))));
 	});
 	
 	describe("run()", function() {

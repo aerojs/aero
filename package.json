@@ -13,7 +13,7 @@
 		"http2": "*",
 		"stylus": "*",
 		"bluebird": "*",
-		"mmmagic" : "*",
+		"mmmagic": "*",
 		"uglify-js": "*",
 		"node-watch": "*",
 		"object-assign": "*"
@@ -22,14 +22,14 @@
 		"mocha": "*",
 		"istanbul": "*",
 		"coveralls": "*",
-		"mocha-lcov-reporter": "*"
+		"supertest": "*"
 	},
 	"scripts": {
 		"test": "mocha",
 		"coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
 		"example": "node --harmony --use_strict example"
 	},
-	"engines" : {
+	"engines": {
 		"iojs": ">= 2.0.0",
 		"node": ">= 0.12.0"
 	},
