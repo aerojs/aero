@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "High-performance website framework based on io.js, Jade and Stylus.",
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
@@ -19,10 +19,14 @@
 		"object-assign": "*"
 	},
 	"devDependencies": {
-		"mocha": "*"
+		"mocha": "*",
+		"istanbul": "*",
+		"coveralls": "*",
+		"mocha-lcov-reporter": "*"
 	},
 	"scripts": {
 		"test": "mocha",
+		"coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
 		"example": "node --harmony --use_strict example"
 	},
 	"engines" : {

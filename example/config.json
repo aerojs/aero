@@ -1,0 +1,17 @@
+{
+	"siteName": "Aero tests",
+	"static": [
+		"images"
+	],
+	"styles": [
+		"base"
+	],
+	"scripts": [
+		"cash"
+	],
+	"security": {
+		"key": "localhost.key",
+		"cert": "localhost.cert"
+	},
+	"port": 4000
+}

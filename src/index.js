@@ -31,28 +31,21 @@ Promise.promisifyAll(fs);
 // Aero definition
 let aero = {};
 
+// Default config
+let defaultConfig = require("../default/config");
+
 // Components
 aero.events = new EventEmitter();
 aero.pages = new Map();
 aero.server = new Server();
 aero.staticFileCache = {};
-aero.startUpTime = 0;
-
-// Save server startup time
-aero.events.on("server started", function() {
-	aero.startUpTime = (new Date()) - aero.startDate;
-});
 
 // run
 aero.run = Promise.coroutine(function*() {
-	aero.startDate = new Date();
-	
-	let defaultPackage = require("../default/package");
-	
-	this.package = yield getFile("package.json", defaultPackage).then(JSON.parse);
+	let config = yield getFile("config.json", defaultConfig).then(JSON.parse);
 
 	// Set config to the data in the "aero" field
-	this.config = merge(defaultPackage.aero, aero.package.aero);
+	this.config = merge(defaultConfig, config);
 
 	// Register event listeners
 	this.registerEventListeners();
