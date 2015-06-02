@@ -1,3 +1,5 @@
+"use strict";
+
 // Modules
 let path = require("path");
 let Promise = require("bluebird");

@@ -1,3 +1,5 @@
+"use strict";
+
 // launchServer
 let launchServer = function(aero) {
 	aero.server.run(aero.config.port, aero.security, function(error) {

@@ -1,3 +1,5 @@
+"use strict";
+
 // Modules
 let fs = require("fs");
 let path = require("path");

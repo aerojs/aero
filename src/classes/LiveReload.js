@@ -1,3 +1,5 @@
+"use strict";
+
 let WebSocketServer = require("ws").Server;
 
 class LiveReload {

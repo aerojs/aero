@@ -1,3 +1,5 @@
+"use strict";
+
 let UglifyJS = require("uglify-js");
 
 // loadScript

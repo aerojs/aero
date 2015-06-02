@@ -18,8 +18,11 @@
 		"node-watch": "*",
 		"object-assign": "*"
 	},
+	"devDependencies": {
+		"mocha": "*"
+	},
 	"scripts": {
-		"test": "node --harmony --use_strict test",
+		"test": "mocha",
 		"example": "node --harmony --use_strict example"
 	},
 	"engines" : {

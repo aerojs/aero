@@ -1,3 +1,5 @@
+"use strict";
+
 let jade = require("jade");
 let Promise = require("bluebird");
 

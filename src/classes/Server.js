@@ -1,3 +1,5 @@
+"use strict";
+
 class Server {
 	constructor() {
 		this.favIconData = null;

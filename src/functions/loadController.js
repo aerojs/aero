@@ -1,3 +1,5 @@
+"use strict";
+
 // loadController
 let loadController = function(controllerPath) {
 	// Delete existing controller from cache
