@@ -328,7 +328,7 @@ aero.registerEventListeners = function() {
 		}
 
 		// Live reload
-		aero.liveReload.server.broadcast(page.id);
+		aero.liveReload.broadcast(page.id);
 	});
 };
 
@@ -370,7 +370,6 @@ aero.get = function(url, route) {
 aero.static = function(directory) {
 	const staticFileSizeCachingThreshold = 512 * 1024; // 512 KB
 
-	let fs = require("fs");
 	let mmm = require("mmmagic");
 	let Magic = mmm.Magic;
 	let magic = new Magic(mmm.MAGIC_MIME_TYPE);

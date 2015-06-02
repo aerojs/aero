@@ -1,17 +1,24 @@
-let http = require("http");
-let http2 = require("http2");
+class Server {
+	constructor() {
+		this.favIconData = null;
+		this.routes = {};
+		this.raw = {};
+	}
 
-// Server
-let Server = function() {
-	// favIcon
-	this.favIconData = null;
+	run(port, security, callBack) {
+		if(security && security.key && security.cert)
+			this.httpServer = require("http2").createServer(security, this.handleRequest.bind(this));
+		else
+			this.httpServer = require("http").createServer(this.handleRequest.bind(this));
 
-	// Routing
-	this.routes = {};
-	this.raw = {};
+		this.httpServer.listen(port, callBack);
+	}
 
-	// handleRequest
-	this.handleRequest = function(request, response) {
+	close() {
+		this.httpServer.close();
+	}
+
+	handleRequest(request, response) {
 		let url = request.url;
 
 		// Favicon
@@ -69,23 +76,7 @@ let Server = function() {
 
 		// Execute handler
 		route(request, response);
-	}.bind(this);
-
-	// run
-	this.run = function(port, security, callBack) {
-		// httpServer
-		if(security && security.key && security.cert)
-			this.httpServer = http2.createServer(security, this.handleRequest);
-		else
-			this.httpServer = http.createServer(this.handleRequest);
-		
-		this.httpServer.listen(port, callBack);
-	};
-	
-	// close
-	this.close = function() {
-		this.httpServer.close();
-	};
-};
+	}
+}
 
 module.exports = Server;

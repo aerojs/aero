@@ -7,7 +7,8 @@
 		"blockBindings": true,
 		"forOf": true,
 		"generators": true,
-		"templateStrings": true
+		"templateStrings": true,
+		"classes": true
 	},
 	"rules": {
 		"strict": 0,
