@@ -5,11 +5,20 @@
 [![Coverage Status](https://coveralls.io/repos/freezingwind/aero/badge.svg)](https://coveralls.io/r/freezingwind/aero)
 [![Dependencies](https://david-dm.org/freezingwind/aero.svg)](https://david-dm.org/freezingwind/aero)
 
-Web framework based on [io.js](https://iojs.org/), [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
+Aero is the fastest web framework on the node platform. It is based on [io.js](https://iojs.org/), [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
 
-* Performance ([Page Speed](https://developers.google.com/speed/pagespeed/insights/) rank of **100 / 100**)
-* Productivity
-* Simplicity
+* **Performance** ([Page Speed](https://developers.google.com/speed/pagespeed/insights/) rank of **100 / 100**)
+* **Productivity**
+* **Simplicity**
+
+The most important design principle is [Don't Repeat Yourself](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (DRY) which leads to increased productivity and most notably excellent maintainability.
+
+Aero includes both a framework for building websites and a server. Other notable frameworks are:
+
+* [Express](http://expressjs.com/)
+* [Restify](http://mcavage.me/node-restify/)
+* [Koa](http://koajs.com/)
+* [Keystone](http://keystonejs.com/)
 
 ## Performance
 
