@@ -94,7 +94,7 @@ Run it:
 iojs --harmony --use_strict index.js
 ```
 
-Visit http://localhost:4000/helloworld in your browser.
+Visit [http://localhost:4000/helloworld](http://localhost:4000/helloworld) in your browser.
 
 ## Pages
 
