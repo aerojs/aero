@@ -164,8 +164,14 @@ aero.registerEventListeners = function() {
 				response.end(page.code);
 			};
 		}
-
-		const gzipThreshold = 1024;
+		
+		// This should be close to the MTU size of a TCP packet.
+		// Regarding performance it makes no sense to compress smaller files.
+		// Bandwidth can be saved however the savings are minimal for small files
+		// and the overhead of compressing can lead up to a 75% reduction
+		// in server speed under high load. Therefore in this case
+		// we're trying to optimize for performance, not bandwidth.
+		const gzipThreshold = 1450;
 
 		let css = aero.css.join(" ") + " " + aero.layout.css;
 		let js = aero.js.join(";") + aero.liveReload.script;
