@@ -3,6 +3,7 @@
 class Server {
 	constructor() {
 		this.favIconData = null;
+		this.special = {};
 		this.routes = {};
 		this.raw = {};
 	}
@@ -50,8 +51,9 @@ class Server {
 		let page = url.substring(1, i);
 		let route = this.routes[page];
 
-		// 404
+		// Page doesn't exist?
 		if(!route) {
+			// Search raw pages
 			if(page === "_") {
 				// 3 characters prefix: /_/
 				i = url.indexOf("/", 3);
@@ -62,7 +64,14 @@ class Server {
 				page = url.substring(3, i);
 				route = this.raw[page];
 			}
+			
+			// Search special routes
+			if(!route) {
+				route = this.special[url.substr(1)];
+				i = url.length;
+			}
 
+			// Still not found? 404...
 			if(!route) {
 				response.writeHead(404);
 				response.end();

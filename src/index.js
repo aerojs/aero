@@ -364,6 +364,19 @@ aero.loadPage = function(pageId) {
 
 // get
 aero.get = function(url, route) {
+	if(typeof url === "object") {
+		// TODO: Regex handling
+		return;
+	}
+	
+	if(url.startsWith("/"))
+		url = url.substr(1);
+	
+	if(url.includes("/")) {
+		aero.server.special[url] = route;
+		return;
+	}
+	
 	aero.server.routes[url] = route;
 };
 

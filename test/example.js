@@ -29,6 +29,7 @@ aero.events.on("server started", function() {
 		route("/_/static", 200);
 		route("/_/static/", 200);
 		route("/favicon.ico", 200);
+		route("/very/special/route", 200);
 		
 		route("/doesntexist", 404);
 		route("/404", 404);

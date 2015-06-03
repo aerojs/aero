@@ -30,6 +30,11 @@ let runExample = function(silent) {
 			console.log(aero.config.siteName + " is ready to serve content now!");
 		});
 	}
+	
+	// Special route
+	aero.get("/very/special/route", function(request, response) {
+		response.end("Very special indeed!");
+	});
 
 	// Google+ style routing
 	aero.get(/^\+(.*)/, function(request, response) {
