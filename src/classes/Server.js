@@ -1,5 +1,7 @@
 'use strict';
 
+let Promise = require('bluebird');
+
 class Server {
 	constructor() {
 		this.favIconData = null;
@@ -18,8 +20,9 @@ class Server {
 		this.httpServer.listen(port, callBack);
 	}
 
-	close() {
-		this.httpServer.close();
+	stop() {
+		let closeAsync = Promise.promisify(this.httpServer.close, this.httpServer);
+		return closeAsync();
 	}
 
 	handleRequest(request, response) {

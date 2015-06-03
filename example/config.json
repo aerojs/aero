@@ -7,7 +7,7 @@
 		"base"
 	],
 	"scripts": [
-		"cash"
+		"test"
 	],
 	"security": {
 		"key": "",

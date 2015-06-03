@@ -40,7 +40,7 @@ It is a very high-level framework, you can decide what you're going to use under
 Create a file called `index.js`:
 
 ```node
-let aero = require("aero");
+var aero = require("aero");
 aero.run();
 ```
 
