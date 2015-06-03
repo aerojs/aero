@@ -7,20 +7,11 @@
 
 Aero is the fastest web framework on the node platform. It is based on [io.js](https://iojs.org/), [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
 
-* Performance
-* Productivity
-* Simplicity
+* [Performance](#Performance)
+* [Productivity](#Productivity)
+* [Simplicity](#Simplicity)
 
-The most important design principle is [Don't Repeat Yourself](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (DRY) which leads to increased productivity and most notably excellent maintainability.
-
-Aero includes both a framework for building websites and a server. Other notable frameworks are:
-
-* [Express](http://expressjs.com/)
-* [Restify](http://mcavage.me/node-restify/)
-* [Koa](http://koajs.com/)
-* [Keystone](http://keystonejs.com/)
-
-## :white_circle: Performance
+## Performance
 
 Aero is optimized for website loading speed and content delivery performance.
 
@@ -29,7 +20,7 @@ Aero is optimized for website loading speed and content delivery performance.
 
 A [Page Speed](https://developers.google.com/speed/pagespeed/insights/) rank of [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=blitzprog.org) is easily possible.
 
-## :white_circle: Productivity
+## Productivity
 
 ### No restarts
 Controllers, templates, styles and configuration files are recompiled whenever you save them in your editor. Your changes are instantly visible. Routes are dynamic and you never really need to restart Aero.
@@ -37,14 +28,14 @@ Controllers, templates, styles and configuration files are recompiled whenever y
 ### Live reload
 You don't need to press the refresh button in your browser anymore because when you save the file in your editor all of your browser tabs using that page will be automagically reloaded. This requires **no plugins** and works in **all browsers** as long as they support HTML 5.
 
-## :white_circle: Simplicity
+## Simplicity
 
 > Write programs that do one thing and do it well.
 
 Aero is very lightweight and doesn't include any database drivers.
 It is a very high-level framework, you can decide what you're going to use under the hood. At the time of writing this Aero doesn't allow you to use alternatives to Jade and Stylus but this will be changed in a future release.
 
-## :white_circle: Hello World
+## Hello World
 
 Create a file called `index.js`:
 
@@ -98,17 +89,26 @@ iojs --harmony --use_strict index.js
 
 Visit [http://localhost:4000/helloworld](http://localhost:4000/helloworld) in your browser.
 
-## :white_circle: Pages
+## Pages
 
 Aero page components are *grouped by feature, not by file type* like most VC frameworks. For example the `helloworld` page can contain a `helloworld.jade`, `helloworld.styl`, `helloworld.json` and a `helloworld.js` controller in the same directory.
 
 Now try to change the `helloworld.jade` inside your `pages` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
-## :white_circle: Documentation
+## Documentation
 
 > Please do not use Aero in production yet, it is still in active development.
 > Documentation will be available once the Aero API is stable.
 
-## :white_circle: Websites using Aero
+## Similar software
+
+Aero includes both a framework for building websites and a server. Other notable frameworks are:
+
+* [Express](http://expressjs.com/)
+* [Restify](http://mcavage.me/node-restify/)
+* [Koa](http://koajs.com/)
+* [Keystone](http://keystonejs.com/)
+
+## Websites using Aero
 
 * [blitzprog.org](http://blitzprog.org/) ([Source](https://github.com/blitzprog/blitzprog.org))
