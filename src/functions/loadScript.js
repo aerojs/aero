@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-let UglifyJS = require("uglify-js");
+let UglifyJS = require('uglify-js');
 
 // loadScript
 let loadScript = function(scriptPath) {

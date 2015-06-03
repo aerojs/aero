@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // loadController
 let loadController = function(controllerPath) {
@@ -9,7 +9,7 @@ let loadController = function(controllerPath) {
 	try {
 		return Promise.resolve(require(controllerPath));
 	} catch(e) {
-		if(e.code !== "MODULE_NOT_FOUND")
+		if(e.code !== 'MODULE_NOT_FOUND')
 			console.error(e);
 
 		return Promise.resolve(null);

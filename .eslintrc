@@ -14,7 +14,7 @@
 		"strict": 0,
 		"eqeqeq": 2,
 		"curly": 0,
-		"quotes": [2, "double"],
+		"quotes": [2, "single"],
 		"no-trailing-spaces": 0,
 		"no-extend-native": 0,
 		"no-process-exit": 0,

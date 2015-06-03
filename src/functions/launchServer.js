@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // launchServer
 let launchServer = function(aero) {
@@ -6,7 +6,7 @@ let launchServer = function(aero) {
 		if(error)
 			throw error;
 
-		aero.events.emit("server started", aero.server);
+		aero.events.emit('server started', aero.server);
 	});
 };
 

@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-let fs = require("fs");
-let Promise = require("bluebird");
+let fs = require('fs');
+let Promise = require('bluebird');
 
 // Promisify
 Promise.promisifyAll(fs);

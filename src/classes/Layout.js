@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 
 // Modules
-let path = require("path");
-let Promise = require("bluebird");
+let path = require('path');
+let Promise = require('bluebird');
 
 // Functions
-let loadController = require("../functions/loadController");
-let loadTemplate = require("../functions/loadTemplate");
-let loadStyle = require("../functions/loadStyle");
-let loadPageJSON = require("../functions/loadPageJSON");
+let loadController = require('../functions/loadController');
+let loadTemplate = require('../functions/loadTemplate');
+let loadStyle = require('../functions/loadStyle');
+let loadPageJSON = require('../functions/loadPageJSON');
 
 // Layout
 let Layout = Promise.coroutine(function*(layoutPath, layoutLoadCallBack) {
@@ -17,10 +17,10 @@ let Layout = Promise.coroutine(function*(layoutPath, layoutLoadCallBack) {
 	this.controller = null;
 
 	// TODO: Can we abstract this even better to follow the DRY principle?
-	this.controllerPath = path.resolve(path.join(this.path, this.id + ".js"));
-	this.templatePath = path.resolve(path.join(this.path, this.id + ".jade"));
-	this.stylePath = path.resolve(path.join(this.path, this.id + ".styl"));
-	this.jsonPath = path.resolve(path.join(this.path, this.id + ".json"));
+	this.controllerPath = path.resolve(path.join(this.path, this.id + '.js'));
+	this.templatePath = path.resolve(path.join(this.path, this.id + '.jade'));
+	this.stylePath = path.resolve(path.join(this.path, this.id + '.styl'));
+	this.jsonPath = path.resolve(path.join(this.path, this.id + '.json'));
 
 	let components = yield {
 		controller: loadController(this.controllerPath),

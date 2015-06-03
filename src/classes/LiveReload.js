@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-let WebSocketServer = require("ws").Server;
+let WebSocketServer = require('ws').Server;
 
 class LiveReload {
 	constructor(security, port) {
@@ -8,11 +8,11 @@ class LiveReload {
 		let protocol = null;
 
 		if(security && security.key && security.cert) {
-			app = require("http2").createServer(security, this.processRequest);
-			protocol = "wss";
+			app = require('http2').createServer(security, this.processRequest);
+			protocol = 'wss';
 		} else {
-			app = require("http").createServer(this.processRequest);
-			protocol = "ws";
+			app = require('http').createServer(this.processRequest);
+			protocol = 'ws';
 		}
 		
 		// Script for each page in dev mode
@@ -41,7 +41,7 @@ class LiveReload {
 	
 	processRequest(request, response) {
 		response.writeHead(200);
-		response.end("Aero WebSockets!\n");
+		response.end('Aero WebSockets!\n');
 	}
 }
 

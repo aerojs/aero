@@ -1,29 +1,29 @@
-"use strict";
+'use strict';
 
 // Modules
-let fs = require("fs");
-let path = require("path");
-let zlib = require("zlib");
-let etag = require("etag");
-let watch = require("node-watch");
-let Promise = require("bluebird");
-let merge = require("object-assign");
+let fs = require('fs');
+let path = require('path');
+let zlib = require('zlib');
+let etag = require('etag');
+let watch = require('node-watch');
+let Promise = require('bluebird');
+let merge = require('object-assign');
 
 // Functions
-let getFile = require("./functions/getFile");
-let loadStyle = require("./functions/loadStyle");
-let loadScript = require("./functions/loadScript");
-let loadFavIcon = require("./functions/loadFavIcon");
-let launchServer = require("./functions/launchServer");
-let loadDirectory = require("./functions/loadDirectory");
-let watchFlatDirectory = require("./functions/watchFlatDirectory");
+let getFile = require('./functions/getFile');
+let loadStyle = require('./functions/loadStyle');
+let loadScript = require('./functions/loadScript');
+let loadFavIcon = require('./functions/loadFavIcon');
+let launchServer = require('./functions/launchServer');
+let loadDirectory = require('./functions/loadDirectory');
+let watchFlatDirectory = require('./functions/watchFlatDirectory');
 
 // Classes
-let Page = require("./classes/Page");
-let Layout = require("./classes/Layout");
-let Server = require("./classes/Server");
-let LiveReload = require("./classes/LiveReload");
-let EventEmitter = require("./classes/EventEmitter");
+let Page = require('./classes/Page');
+let Layout = require('./classes/Layout');
+let Server = require('./classes/Server');
+let LiveReload = require('./classes/LiveReload');
+let EventEmitter = require('./classes/EventEmitter');
 
 // Promisify
 Promise.promisifyAll(fs);
@@ -32,7 +32,7 @@ Promise.promisifyAll(fs);
 let aero = {};
 
 // Default config
-let defaultConfig = require("../default/config");
+let defaultConfig = require('../default/config');
 
 // Components
 aero.events = new EventEmitter();
@@ -42,16 +42,16 @@ aero.staticFileCache = {};
 
 // run
 aero.run = Promise.coroutine(function*() {
-	let config = yield getFile("config.json", defaultConfig).then(JSON.parse);
+	let config = yield getFile('config.json', defaultConfig).then(JSON.parse);
 
-	// Set config to the data in the "aero" field
+	// Set config to the data in the 'aero' field
 	this.config = merge(defaultConfig, config);
 
 	// Register event listeners
 	this.registerEventListeners();
 
 	// Let the world know that we're ready
-	this.events.emit("config loaded", aero);
+	this.events.emit('config loaded', aero);
 
 	// Watch for modifications
 	this.watchFiles();
@@ -71,24 +71,24 @@ aero.registerEventListeners = function() {
 	// Load all styles
 	let recompileStyles = function() {
 		let asyncStyleCompileTasks = aero.config.styles.map(function(styleId) {
-			return loadStyle(path.join(aero.config.path.styles, styleId + ".styl"));
+			return loadStyle(path.join(aero.config.path.styles, styleId + '.styl'));
 		});
 
 		return Promise.all(asyncStyleCompileTasks).then(function(results) {
 			aero.css = results;
-			aero.events.emit("styles loaded");
+			aero.events.emit('styles loaded');
 		});
 	};
 
 	// Load all scripts
 	let recompileScripts = function() {
 		let asyncScriptCompileTasks = aero.config.scripts.map(function(scriptId) {
-			return loadScript(path.join(aero.config.path.scripts, scriptId + ".js"));
+			return loadScript(path.join(aero.config.path.scripts, scriptId + '.js'));
 		});
 
 		return Promise.all(asyncScriptCompileTasks).then(function(results) {
 			aero.js = results;
-			aero.events.emit("scripts loaded");
+			aero.events.emit('scripts loaded');
 		});
 	};
 
@@ -99,7 +99,7 @@ aero.registerEventListeners = function() {
 	};
 
 	// Aero config loaded
-	this.events.on("config loaded", Promise.coroutine(function*() {
+	this.events.on('config loaded', Promise.coroutine(function*() {
 		// Favicon
 		loadFavIcon(aero.config.favIcon, function(imageData) {
 			aero.server.favIconData = imageData;
@@ -107,7 +107,7 @@ aero.registerEventListeners = function() {
 
 		// Layout
 		aero.layout = yield new Layout(aero.config.path.layout, function(page) {
-			aero.events.emit("layout loaded", page);
+			aero.events.emit('layout loaded', page);
 			recompileStyles().then(recompileScripts).then(reloadPages);
 		});
 
@@ -117,8 +117,8 @@ aero.registerEventListeners = function() {
 		// Security
 		if(aero.config.security && aero.config.security.key && aero.config.security.cert) {
 			aero.security = yield Promise.props({
-				key: fs.readFileAsync(path.join(aero.config.path.security, aero.config.security.key), "ascii"),
-				cert: fs.readFileAsync(path.join(aero.config.path.security, aero.config.security.cert), "ascii")
+				key: fs.readFileAsync(path.join(aero.config.path.security, aero.config.security.key), 'ascii'),
+				cert: fs.readFileAsync(path.join(aero.config.path.security, aero.config.security.cert), 'ascii')
 			});
 		}
 
@@ -130,29 +130,29 @@ aero.registerEventListeners = function() {
 	}));
 
 	// Layout modifications
-	this.events.on("layout modified", Promise.coroutine(function*() {
+	this.events.on('layout modified', Promise.coroutine(function*() {
 		aero.layout = yield new Layout(aero.config.path.layout);
-		aero.events.emit("layout loaded");
+		aero.events.emit('layout loaded');
 		reloadPages();
 	}));
 
 	// Recompile styles when modified
-	this.events.on("style modified", function() {
+	this.events.on('style modified', function() {
 		recompileStyles().then(reloadPages);
 	});
 
 	// Recompile scripts when modified
-	this.events.on("script modified", function() {
+	this.events.on('script modified', function() {
 		recompileScripts().then(reloadPages);
 	});
 
 	// Page modifications
-	this.events.on("page modified", function(pageId) {
+	this.events.on('page modified', function(pageId) {
 		aero.loadPage(pageId);
 	});
 
 	// Page loaded
-	this.events.on("page loaded", function(page) {
+	this.events.on('page loaded', function(page) {
 		// Register page
 		aero.pages.set(page.id, page);
 
@@ -173,12 +173,12 @@ aero.registerEventListeners = function() {
 		// we're trying to optimize for performance, not bandwidth.
 		const gzipThreshold = 1450;
 
-		let css = aero.css.join(" ") + " " + aero.layout.css;
-		let js = aero.js.join(";") + aero.liveReload.script;
+		let css = aero.css.join(' ') + ' ' + aero.layout.css;
+		let js = aero.js.join(';') + aero.liveReload.script;
 		let renderLayoutTemplate = aero.layout.template;
 
 		let headers = {
-			"Content-Type": "text/html;charset=utf-8"
+			'Content-Type': 'text/html;charset=utf-8'
 		};
 
 		let bestCompressionOptions = {
@@ -191,16 +191,16 @@ aero.registerEventListeners = function() {
 
 		let respond = function(finalCode, response) {
 			if(finalCode.length >= gzipThreshold) {
-				headers["Content-Encoding"] = "gzip";
+				headers['Content-Encoding'] = 'gzip';
 
 				zlib.gzip(finalCode, fastCompressionOptions, function(error, gzippedCode) {
-					headers["Content-Length"] = gzippedCode.length;
+					headers['Content-Length'] = gzippedCode.length;
 
 					response.writeHead(200, headers);
 					response.end(gzippedCode);
 				});
 			} else {
-				headers["Content-Length"] = Buffer.byteLength(finalCode, "utf8");
+				headers['Content-Length'] = Buffer.byteLength(finalCode, 'utf8');
 
 				response.writeHead(200, headers);
 				response.end(finalCode);
@@ -216,7 +216,7 @@ aero.registerEventListeners = function() {
 			// Then let's send over a live reload script until it's fixed
 			if(!renderPageTemplate) {
 				aero.get(page.url, function(request, response) {
-					response.end("<script>" + aero.liveReload.script + "</script>");
+					response.end('<script>' + aero.liveReload.script + '</script>');
 				});
 				return;
 			}
@@ -305,10 +305,10 @@ aero.registerEventListeners = function() {
 				let staticPageCode = renderLayoutTemplate(layoutParams);
 
 				if(staticPageCode.length >= gzipThreshold) {
-					headers["Content-Encoding"] = "gzip";
+					headers['Content-Encoding'] = 'gzip';
 
 					zlib.gzip(staticPageCode, bestCompressionOptions, function(error, gzippedCode) {
-						headers["Content-Length"] = gzippedCode.length;
+						headers['Content-Length'] = gzippedCode.length;
 						headers.ETag = etag(gzippedCode);
 
 						aero.get(page.url, function(request, response) {
@@ -317,7 +317,7 @@ aero.registerEventListeners = function() {
 						});
 					});
 				} else {
-					headers["Content-Length"] = Buffer.byteLength(staticPageCode, "utf8");
+					headers['Content-Length'] = Buffer.byteLength(staticPageCode, 'utf8');
 					headers.ETag = etag(staticPageCode);
 
 					aero.get(page.url, function(request, response) {
@@ -337,7 +337,7 @@ aero.registerEventListeners = function() {
 aero.watchFiles = function() {
 	// Watch for layout modifications
 	watch(this.config.path.layout, function() {
-		aero.events.emit("layout modified");
+		aero.events.emit('layout modified');
 	});
 
 	// Watch for page modifications
@@ -345,34 +345,34 @@ aero.watchFiles = function() {
 		let relativeFilePath = path.relative(aero.config.path.pages, filePath);
 		let pageId = path.dirname(relativeFilePath);
 
-		aero.events.emit("page modified", pageId);
+		aero.events.emit('page modified', pageId);
 	});
 
 	// Watch for style modifications
-	watchFlatDirectory(aero.config.path.styles, ".styl", aero.events, "style modified");
+	watchFlatDirectory(aero.config.path.styles, '.styl', aero.events, 'style modified');
 
 	// Watch for script modifications
-	watchFlatDirectory(aero.config.path.scripts, ".js", aero.events, "script modified");
+	watchFlatDirectory(aero.config.path.scripts, '.js', aero.events, 'script modified');
 };
 
 // loadPage
 aero.loadPage = function(pageId) {
 	return new Page(pageId, path.join(aero.config.path.pages, pageId), function(page) {
-		aero.events.emit("page loaded", page);
+		aero.events.emit('page loaded', page);
 	});
 };
 
 // get
 aero.get = function(url, route) {
-	if(typeof url === "object") {
+	if(typeof url === 'object') {
 		// TODO: Regex handling
 		return;
 	}
 	
-	if(url.startsWith("/"))
+	if(url.startsWith('/'))
 		url = url.substr(1);
 	
-	if(url.includes("/")) {
+	if(url.includes('/')) {
 		aero.server.special[url] = route;
 		return;
 	}
@@ -389,7 +389,7 @@ aero.use = function(func) {
 aero.static = function(directory) {
 	const staticFileSizeCachingThreshold = 512 * 1024; // 512 KB
 
-	let mmm = require("mmmagic");
+	let mmm = require('mmmagic');
 	let Magic = mmm.Magic;
 	let magic = new Magic(mmm.MAGIC_MIME_TYPE);
 
@@ -398,7 +398,7 @@ aero.static = function(directory) {
 
 		// Let's not send the contents of our whole file system to potential hackers.
 		// Except for Windows because Windows servers deserve to be hacked. #opinionated
-		if(url.indexOf("../") !== -1) {
+		if(url.indexOf('../') !== -1) {
 			response.end();
 			return;
 		}
@@ -424,8 +424,8 @@ aero.static = function(directory) {
 				}
 
 				let headers = {
-					"Content-Length": stats.size,
-					"ETag": etag(stats)
+					'Content-Length': stats.size,
+					'ETag': etag(stats)
 				};
 
 				magic.detectFile(url, function(mimeError, mimeType) {
@@ -437,17 +437,17 @@ aero.static = function(directory) {
 					}
 
 					// Special exception: image/webp (instead of application/octet-stream)
-					if(url.substr(-5) === ".webp")
-						mimeType = "image/webp";
+					if(url.substr(-5) === '.webp')
+						mimeType = 'image/webp';
 
 					// Cache headers
-					headers["Content-Type"] = mimeType;
+					headers['Content-Type'] = mimeType;
 
 					// Send file
 					response.writeHead(200, headers);
 
 					// To cache or not to cache, that is the question!
-					if(mimeType.indexOf("image/") !== -1 && stats.size <= staticFileSizeCachingThreshold) {
+					if(mimeType.indexOf('image/') !== -1 && stats.size <= staticFileSizeCachingThreshold) {
 						fs.readFile(url, function(readError, data) {
 							if(readError) {
 								console.error(readError);

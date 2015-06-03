@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class Server {
 	constructor() {
@@ -11,9 +11,9 @@ class Server {
 
 	run(port, security, callBack) {
 		if(security && security.key && security.cert)
-			this.httpServer = require("http2").createServer(security, this.handleRequest.bind(this));
+			this.httpServer = require('http2').createServer(security, this.handleRequest.bind(this));
 		else
-			this.httpServer = require("http").createServer(this.handleRequest.bind(this));
+			this.httpServer = require('http').createServer(this.handleRequest.bind(this));
 
 		this.httpServer.listen(port, callBack);
 	}
@@ -26,7 +26,7 @@ class Server {
 		let url = request.url;
 
 		// Favicon
-		if(url === "/favicon.ico") {
+		if(url === '/favicon.ico') {
 			// 404
 			if(!this.favIconData) {
 				response.writeHead(404);
@@ -36,7 +36,7 @@ class Server {
 
 			// Send image data
 			response.writeHead(200, {
-				"Content-Type": "image/x-icon"
+				'Content-Type': 'image/x-icon'
 			});
 			response.end(this.favIconData);
 
@@ -44,7 +44,7 @@ class Server {
 		}
 
 		// Determine which page has been requested
-		let i = url.indexOf("/", 1);
+		let i = url.indexOf('/', 1);
 
 		if(i === -1)
 			i = url.length;
@@ -55,9 +55,9 @@ class Server {
 		// Page doesn't exist?
 		if(!route) {
 			// Search raw pages
-			if(page === "_") {
+			if(page === '_') {
 				// 3 characters prefix: /_/
-				i = url.indexOf("/", 3);
+				i = url.indexOf('/', 3);
 
 				if(i === -1)
 					i = url.length;
@@ -84,7 +84,7 @@ class Server {
 		if(i >= url.length - 1)
 			request.params = [];
 		else
-			request.params = url.substr(i + 1).split("/");
+			request.params = url.substr(i + 1).split('/');
 			
 		// Execute handler
 		if(this.modifiers.length === 0) {

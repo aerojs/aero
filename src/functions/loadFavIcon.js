@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-let fs = require("fs");
+let fs = require('fs');
 
 // loadFavIcon
 let loadFavIcon = function(iconPath, callBack) {

@@ -1,20 +1,20 @@
-"use strict";
+'use strict';
 
 // Modules
-let path = require("path");
-let Promise = require("bluebird");
+let path = require('path');
+let Promise = require('bluebird');
 
 // New yield handler
 Promise.coroutine.addYieldHandler(function(value) {
-	if(typeof value === "object")
+	if(typeof value === 'object')
 		return Promise.props(value);
 });
 
 // Functions
-let loadController = require("../functions/loadController");
-let loadTemplate = require("../functions/loadTemplate");
-let loadStyle = require("../functions/loadStyle");
-let loadPageJSON = require("../functions/loadPageJSON");
+let loadController = require('../functions/loadController');
+let loadTemplate = require('../functions/loadTemplate');
+let loadStyle = require('../functions/loadStyle');
+let loadPageJSON = require('../functions/loadPageJSON');
 
 // Page
 let Page = Promise.coroutine(function*(id, pagePath, pageLoadCallBack) {
@@ -23,10 +23,10 @@ let Page = Promise.coroutine(function*(id, pagePath, pageLoadCallBack) {
 	this.url = id;
 
 	// TODO: Can we abstract this even better to follow the DRY principle?
-	this.controllerPath = path.resolve(path.join(this.path, id + ".js"));
-	this.templatePath = path.resolve(path.join(this.path, id + ".jade"));
-	this.stylePath = path.resolve(path.join(this.path, id + ".styl"));
-	this.jsonPath = path.resolve(path.join(this.path, id + ".json"));
+	this.controllerPath = path.resolve(path.join(this.path, id + '.js'));
+	this.templatePath = path.resolve(path.join(this.path, id + '.jade'));
+	this.stylePath = path.resolve(path.join(this.path, id + '.styl'));
+	this.jsonPath = path.resolve(path.join(this.path, id + '.json'));
 
 	let components = yield {
 		controller: loadController(this.controllerPath),
@@ -41,12 +41,12 @@ let Page = Promise.coroutine(function*(id, pagePath, pageLoadCallBack) {
 	this.json = components.json;
 
 	// URL overwrite in JSON file
-	if(this.json && typeof this.json.url !== "undefined")
+	if(this.json && typeof this.json.url !== 'undefined')
 		this.url = this.json.url;
 
 	// Default controller
 	if(this.controller) {
-		// Automatic "get" creation
+		// Automatic 'get' creation
 		if(this.controller.render && !this.controller.get) {
 			let page = this;
 
@@ -62,9 +62,9 @@ let Page = Promise.coroutine(function*(id, pagePath, pageLoadCallBack) {
 			this.controller.init(this);
 	} else {
 		if(this.template) {
-			this.code = "<style scoped>" + this.css + "</style>" + this.template(this.json);
+			this.code = '<style scoped>' + this.css + '</style>' + this.template(this.json);
 		} else {
-			this.code = "";
+			this.code = '';
 		}
 	}
 

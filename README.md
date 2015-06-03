@@ -22,64 +22,45 @@ Aero includes both a framework for building websites and a server. Other notable
 
 ## Performance
 
-We care about __website loading speed__ and **web server performance**.
-Usually websites generate a lot of HTTP requests, leading to very slow loading times in high latency environments. Aero inlines a lot of the resources in the initial request and never loads them again.
+Aero is optimized for website loading speed and content delivery performance.
+
+* On HTTP 1 it inlines resources like CSS and JavaScript for the initial request and never loads them again.
+* On HTTP 2 it pushes those resources to the client via the new push method.
 
 ## Productivity
 
-Aero automatically finds the resources that need to be recompiled when something changes. Controllers, templates, styles and configuration files are automatically reloaded when you save them in your editor.
+### No restarts
+Controllers, templates, styles and configuration files are recompiled whenever you save them in your editor. Your changes are instantly visible. Routes are dynamic and you never really need to restart Aero.
+
+### Live reload
+You don't need to press the refresh button in your browser anymore because when you save the file in your editor all of your browser tabs using that page will be automagically reloaded. This requires **no plugins** and works in **all browsers** as long as they support HTML 5.
 
 ## Simplicity
 
 > Write programs that do one thing and do it well.
 
 Aero is very lightweight and doesn't include any database drivers.
-It is a very high-level framework, you can decide what you're going to use under the hood.
-
-## Usage
-
-You can install aero via npm:
-
-```bash
-npm install aero --save
-```
-
-Load the module and start it:
-
-```node
-let aero = require("aero");
-aero.run();
-```
-
-That's all you need for your index.js file. Run it using:
-
-```bash
-node index.js
-```
+It is a very high-level framework, you can decide what you're going to use under the hood. At the time of writing this Aero doesn't allow you to use alternatives to Jade and Stylus but this will be changed in a future release.
 
 ## Hello World
 
-Create your main file `index.js` if it doesn't exist yet:
+Create a file called `index.js`:
 
 ```node
 let aero = require("aero");
 aero.run();
 ```
 
-You can also specify a config file path by passing it to `aero.start(configFile)` which defaults to `package.json`.
-
-Create a file called `package.json` in your root directory:
+Create a file called `config.json` in your root directory:
 
 ```json
 {
-	"aero": {
-		"siteName": "Hello World",
-		"port": 4000
-	}
+	"siteName": "Hello World",
+	"port": 4000
 }
 ```
 
-Add a main layout file `layout.jade` in your root directory:
+Create your main layout file `layout.jade` inside the `layout` directory:
 
 ```jade
 doctype html
@@ -95,34 +76,34 @@ html
 
 `siteName` is the title you set up in your config before. The variables `css`, `js` and `content` are set by Aero.
 
+Create `pages/helloworld/helloworld.jade` with some awesome content:
+
+```jade
+h1 Hello World
+```
+
 Install Aero:
 
 ```bash
 npm install aero --save
 ```
 
-Now run it using:
+Run it:
 
 ```bash
 iojs --harmony --use_strict index.js
 ```
+## Pages
 
-This should automatically create the `pages/helloworld/helloworld.jade` file and start your server on port 4000. Navigate your browser to [http://localhost:4000/helloworld](http://localhost:4000/helloworld) to see the "helloworld" from your automatically created page rendered into your layout.
+Aero page components are **grouped by feature, not by file type** like most VC frameworks. For example the `helloworld` page can contain a `helloworld.jade`, `helloworld.styl`, `helloworld.json` and a `helloworld.js` controller in the same directory.
 
-Aero page components are **grouped by feature**, not by file type like most MVC frameworks. For example the `helloworld` page can contain a `helloworld.jade`, `helloworld.styl`, `helloworld.json` and a `helloworld.js` file all in the same directory. We believe that grouping by feature eases the maintenance of any kind of project.
-
-Now try to change the `helloworld.jade` inside your `pages` directory. Aero notices the changes and recompiles the file automatically.
+Now try to change the `helloworld.jade` inside your `pages` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
 ## Documentation
 
-You've barely scratched the surface of what Aero can do with the Hello World example.
-
-	TODO: Tutorial
+> Please do not use Aero in production yet, it is still in active development.
+> Documentation will be available once the Aero API is stable.
 
 ## Websites using Aero
 
 * [blitzprog.org](http://blitzprog.org/) ([Source](https://github.com/blitzprog/blitzprog.org))
-
-## Status
-
-Aero is an ambitious project that is looking for contributors. It is currently in early alpha stage and if you're interested in creating a system that is tailored for performance and productivity, get in touch!
