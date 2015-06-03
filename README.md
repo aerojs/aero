@@ -111,4 +111,5 @@ Aero includes both a framework for building websites and a server. Other notable
 
 ## Websites using Aero
 
-* [blitzprog.org](http://blitzprog.org/) ([Source](https://github.com/blitzprog/blitzprog.org))
+* [blitzprog.org](http://blitzprog.org/) ([view source](https://github.com/blitzprog/blitzprog.org))
+* [my.nihongo-center.com](http://my.nihongo-center.com/) ([view source](https://github.com/blitzprog/nihongo-center.com))
