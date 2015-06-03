@@ -188,7 +188,7 @@ aero.registerEventListeners = function() {
 				headers["Content-Encoding"] = "gzip";
 
 				zlib.gzip(finalCode, fastCompressionOptions, function(error, gzippedCode) {
-					headers["Content-Length"] = Buffer.byteLength(gzippedCode, "raw");
+					headers["Content-Length"] = gzippedCode.length;
 
 					response.writeHead(200, headers);
 					response.end(gzippedCode);
@@ -302,7 +302,7 @@ aero.registerEventListeners = function() {
 					headers["Content-Encoding"] = "gzip";
 
 					zlib.gzip(staticPageCode, bestCompressionOptions, function(error, gzippedCode) {
-						headers["Content-Length"] = Buffer.byteLength(gzippedCode, "raw");
+						headers["Content-Length"] = gzippedCode.length;
 						headers.ETag = etag(gzippedCode);
 
 						aero.get(page.url, function(request, response) {
@@ -359,6 +359,11 @@ aero.loadPage = function(pageId) {
 // get
 aero.get = function(url, route) {
 	aero.server.routes[url] = route;
+};
+
+// use
+aero.use = function(func) {
+	console.log("TODO: Middleware");
 };
 
 // static
