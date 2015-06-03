@@ -6,6 +6,7 @@ class Server {
 		this.special = {};
 		this.routes = {};
 		this.raw = {};
+		this.modifiers = [];
 	}
 
 	run(port, security, callBack) {
@@ -84,9 +85,20 @@ class Server {
 			request.params = [];
 		else
 			request.params = url.substr(i + 1).split("/");
-
+			
 		// Execute handler
-		route(request, response);
+		if(this.modifiers.length === 0) {
+			route(request, response);
+		} else {
+			let generateNext = function(index) {
+				if(index === this.modifiers.length)
+					return route.bind(undefined, request, response);
+				
+				return this.modifiers[index].bind(undefined, request, response, generateNext(index + 1));
+			}.bind(this);
+			
+			generateNext(0)();
+		}
 	}
 }
 

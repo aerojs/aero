@@ -1,6 +1,6 @@
 "use strict";
 
-let runExample = function(silent) {
+let runExample = function (silent) {
 	// Modules
 	let aero = require("../src");
 
@@ -9,11 +9,11 @@ let runExample = function(silent) {
 
 	// Change directory
 	require("process").chdir(__dirname);
-	
+
 	// Run
 	startUp = Date.now();
 	aero.run();
-	
+
 	if(!silent) {
 		// Do something when initialized
 		aero.events.on("initialized", function() {
@@ -30,7 +30,7 @@ let runExample = function(silent) {
 			console.log(aero.config.siteName + " is ready to serve content now!");
 		});
 	}
-	
+
 	// Special route
 	aero.get("/very/special/route", function(request, response) {
 		response.end("Very special indeed!");
@@ -39,6 +39,17 @@ let runExample = function(silent) {
 	// Google+ style routing
 	aero.get(/^\+(.*)/, function(request, response) {
 		response.end("Google+ style routing");
+	});
+
+	// Middleware
+	aero.use(function(req, res, next) {
+		//console.log("URL:", req.url);
+		next();
+	});
+	
+	aero.use(function(req, res, next) {
+		//console.log("Time:", new Date());
+		next();
 	});
 };
 

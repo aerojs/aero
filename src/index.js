@@ -382,7 +382,7 @@ aero.get = function(url, route) {
 
 // use
 aero.use = function(func) {
-	console.log("TODO: Middleware");
+	aero.server.modifiers.push(func);
 };
 
 // static
