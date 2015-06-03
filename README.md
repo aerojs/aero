@@ -93,9 +93,12 @@ Run it:
 ```bash
 iojs --harmony --use_strict index.js
 ```
+
+Visit http://localhost:4000/helloworld in your browser.
+
 ## Pages
 
-Aero page components are **grouped by feature, not by file type** like most VC frameworks. For example the `helloworld` page can contain a `helloworld.jade`, `helloworld.styl`, `helloworld.json` and a `helloworld.js` controller in the same directory.
+Aero page components are *grouped by feature, not by file type* like most VC frameworks. For example the `helloworld` page can contain a `helloworld.jade`, `helloworld.styl`, `helloworld.json` and a `helloworld.js` controller in the same directory.
 
 Now try to change the `helloworld.jade` inside your `pages` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
