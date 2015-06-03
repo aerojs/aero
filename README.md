@@ -7,9 +7,9 @@
 
 Aero is the fastest web framework on the node platform. It is based on [io.js](https://iojs.org/), [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
 
-* [Performance](#Performance)
-* [Productivity](#Productivity)
-* [Simplicity](#Simplicity)
+* [Performance](#performance)
+* [Productivity](#productivity)
+* [Simplicity](#simplicity)
 
 ## Performance
 
