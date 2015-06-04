@@ -6,6 +6,7 @@ class Server {
 	constructor() {
 		this.favIconData = null;
 		this.special = {};
+		this.regexRoutes = new Set();
 		this.routes = {};
 		this.raw = {};
 		this.modifiers = [];
@@ -54,9 +55,15 @@ class Server {
 
 		let page = url.substring(1, i);
 		let route = this.routes[page];
-
-		// Page doesn't exist?
-		if(!route) {
+		
+		// Page exists?
+		if(route) {
+			// Page parameters
+			if(i >= url.length - 1)
+				request.params = [];
+			else
+				request.params = url.substr(i + 1).split('/');
+		} else {
 			// Search raw pages
 			if(page === '_') {
 				// 3 characters prefix: /_/
@@ -67,12 +74,38 @@ class Server {
 
 				page = url.substring(3, i);
 				route = this.raw[page];
+				
+				// Page parameters
+				if(i >= url.length - 1)
+					request.params = [];
+				else
+					request.params = url.substr(i + 1).split('/');
 			}
 			
 			// Search special routes
 			if(!route) {
-				route = this.special[url.substr(1)];
+				url = url.substr(1);
+				route = this.special[url];
 				i = url.length;
+				
+				// Search regex routes
+				if(!route) {
+					let match = null;
+					
+					for(let router of this.regexRoutes) {
+						match = url.match(router.regEx);
+						
+						if(!match)
+							continue;
+						
+						route = router.route;
+						
+						// We skip the first parameter because it just includes the full URL
+						request.params = match.splice(1);
+						
+						break;
+					}
+				}
 			}
 
 			// Still not found? 404...
@@ -82,13 +115,7 @@ class Server {
 				return;
 			}
 		}
-
-		// Page parameters
-		if(i >= url.length - 1)
-			request.params = [];
-		else
-			request.params = url.substr(i + 1).split('/');
-			
+		
 		// Execute handler
 		if(this.modifiers.length === 0) {
 			route(request, response);

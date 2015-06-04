@@ -365,7 +365,10 @@ aero.loadPage = function(pageId) {
 // get
 aero.get = function(url, route) {
 	if(typeof url === 'object') {
-		// TODO: Regex handling
+		aero.server.regexRoutes.add({
+			regEx: url,
+			route
+		});
 		return;
 	}
 	

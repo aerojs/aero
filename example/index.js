@@ -16,7 +16,8 @@ let runExample = function (silent) {
 	});
 
 	// Google+ style routing
-	aero.get(/^\+(.*)/, function(request, response) {
+	aero.get(/^\+(.*)$/, function(request, response) {
+		response.write(request.params[0] + '\n');
 		response.end('Google+ style routing');
 	});
 
