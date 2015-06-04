@@ -12,8 +12,8 @@
 		"jade": "*",
 		"http2": "*",
 		"stylus": "*",
-		"bluebird": "*",
 		"mmmagic": "*",
+		"bluebird": "*",
 		"uglify-js": "*",
 		"node-watch": "*",
 		"object-assign": "*"
