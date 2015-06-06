@@ -21,10 +21,12 @@ let Layout = Promise.coroutine(function*(layoutPath, layoutLoadCallBack) {
 	this.templatePath = path.resolve(path.join(this.path, this.id + '.jade'));
 	this.stylePath = path.resolve(path.join(this.path, this.id + '.styl'));
 	this.jsonPath = path.resolve(path.join(this.path, this.id + '.json'));
-
+	
 	let components = yield {
 		controller: loadController(this.controllerPath),
-		template: loadTemplate(this.templatePath),
+		template: loadTemplate(this.templatePath).error(function() {
+			return loadTemplate(require.resolve('../../default/layout.jade'));
+		}),
 		css: loadStyle(this.stylePath),
 		json: loadPageJSON(this.jsonPath)
 	};
@@ -33,7 +35,7 @@ let Layout = Promise.coroutine(function*(layoutPath, layoutLoadCallBack) {
 	this.template = components.template;
 	this.css = components.css;
 	this.json = components.json;
-
+	
 	// Controller.init
 	if(this.controller && this.controller.init)
 		this.controller.init(this);

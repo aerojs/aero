@@ -30,7 +30,9 @@ let Page = Promise.coroutine(function*(id, pagePath, pageLoadCallBack) {
 
 	let components = yield {
 		controller: loadController(this.controllerPath),
-		template: loadTemplate(this.templatePath),
+		template: loadTemplate(this.templatePath).error(function() {
+			return null;
+		}),
 		css: loadStyle(this.stylePath),
 		json: loadPageJSON(this.jsonPath)
 	};

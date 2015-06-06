@@ -44,37 +44,6 @@ var aero = require("aero");
 aero.run();
 ```
 
-Create a file called `config.json` in your root directory:
-
-```json
-{
-	"siteName": "Hello World",
-	"port": 4000
-}
-```
-
-Create your main layout file `layout.jade` inside the `layout` directory:
-
-```jade
-doctype html
-html
-	head
-		title= siteName
-		style!= css
-
-	body
-		#content!= content
-		script!= js
-```
-
-`siteName` is the title you set up in your config before. The variables `css`, `js` and `content` are set by Aero.
-
-Create `pages/helloworld/helloworld.jade` with some awesome content:
-
-```jade
-h1 Hello World
-```
-
 Install Aero:
 
 ```bash
@@ -84,10 +53,10 @@ npm install aero --save
 Run it:
 
 ```bash
-iojs --harmony --use_strict index.js
+iojs --harmony index.js
 ```
 
-Visit [http://localhost:4000/helloworld](http://localhost:4000/helloworld) in your browser.
+Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 ## Pages
 

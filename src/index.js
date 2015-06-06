@@ -5,6 +5,7 @@ let fs = require('fs');
 let path = require('path');
 let zlib = require('zlib');
 let etag = require('etag');
+let mkdir = require('mkdirp');
 let watch = require('node-watch');
 let Promise = require('bluebird');
 let merge = require('object-assign');
@@ -27,6 +28,7 @@ let EventEmitter = require('./classes/EventEmitter');
 
 // Promisify
 Promise.promisifyAll(fs);
+mkdir = Promise.promisify(mkdir);
 
 // Aero definition
 let aero = {};
@@ -52,9 +54,6 @@ aero.run = Promise.coroutine(function*() {
 
 	// Let the world know that we're ready
 	this.events.emit('config loaded', aero);
-
-	// Watch for modifications
-	this.watchFiles();
 });
 
 // stop
@@ -95,7 +94,31 @@ aero.registerEventListeners = function() {
 	// Reload pages
 	let reloadPages = function() {
 		// Reload all pages
-		loadDirectory(aero.config.path.pages, aero.loadPage);
+		loadDirectory(aero.config.path.pages, aero.loadPage).then(function() {
+			// Create default home page if no page doesn't yet
+			if(aero.pages.size === 0) {
+				let homePath = path.join(aero.config.path.pages, 'home');
+				let homeTemplate = path.join(homePath, 'home.jade');
+				let homeJSON = path.join(homePath, 'home.json');
+
+				mkdir(homePath)
+					.then(function() {
+						return fs.writeFileAsync(homeTemplate, 'h1 Hello Aero\np Edit this page in ' + homeTemplate, 'utf8');
+					})
+					.then(function() {
+						let json = {
+							url: ''
+						};
+						
+						return fs.writeFileAsync(homeJSON, JSON.stringify(json, null, '\t'), 'utf8');
+					}).then(function() {
+						aero.loadPage('home');
+					});
+			}
+		}).then(function() {
+			// Watch for modifications
+			aero.watchFiles();
+		});
 	};
 
 	// Aero config loaded
@@ -104,10 +127,15 @@ aero.registerEventListeners = function() {
 		loadFavIcon(aero.config.favIcon, function(imageData) {
 			aero.server.favIconData = imageData;
 		});
+		
+		// Create directories
+		yield Promise.all(Object.keys(aero.config.path).map(function(directory) {
+			return mkdir(directory);
+		}));
 
 		// Layout
-		aero.layout = yield new Layout(aero.config.path.layout, function(page) {
-			aero.events.emit('layout loaded', page);
+		aero.layout = yield new Layout(aero.config.path.layout, function(layout) {
+			aero.events.emit('layout loaded', layout);
 			recompileStyles().then(recompileScripts).then(reloadPages);
 		});
 
@@ -164,7 +192,7 @@ aero.registerEventListeners = function() {
 				response.end(page.code);
 			};
 		}
-		
+
 		// This should be close to the MTU size of a TCP packet.
 		// Regarding performance it makes no sense to compress smaller files.
 		// Bandwidth can be saved however the savings are minimal for small files
@@ -358,6 +386,10 @@ aero.watchFiles = function() {
 // loadPage
 aero.loadPage = function(pageId) {
 	return new Page(pageId, path.join(aero.config.path.pages, pageId), function(page) {
+		// Ignore empty directories
+		if(!page.controller && !page.template)
+			return;
+		
 		aero.events.emit('page loaded', page);
 	});
 };
@@ -371,15 +403,15 @@ aero.get = function(url, route) {
 		});
 		return;
 	}
-	
+
 	if(url.startsWith('/'))
 		url = url.substr(1);
-	
+
 	if(url.includes('/')) {
 		aero.server.special[url] = route;
 		return;
 	}
-	
+
 	aero.server.routes[url] = route;
 };
 

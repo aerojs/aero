@@ -8,10 +8,7 @@ let loadTemplate = function(templatePath) {
 	try {
 		return Promise.resolve(jade.compileFile(templatePath));
 	} catch(e) {
-		if(e.code !== 'ENOENT')
-			console.error(e);
-
-		return Promise.resolve(null);
+		return Promise.reject(e);
 	}
 };
 
