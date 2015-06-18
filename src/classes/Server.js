@@ -46,47 +46,52 @@ class Server {
 
 			return;
 		}
+		
+		let paramsPosition = url.indexOf('?', 1);
+		
+		if(paramsPosition === -1)
+			url = url.substring(1);
+		else
+			url = url.substring(1, paramsPosition);
 
 		// Determine which page has been requested
-		let i = url.indexOf('/', 1);
+		let slashPosition = url.indexOf('/');
 
-		if(i === -1)
-			i = url.length;
+		if(slashPosition === -1)
+			slashPosition = url.length;
 
-		let page = url.substring(1, i);
+		let page = url.substring(0, slashPosition);
 		let route = this.routes[page];
 		
 		// Page exists?
 		if(route) {
 			// Page parameters
-			if(i >= url.length - 1)
+			if(slashPosition >= url.length - 1)
 				request.params = [];
 			else
-				request.params = url.substr(i + 1).split('/');
+				request.params = url.substr(slashPosition + 1).split('/');
 		} else {
 			// Search raw pages
 			if(page === '_') {
 				// 3 characters prefix: /_/
-				i = url.indexOf('/', 3);
+				slashPosition = url.indexOf('/', 2);
 
-				if(i === -1)
-					i = url.length;
+				if(slashPosition === -1)
+					slashPosition = url.length;
 
-				page = url.substring(3, i);
+				page = url.substring(2, slashPosition);
 				route = this.raw[page];
 				
 				// Page parameters
-				if(i >= url.length - 1)
+				if(slashPosition >= url.length - 1)
 					request.params = [];
 				else
-					request.params = url.substr(i + 1).split('/');
+					request.params = url.substr(slashPosition + 1).split('/');
 			}
 			
 			// Search special routes
 			if(!route) {
-				url = url.substr(1);
 				route = this.special[url];
-				i = url.length;
 				
 				// Search regex routes
 				if(!route) {

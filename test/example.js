@@ -78,9 +78,11 @@ aero.events.on('server started', function() {
 		check('/_/static/', 200);
 		check('/style', 200);
 		check('/users', 200);
+		check('/users?get=1', 200);
 		check('/users/test/profile', 200);
 		check('/favicon.ico', 200);
 		check('/very/special/route', 200);
+		check('/very/special/route?get=1', 200);
 		check('/+RegexRouting', 200);
 		check('/doesntexist', 404);
 		check('/404', 404);
