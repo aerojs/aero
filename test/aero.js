@@ -1,11 +1,11 @@
 'use strict';
 
-let aero = require('../src');
+let aero = require('../lib');
 let assert = require('assert');
 
 describe('aero', function() {
 	it('should be a singleton', function() {
-		assert(aero === require('../src'));
+		assert(aero === require('../lib'));
 	});
 	
 	it('should have a valid package.json file', function() {

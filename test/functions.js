@@ -4,7 +4,7 @@ let assert = require('assert');
 
 describe('functions', function() {
 	describe('loadPageJSON', function() {
-		let loadPageJSON = require('../src/functions/loadPageJSON');
+		let loadPageJSON = require('../lib/functions/loadPageJSON');
 		
 		it('should not throw when the JSON file does not exist', function(done) {
 			loadPageJSON('test/does not exist.json').then(done);
@@ -16,7 +16,7 @@ describe('functions', function() {
 	});
 	
 	describe('loadFavIcon', function() {
-		let loadFavIcon = require('../src/functions/loadFavIcon');
+		let loadFavIcon = require('../lib/functions/loadFavIcon');
 		
 		it('should not throw when the JSON file does not exist', function(done) {
 			loadFavIcon('test/does not exist.ico', function(imageData) {

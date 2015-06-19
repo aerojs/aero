@@ -2,7 +2,7 @@
 
 let fs = require('fs');
 let path = require('path');
-let aero = require('../src');
+let aero = require('../lib');
 let example = require('../example');
 let assert = require('assert');
 let supertest = require('supertest');

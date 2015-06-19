@@ -1,6 +1,6 @@
 'use strict';
 
-let aero = require('../src');
+let aero = require('../lib');
 let assert = require('assert');
 
 describe('api', function() {

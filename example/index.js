@@ -2,7 +2,7 @@
 
 let runExample = function (silent) {
 	// Modules
-	let aero = require('../src');
+	let aero = require('../lib');
 
 	// Change directory
 	require('process').chdir(__dirname);

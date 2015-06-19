@@ -5,7 +5,7 @@
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
 	"homepage": "https://github.com/freezingwind/aero",
-	"main": "src/index.js",
+	"main": "lib/index.js",
 	"dependencies": {
 		"ws": "*",
 		"etag": "*",
