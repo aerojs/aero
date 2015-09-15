@@ -1,21 +1,21 @@
 {
 	"name": "aero",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"description": "The fastest web framework on the node platform.",
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
-	"homepage": "https://github.com/freezingwind/aero",
+	"homepage": "https://github.com/blitzprog/aero",
 	"main": "lib/index.js",
 	"dependencies": {
 		"ws": "*",
 		"etag": "*",
 		"jade": "*",
 		"http2": "*",
-		"stylus": "https://github.com/blitzprog/stylus",
+		"stylus": "*",
 		"mkdirp": "*",
-		"mmmagic": "*",
 		"bluebird": "*",
 		"uglify-js": "*",
+		"mime-types": "*",
 		"node-watch": "*",
 		"object-assign": "*"
 	},
@@ -36,10 +36,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/freezingwind/aero.git"
+		"url": "https://github.com/blitzprog/aero.git"
 	},
 	"bugs": {
-		"url": "https://github.com/freezingwind/aero/issues"
+		"url": "https://github.com/blitzprog/aero/issues"
 	},
 	"keywords": [
 		"web",
