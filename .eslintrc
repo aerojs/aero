@@ -8,7 +8,8 @@
 		"forOf": true,
 		"generators": true,
 		"templateStrings": true,
-		"classes": true
+		"classes": true,
+		"objectLiteralShorthandProperties": true
 	},
 	"rules": {
 		"strict": 0,
