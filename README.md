@@ -40,20 +40,22 @@ It is a very high-level framework, you can decide what you're going to use under
 Create a file called `index.js`:
 
 ```node
-var aero = require("aero");
+'use strict';
+
+var aero = require('aero');
 aero.run();
 ```
 
 Install Aero:
 
 ```bash
-npm install aero --save
+npm install aero
 ```
 
 Run it:
 
 ```bash
-iojs --harmony index.js
+node index.js
 ```
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
