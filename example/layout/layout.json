@@ -1,7 +1,9 @@
 {
 	"nav": [
-		"home",
-		"products",
-		"contact"
+		"api",
+		"json",
+		"static",
+		"style",
+		"users"
 	]
 }
