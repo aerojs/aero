@@ -1,9 +1,9 @@
 # Aero
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/freezingwind/aero)
-[![Build Status](https://travis-ci.org/freezingwind/aero.svg?branch=master)](https://travis-ci.org/freezingwind/aero)
-[![Coverage Status](https://coveralls.io/repos/freezingwind/aero/badge.svg)](https://coveralls.io/r/freezingwind/aero)
-[![Dependencies](https://david-dm.org/freezingwind/aero.svg)](https://david-dm.org/freezingwind/aero)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/blitzprog/aero)
+[![Build Status](https://travis-ci.org/blitzprog/aero.svg?branch=master)](https://travis-ci.org/blitzprog/aero)
+[![Coverage Status](https://coveralls.io/repos/blitzprog/aero/badge.svg)](https://coveralls.io/r/blitzprog/aero)
+[![Dependencies](https://david-dm.org/blitzprog/aero.svg)](https://david-dm.org/blitzprog/aero)
 
 Aero is the fastest web framework on the node platform. It is based on [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
 
