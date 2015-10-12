@@ -17,13 +17,13 @@ kaze.ajaxifyLinks = function() {
 		e.preventDefault();
 		e.stopPropagation();
 
-        if(url === window.location.pathname)
-            return;
+		if(url === window.location.pathname)
+			return;
 
-        if(kaze.$navigation.offset().top < 0)
-            kaze.scrollToElement(kaze.$navigation);
+		if(kaze.$navigation.offset().top < 0)
+			kaze.scrollToElement(kaze.$navigation);
 
-        kaze.loadURL(url, true);
+		kaze.loadURL(url, true);
 	});
 };
 
@@ -36,11 +36,11 @@ kaze.fadeContent = function($content, response) {
 };
 
 kaze.scrollToElement = function(element, time) {
-    time = (time !== undefined) ? time : kaze.fadeSpeed * 2;
+	time = (time !== undefined) ? time : kaze.fadeSpeed * 2;
 
-    kaze.$container.animate({
-        scrollTop: kaze.$container.scrollTop() + element.offset().top
-    }, time);
+	kaze.$container.animate({
+		scrollTop: kaze.$container.scrollTop() + element.offset().top
+	}, time);
 };
 
 kaze.loadURL = function(url, addToHistory) {
@@ -83,6 +83,7 @@ kaze.markActiveLinks = function(url) {
 
 // Run
 kaze.ajaxifyLinks();
+kaze.markActiveLinks();
 
 // Load history (used on backward and forward button)
 window.addEventListener('popstate', function(e) {

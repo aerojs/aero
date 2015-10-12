@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    styles: [
-        'reset'
-    ]
+	styles: [
+		'reset'
+	]
 };

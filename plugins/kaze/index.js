@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    scripts: [
-        'kaze'
-    ]
+	scripts: [
+		'kaze'
+	]
 };
