@@ -15,10 +15,31 @@ Aero is the fastest web framework on the node platform. It is based on [Jade](ht
 
 Aero is optimized for website loading speed and content delivery performance.
 
-* On HTTP 1 it inlines resources like CSS and JavaScript for the initial request and never loads them again.
-* On HTTP 2 it pushes those resources to the client via the new push method.
+Thanks to automatic optimizations a [Page Speed rank of 100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=blitzprog.org) is easily possible.
 
-A [Page Speed](https://developers.google.com/speed/pagespeed/insights/) rank of [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=blitzprog.org) is easily possible.
+### Inlining
+
+Aero inlines resources like style sheets and scripts for the initial request and never loads them again if the `kaze` plugin is used.
+
+### Minification
+
+The following resources are automatically minified:
+
+* Markup (HTML)
+* Styles (CSS)
+* Scripts (JS)
+
+When you save a source file in your editor the minified version will be recompiled and your browser refreshes the page.
+
+### HTTP/2
+
+Aero comes with HTTP/2 support included. In order to use HTTP/2 you need an SSL certificate.
+
+In the future we will automatically push resources like scripts and styles to the client via the new push method as an alternative to traditional inlining. Note that pushing is not included in Aero yet.
+
+### AJAX
+
+If you use the included `kaze` plugin your website will be ajaxified. Permalinks will still work nicely with search engines, therefore ensuring the best possible experience for both humans and search engines. This is possible due to the HTML 5 History API. A full page reload is no longer needed, therefore improving the rendering speed which is  especially noticeable on mobile browsers.
 
 ## Productivity
 
@@ -42,7 +63,7 @@ Create a file called `index.js`:
 ```node
 'use strict';
 
-var aero = require('aero');
+let aero = require('aero');
 aero.run();
 ```
 
@@ -62,18 +83,44 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 ## Pages
 
-Aero page components are *grouped by feature, not by file type* like most VC frameworks. For example the `helloworld` page can contain a `helloworld.jade`, `helloworld.styl`, `helloworld.json` and a `helloworld.js` controller in the same directory.
+Aero page components are *grouped by feature, not by file type* like most VC frameworks. For example the `helloworld` page can contain
 
-Now try to change the `helloworld.jade` inside your `pages` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
+* `helloworld.jade`
+* `helloworld.styl`
+* `helloworld.json`
+* `helloworld.js`
+
+in the same directory.
+
+For a page to be recognized by Aero it needs a `.jade` template or a `.js` controller.
+
+* If you want a static page then a `.jade` template is all you need.
+* If you want a dynamic page with full control over the output a `.js` controller is enough.
+* If you want a dynamic page in combination with a template then you need to include both `.js` and `.jade`.
+
+Adding a `.styl` file to the page will load the style sheet on this page only.
+
+Adding a `.json` file will add all its data to your `.jade` template automatically.
+
+## Play around
+
+Try to change the `helloworld.jade` inside your `pages/helloworld` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
 ## Documentation
 
-> Please do not use Aero in production yet, it is still in active development.
-> Documentation will be available once the Aero API is stable.
+Please do not use Aero in production yet, it is still in active development.
+
+Documentation will be available once the Aero API is stable.
+
+## Benchmarks
+
+> TODO
 
 ## Similar software
 
-Aero includes both a framework for building websites and a server. Other notable frameworks are:
+Aero includes both a framework for building websites and an optimized web server.
+
+Similar projects:
 
 * [Express](http://expressjs.com/)
 * [Restify](http://mcavage.me/node-restify/)
