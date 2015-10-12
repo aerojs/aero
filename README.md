@@ -132,4 +132,4 @@ Similar projects:
 * [blitzprog.org](http://blitzprog.org) ([view source](https://github.com/blitzprog/blitzprog.org))
 * [my.nihongo-center.com](http://my.nihongo-center.com) ([view source](https://github.com/blitzprog/nihongo-center.com))
 * [increasedvoices.com](http://increasedvoices.com) ([view source](https://github.com/blitzprog/increasedvoices.com))
-* [animereleasenotifier.com](http://animereleasenotifier.com) ([view source](https://github.com/blitzprog/animereleasenotifier.com))
+* [animereleasenotifier.com](https://animereleasenotifier.com) ([view source](https://github.com/blitzprog/animereleasenotifier.com))
