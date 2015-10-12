@@ -16,7 +16,7 @@ analytics.init = Promise.coroutine(function*(config) {
 
 		return Promise.resolve();
 	} else {
-		console.error('You need to specify the "UA" field for the Google Analytics plugin.');
+		console.error(chalk.red('You need to specify the "UA" field for the Google Analytics plugin.'));
 
 		return Promise.reject();
 	}

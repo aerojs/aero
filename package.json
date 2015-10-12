@@ -11,6 +11,7 @@
 		"etag": "*",
 		"jade": "*",
 		"http2": "*",
+		"chalk": "*",
 		"stylus": "*",
 		"mkdirp": "*",
 		"request": "*",
