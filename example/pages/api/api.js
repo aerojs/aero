@@ -1,5 +1,5 @@
 module.exports = {
-	get: function(request, response) {
+	get: (request, response) => {
 		response.end('API root.');
 	}
 };

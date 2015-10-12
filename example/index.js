@@ -11,23 +11,23 @@ let runExample = function (silent) {
 	aero.run();
 
 	// Special route
-	aero.get('/very/special/route', function(request, response) {
+	aero.get('/very/special/route', (request, response) => {
 		response.end('Very special indeed!');
 	});
 
 	// Google+ style routing
-	aero.get(/^\+(.*)$/, function(request, response) {
+	aero.get(/^\+(.*)$/, (request, response) => {
 		response.write(request.params[0] + '\n');
 		response.end('Google+ style routing');
 	});
 
 	// Middleware
-	aero.use(function(req, res, next) {
+	aero.use((req, res, next) => {
 		//console.log('URL:', req.url);
 		next();
 	});
 
-	aero.use(function(req, res, next) {
+	aero.use((req, res, next) => {
 		//console.log('Time:', new Date());
 		next();
 	});
