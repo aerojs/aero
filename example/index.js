@@ -26,7 +26,7 @@ let runExample = function (silent) {
 		//console.log('URL:', req.url);
 		next();
 	});
-	
+
 	aero.use(function(req, res, next) {
 		//console.log('Time:', new Date());
 		next();
