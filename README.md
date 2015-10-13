@@ -2,7 +2,7 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/blitzprog/aero)
 [![Build Status](https://travis-ci.org/blitzprog/aero.svg?branch=master)](https://travis-ci.org/blitzprog/aero)
-[![Coverage Status](https://coveralls.io/repos/blitzprog/aero/badge.svg)](https://coveralls.io/r/blitzprog/aero)
+[![Coverage Status](https://coveralls.io/repos/blitzprog/aero/badge.svg?branch=master&service=github)](https://coveralls.io/github/blitzprog/aero?branch=master)
 [![Dependencies](https://david-dm.org/blitzprog/aero.svg)](https://david-dm.org/blitzprog/aero)
 
 Aero is the fastest web framework on the node platform. It is based on [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
