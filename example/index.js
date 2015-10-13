@@ -15,6 +15,11 @@ let runExample = function (silent) {
 		response.end('Very special indeed!');
 	});
 
+	// Special route
+	aero.get('/api/custom', function(request, response) {
+		response.end('API custom.');
+	});
+
 	// Google+ style routing
 	aero.get(/^\+(.*)$/, function(request, response) {
 		response.write(request.params[0] + '\n');

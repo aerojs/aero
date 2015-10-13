@@ -83,11 +83,14 @@ aero.events.on('server started', function() {
 		check('/favicon.ico', 200);
 		check('/very/special/route', 200);
 		check('/very/special/route?get=1', 200);
-		check('/+RegexRouting', 200);
 		check('/doesntexist', 404);
 		check('/404', 404);
+		check('/+RegexRouting', 'RegexRouting\nGoogle+ style routing');
 		check('/api', 'API root.');
+		check('/api/MyUserName', 'API root.');
 		//check('/api/sub', 'API sub.');
+		check('/api/custom', 'API custom.');
+		check('/api/custom/MyUserName', 'API custom.');
 
 		it(`should respond with 404 when the favicon does not exist`, function(done) {
 			aero.server.favIconData = null;
