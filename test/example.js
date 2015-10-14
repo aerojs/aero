@@ -88,7 +88,7 @@ aero.events.on('server started', function() {
 		check('/+RegexRouting', 'RegexRouting\nGoogle+ style routing');
 		check('/api', 'API root.');
 		check('/api/MyUserName', 'API root.');
-		//check('/api/sub', 'API sub.');
+		check('/api/sub', 'API sub.');
 		check('/api/custom', 'API custom.');
 		check('/api/custom/MyUserName', 'API custom.');
 
