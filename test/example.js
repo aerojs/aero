@@ -28,7 +28,7 @@ aero.events.on('server started', function() {
 
 			let templatePath = path.join(__dirname, '..', 'example', 'pages', 'home', 'home.jade');
 			let template = fs.readFileSync(templatePath, 'utf8');
-			fs.writeFileSync(templatePath, template, 'utf8');
+			fs.writeFile(templatePath, template, 'utf8');
 		});
 
 		it('should notice when a style has changed', function(done) {
@@ -42,7 +42,7 @@ aero.events.on('server started', function() {
 
 			let stylePath = path.join(__dirname, '..', 'example', 'styles', aero.config.styles[0] + '.styl');
 			let styleCode = fs.readFileSync(stylePath, 'utf8');
-			fs.writeFileSync(stylePath, styleCode, 'utf8');
+			fs.writeFile(stylePath, styleCode, 'utf8');
 		});
 
 		it('should notice when a script has changed', function(done) {
@@ -56,7 +56,7 @@ aero.events.on('server started', function() {
 
 			let scriptPath = path.join(__dirname, '..', 'example', 'scripts', aero.config.scripts[0] + '.js');
 			let scriptCode = fs.readFileSync(scriptPath, 'utf8');
-			fs.writeFileSync(scriptPath, scriptCode, 'utf8');
+			fs.writeFile(scriptPath, scriptCode, 'utf8');
 		});
 	});
 
@@ -114,6 +114,9 @@ aero.events.on('server started', function() {
 		});
 	});
 });
+
+// Disable log messages
+aero.verbose = false;
 
 // Run
 example('silent');
