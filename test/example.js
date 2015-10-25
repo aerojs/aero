@@ -85,6 +85,7 @@ aero.events.on('server started', function() {
 		check('/very/special/route?get=1', 200);
 		check('/doesntexist', 404);
 		check('/404', 404);
+		check('/images/avatar.webp', 200);
 		check('/+RegexRouting', 'RegexRouting\nGoogle+ style routing');
 		check('/api', 'API root.');
 		check('/api/MyUserName', 'API root.');

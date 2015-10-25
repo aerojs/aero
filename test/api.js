@@ -20,7 +20,7 @@ describe('api', function() {
 		it('should be defined', function() {
 			assert(aero.server);
 		});
-		
+
 		it('should have a routes property', function() {
 			assert(aero.server.routes);
 		});
@@ -30,7 +30,7 @@ describe('api', function() {
 		it('should be defined', function() {
 			assert(aero.events);
 		});
-		
+
 		it('should have an on() function', function() {
 			assert(aero.events.on);
 		});
