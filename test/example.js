@@ -7,7 +7,7 @@ let example = require('../example');
 let assert = require('assert');
 let supertest = require('supertest');
 
-aero.events.on('server started', function() {
+aero.on('server started', function() {
 	let request = supertest(aero.server.httpServer);
 
 	describe('example', function() {
@@ -86,12 +86,24 @@ aero.events.on('server started', function() {
 		check('/doesntexist', 404);
 		check('/404', 404);
 		check('/images/avatar.webp', 200);
+		check('/images/avatar.webp', 200); // test caching
+		check('/images/doesntexist.webp', 404);
+		check('/images/.', 404);
+		check('/images/..', 404);
+		check('/images/../', 403);
+		check('/images/../config.json', 403);
 		check('/+RegexRouting', 'RegexRouting\nGoogle+ style routing');
 		check('/api', 'API root.');
 		check('/api/MyUserName', 'API root.');
 		check('/api/sub', 'API sub.');
 		check('/api/custom', 'API custom.');
 		check('/api/custom/MyUserName', 'API custom.');
+
+		it(`should respond via LiveReload server`, function(done) {
+			supertest(aero.liveReload.httpServer)
+				.get('/')
+				.expect(200, done)
+		})
 
 		it(`should respond with 404 when the favicon does not exist`, function(done) {
 			aero.server.favIconData = null;
@@ -111,7 +123,7 @@ aero.events.on('server started', function() {
 
 		it(`should not respond after stopping the server`, function(done) {
 			// TODO: Actually destroy the server and check with supertest
-			aero.server.stop().then(done);
+			aero.stop().then(done);
 		});
 	});
 });
