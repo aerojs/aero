@@ -31,6 +31,11 @@ kaze.fadeContent = function($content, response) {
 	$content.promise().done(function() {
 		$content.html(response).fadeIn(kaze.fadeSpeed, function() {
 			kaze.ajaxifyLinks();
+
+			// DOM content loaded event
+			var DOMContentLoadedEvent = document.createEvent('Event');
+			DOMContentLoadedEvent.initEvent('DOMContentLoaded', true, true);
+			window.document.dispatchEvent(DOMContentLoadedEvent);
 		});
 	});
 };
