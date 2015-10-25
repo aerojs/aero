@@ -18,8 +18,7 @@
 		"bluebird": "*",
 		"uglify-js": ">=2.4.24",
 		"mime-types": "*",
-		"node-watch": "*",
-		"object-assign": "*"
+		"node-watch": "*"
 	},
 	"devDependencies": {
 		"mocha": "*",
