@@ -123,7 +123,9 @@ aero.on('server started', function() {
 
 		it(`should not respond after stopping the server`, function(done) {
 			// TODO: Actually destroy the server and check with supertest
-			aero.stop().then(done);
+			aero.stop().then(function() {
+				done();
+			});
 		});
 	});
 });
