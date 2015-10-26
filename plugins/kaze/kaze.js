@@ -4,6 +4,7 @@ kaze.fadeSpeed = 150;
 kaze.$navigation = $('#navigation');
 kaze.$container = $('#container');
 kaze.$content = $('#content');
+kaze.$loadingAnimation = $('#loading-animation')
 kaze.originalURL = window.location.pathname;
 kaze.currentURL = kaze.originalURL;
 kaze.lastRequest = null;
@@ -28,7 +29,11 @@ kaze.ajaxifyLinks = function() {
 };
 
 kaze.fadeContent = function($content, response) {
+	kaze.$loadingAnimation.stop().fadeIn(kaze.fadeSpeed);
+
 	$content.promise().done(function() {
+		kaze.$loadingAnimation.stop().fadeOut(kaze.fadeSpeed);
+
 		$content.html(response).fadeIn(kaze.fadeSpeed, function() {
 			kaze.ajaxifyLinks();
 
