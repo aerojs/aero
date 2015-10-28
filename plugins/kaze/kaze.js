@@ -21,8 +21,8 @@ kaze.ajaxifyLinks = function() {
 		if(url === window.location.pathname)
 			return;
 
-		if(kaze.$navigation.offset().top < 0)
-			kaze.scrollToElement(kaze.$navigation);
+		//if(kaze.$navigation && kaze.$navigation.offset().top < 0)
+		//	kaze.scrollToElement(kaze.$navigation);
 
 		kaze.loadURL(url, true);
 	});
