@@ -5,7 +5,7 @@
 [![Node.js Version][node-version-image]][node-version-url]
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Dependencies](https://david-dm.org/blitzprog/aero.svg)](https://david-dm.org/blitzprog/aero)
+[![Dependencies][dependencies-image]][dependencies-url]
 
 Aero is the fastest web framework on the node platform. It is based on [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
 
@@ -135,3 +135,16 @@ Similar projects:
 * [my.nihongo-center.com](http://my.nihongo-center.com) ([view source](https://github.com/blitzprog/nihongo-center.com))
 * [increasedvoices.com](http://increasedvoices.com) ([view source](https://github.com/blitzprog/increasedvoices.com))
 * [animereleasenotifier.com](https://animereleasenotifier.com) ([view source](https://github.com/blitzprog/animereleasenotifier.com))
+
+[npm-image]: https://img.shields.io/npm/v/aero.svg
+[npm-url]: https://npmjs.org/package/aero
+[node-version-image]: https://img.shields.io/node/v/aero.svg
+[node-version-url]: http://nodejs.org/download/
+[travis-image]: https://img.shields.io/travis/blitzprog/aero/master.svg
+[travis-url]: https://travis-ci.org/blitzprog/aero
+[coveralls-image]: https://img.shields.io/coveralls/blitzprog/aero/master.svg
+[coveralls-url]: https://coveralls.io/r/blitzprog/aero?branch=master
+[downloads-image]: https://img.shields.io/npm/dm/aero.svg
+[downloads-url]: https://npmjs.org/package/aero
+[dependencies-image]: https://david-dm.org/blitzprog/aero.svg
+[dependencies-url]: https://david-dm.org/blitzprog/aero
