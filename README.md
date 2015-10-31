@@ -7,7 +7,38 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
-Aero is the fastest web framework on the node platform. It is based on [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/). The goals are:
+Aero is the fastest web framework on the node platform. It is based on [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/).
+
+## Hello World
+
+Create a file called `index.js`:
+
+```node
+'use strict'
+
+let aero = require('aero')
+aero.run()
+```
+
+Install Aero:
+
+```bash
+npm install aero
+```
+
+Run it:
+
+```bash
+node .
+```
+
+Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
+
+### Play around
+
+Try to change the `helloworld.jade` inside your `pages/helloworld` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
+
+## Goals
 
 * [Performance](#performance)
 * [Productivity](#productivity)
@@ -58,31 +89,6 @@ You don't need to press the refresh button in your browser anymore because when 
 Aero is very lightweight and doesn't include any database drivers.
 It is a very high-level framework, you can decide what you're going to use under the hood. At the time of writing this Aero doesn't allow you to use alternatives to Jade and Stylus but this will be changed in a future release.
 
-## Hello World
-
-Create a file called `index.js`:
-
-```node
-'use strict'
-
-let aero = require('aero')
-aero.run()
-```
-
-Install Aero:
-
-```bash
-npm install aero
-```
-
-Run it:
-
-```bash
-node .
-```
-
-Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
-
 ## Pages
 
 Aero page components are *grouped by feature, not by file type* like most VC frameworks. For example the `helloworld` page can contain
@@ -103,10 +109,6 @@ For a page to be recognized by Aero it needs a `.jade` template or a `.js` contr
 Adding a `.styl` file to the page will load the style sheet on this page only.
 
 Adding a `.json` file will add all its data to your `.jade` template automatically.
-
-## Play around
-
-Try to change the `helloworld.jade` inside your `pages/helloworld` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
 ## Documentation
 
