@@ -61,10 +61,10 @@ It is a very high-level framework, you can decide what you're going to use under
 Create a file called `index.js`:
 
 ```node
-'use strict';
+'use strict'
 
-let aero = require('aero');
-aero.run();
+let aero = require('aero')
+aero.run()
 ```
 
 Install Aero:
@@ -76,7 +76,7 @@ npm install aero
 Run it:
 
 ```bash
-node index.js
+node .
 ```
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
