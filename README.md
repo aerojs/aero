@@ -129,7 +129,7 @@ Similar projects:
 * [Express](http://expressjs.com/)
 * [Restify](http://mcavage.me/node-restify/)
 * [Koa](http://koajs.com/)
-* [Keystone](http://keystonejs.com/)
+* [Hapi](http://hapijs.com/)
 
 ## Websites using Aero
 
