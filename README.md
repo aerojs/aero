@@ -82,14 +82,13 @@ For the frontpage you should use an empty string.
 
 ## Benchmark
 
-![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/benchmark.png "Shows requests per second. Tested with node 5.0.0 on ApacheBench.")
+![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/benchmark.png "Shows requests per second. More is better. Tested with node 5.0.0 on ApacheBench.")
 
 [View source](https://github.com/blitzprog/webserver-benchmarks)
 
 ## Documentation
 
 * [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
-* TODO
 
 ## Similar software
 
