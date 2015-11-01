@@ -82,7 +82,7 @@ For the frontpage you should use an empty string.
 
 ## Benchmark
 
-![Last tested with node 5.0.0 on November 1st with ApacheBench and the latest version of each module. The test includes a single route and a "Hello World" response.](docs/benchmark.png)
+![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/benchmark.png "Shows requests per second. Tested with node 5.0.0 on ApacheBench.")
 
 [View source](https://github.com/blitzprog/webserver-benchmarks)
 
