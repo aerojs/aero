@@ -44,7 +44,7 @@ Aero loads and watches the `pages` directory. For example the `helloworld` direc
 * `helloworld.json`
 * `helloworld.js`
 
-### Page types
+### Components
 
 For a page to be recognized by Aero it needs a `.jade` template or a `.js` controller.
 
@@ -58,7 +58,7 @@ Adding a `.styl` file to the page will load the style sheet on this page only.
 
 Adding a `.json` file will add all its data to your `.jade` template automatically.
 
-### Subpages
+### Subdirectories
 
 Aero scans your pages directory recursively and therefore also adds routes for subpages automatically:
 
@@ -68,7 +68,7 @@ Aero scans your pages directory recursively and therefore also adds routes for s
 /api/users/uploads
 ```
 
-### Change route
+### Change URL for a page
 
 By default Aero will create a route based on the directory name. If you don't like the default behaviour you can overwrite the route with the `url` parameter in the `.json` file:
 
@@ -80,26 +80,16 @@ By default Aero will create a route based on the directory name. If you don't li
 
 For the frontpage you should use an empty string.
 
+## Benchmark
+
+![Last tested with node 5.0.0 on November 1st with ApacheBench and the latest version of each module. The test includes a single route and a "Hello World" response.](docs/benchmark.png)
+
+[View source](https://github.com/blitzprog/webserver-benchmarks)
+
 ## Documentation
 
 * [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
-
-> TODO
-
-## Benchmarks
-
-Framework           | Requests / second
-------------------- | -----------------
-Aero:               | 31k
-Pure node.js:       | 17k
-Aero (server only): | 16k
-Koa:                | 14k
-Express:            | 13k
-Restify:            | 11k
-
-Last tested with node 5.0.0 on November 1st with ApacheBench and the latest version of each module. The test includes a single route and a "Hello World" response.
-
-[View source for the benchmark](https://github.com/blitzprog/webserver-benchmarks)
+* TODO
 
 ## Similar software
 
