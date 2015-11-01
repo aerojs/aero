@@ -50,8 +50,8 @@ For a page to be recognized by Aero it needs a `.jade` template or a `.js` contr
 
 Page type                   | .jade | .js
 --------------------------- | ------|-----
-Static page                 | ✓     | ❌
-Dynamic page (full control) | ❌     | ✓
+Static page                 | ✓     |  
+Dynamic page (full control) |       | ✓
 Dynamic page with template  | ✓     | ✓
 
 Adding a `.styl` file to the page will load the style sheet on this page only.
