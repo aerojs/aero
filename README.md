@@ -14,10 +14,7 @@ Aero is the fastest web framework on the node platform. It is based on [Jade](ht
 Create a file called `index.js`:
 
 ```node
-'use strict'
-
-let aero = require('aero')
-aero.run()
+require('aero').run()
 ```
 
 Install Aero:
@@ -38,98 +35,85 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 Try to change the `helloworld.jade` inside your `pages/helloworld` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
-## Goals
-
-* [Performance](#performance)
-* [Productivity](#productivity)
-* [Simplicity](#simplicity)
-
-## Performance
-
-Aero is optimized for website loading speed and content delivery performance.
-
-Thanks to automatic optimizations a [Page Speed rank of 100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=blitzprog.org) is easily possible.
-
-### Inlining
-
-Aero inlines resources like style sheets and scripts for the initial request and never loads them again if the `kaze` plugin is used.
-
-### Minification
-
-The following resources are automatically minified:
-
-* Markup (HTML)
-* Styles (CSS)
-* Scripts (JS)
-
-When you save a source file in your editor the minified version will be recompiled and your browser refreshes the page.
-
-### HTTP/2
-
-Aero comes with HTTP/2 support included. In order to use HTTP/2 you need an SSL certificate.
-
-In the future we will automatically push resources like scripts and styles to the client via the new push method as an alternative to traditional inlining. Note that pushing is not included in Aero yet.
-
-### AJAX
-
-If you use the included `kaze` plugin your website will be ajaxified. Permalinks will still work nicely with search engines, therefore ensuring the best possible experience for both humans and search engines. This is possible due to the HTML 5 History API. A full page reload is no longer needed, therefore improving the rendering speed which is  especially noticeable on mobile browsers.
-
-## Productivity
-
-### No restarts
-Controllers, templates, styles and configuration files are recompiled whenever you save them in your editor. Your changes are instantly visible. Routes are dynamic and you never really need to restart Aero.
-
-### Live reload
-You don't need to press the refresh button in your browser anymore because when you save the file in your editor all of your browser tabs using that page will be automagically reloaded. This requires **no plugins** and works in **all browsers** as long as they support HTML 5.
-
-## Simplicity
-
-> Write programs that do one thing and do it well.
-
-Aero is very lightweight and doesn't include any database drivers.
-It is a very high-level framework, you can decide what you're going to use under the hood. At the time of writing this Aero doesn't allow you to use alternatives to Jade and Stylus but this will be changed in a future release.
-
 ## Pages
 
-Aero page components are *grouped by feature, not by file type* like most VC frameworks. For example the `helloworld` page can contain
+Aero loads and watches the `pages` directory. For example the `helloworld` directory can contain:
 
 * `helloworld.jade`
 * `helloworld.styl`
 * `helloworld.json`
 * `helloworld.js`
 
-in the same directory.
+### Page types
 
 For a page to be recognized by Aero it needs a `.jade` template or a `.js` controller.
 
-* If you want a static page then a `.jade` template is all you need.
-* If you want a dynamic page with full control over the output a `.js` controller is enough.
-* If you want a dynamic page in combination with a template then you need to include both `.js` and `.jade`.
+Page type                   | .jade | .js
+--------------------------- | ------|-----
+Static page                 | ✓     | ❌
+Dynamic page (full control) | ❌     | ✓
+Dynamic page with template  | ✓     | ✓
 
 Adding a `.styl` file to the page will load the style sheet on this page only.
 
 Adding a `.json` file will add all its data to your `.jade` template automatically.
 
+### Subpages
+
+Aero scans your pages directory recursively and therefore also adds routes for subpages automatically:
+
+```
+/api
+/api/users
+/api/users/uploads
+```
+
+### Change route
+
+By default Aero will create a route based on the directory name. If you don't like the default behaviour you can overwrite the route with the `url` parameter in the `.json` file:
+
+```json
+{
+	"url": "blog/categories"
+}
+```
+
+For the frontpage you should use an empty string.
+
 ## Documentation
 
-Please do not use Aero in production yet, it is still in active development.
-
-Documentation will be available once the Aero API is stable.
-
-## Benchmarks
+* [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
 
 > TODO
 
+## Benchmarks
+
+Framework           | Requests / second
+------------------- | -----------------
+Aero:               | 31k
+Pure node.js:       | 17k
+Aero (server only): | 16k
+Koa:                | 14k
+Express:            | 13k
+Restify:            | 11k
+
+Last tested with node 5.0.0 on November 1st with ApacheBench and the latest version of each module. The test includes a single route and a "Hello World" response.
+
+[View source for the benchmark](https://github.com/blitzprog/webserver-benchmarks)
+
 ## Similar software
 
-Aero includes both a framework for building websites and an optimized web server.
-
-Similar projects:
+Similar web servers:
 
 * [Express](http://expressjs.com/)
 * [Restify](http://mcavage.me/node-restify/)
 * [Koa](http://koajs.com/)
 * [Hapi](http://hapijs.com/)
+
+Similar frameworks:
+
+* [Sails](http://sailsjs.org/)
+* [Keystone](http://keystonejs.com/)
 
 ## Websites using Aero
 
