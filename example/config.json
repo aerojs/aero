@@ -13,5 +13,8 @@
 		"key": "",
 		"cert": ""
 	},
+	"plugins": {
+		"jquery": {}
+	},
 	"port": 4000
 }

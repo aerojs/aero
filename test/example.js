@@ -88,6 +88,8 @@ aero.on('server started', function() {
 		check('/images/avatar.webp', 200);
 		check('/images/avatar.webp', 200); // test caching
 		check('/images/doesntexist.webp', 404);
+		check('/images/doesntexist.abcdef', 404);
+		check('/images/text', 'Plain text.');
 		check('/images/.', 404);
 		check('/images/..', 404);
 		check('/images/../', 403);
