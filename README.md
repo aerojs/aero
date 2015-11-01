@@ -19,7 +19,7 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 ### Play around
 
-Try to change the `helloworld.jade` inside your `pages/helloworld` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
+Try to change the `home.jade` inside your `pages/home` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
 ## Pages
 
