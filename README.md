@@ -9,24 +9,10 @@
 
 Aero is the fastest web framework on the node platform. It is based on [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/).
 
-## Hello World
-
-Create a file called `index.js`:
-
-```node
-require('aero').run()
-```
-
-Install Aero:
+## Installation
 
 ```bash
-npm install aero
-```
-
-Run it:
-
-```bash
-node .
+echo "require('aero').run()" > index.js && npm install aero && node .
 ```
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
