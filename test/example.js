@@ -96,6 +96,7 @@ aero.on('server started', function() {
 		check('/api', 'API root.');
 		check('/api/MyUserName', 'API root.');
 		check('/api/sub', 'API sub.');
+		check('/api/redirect', 302);
 		check('/api/custom', 'API custom.');
 		check('/api/custom/MyUserName', 'API custom.');
 
