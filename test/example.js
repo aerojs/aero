@@ -133,8 +133,5 @@ aero.on('server started', function() {
 	});
 });
 
-// Disable log messages
-aero.verbose = false;
-
 // Run
 example('silent');

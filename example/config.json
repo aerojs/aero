@@ -14,7 +14,9 @@
 		"cert": ""
 	},
 	"plugins": {
-		"jquery": {}
+		"reset": {},
+		"jquery": {},
+		"kaze": {}
 	},
 	"port": 4000
 }
