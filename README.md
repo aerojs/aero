@@ -131,7 +131,7 @@ module.exports = {
 
 Controllers are **not required** to serve a static page. Only add a controller if you have dynamic data that you need to use inside your template.
 
-Other request handlers, e.g. POST and DELETE, can be added to the same controller:
+Other request handlers, e.g. `POST` and `DELETE`, can be added to the same controller:
 
 ```js
 module.exports = {
