@@ -31,11 +31,11 @@ Aero loads and watches the `pages` directory for changes. Instead of adding rout
 
 For a page to be loaded by Aero it needs a `.jade` template or a `.js` controller.
 
-Page type                        | .jade | .js
+Page type						| .jade | .js
 -------------------------------- | ------|-----
-Static page                      | ✓     |  
-Dynamic page (full control, API) |       | ✓
-Dynamic page (with template)     | ✓     | ✓
+Static page					  | ✓	 |  
+Dynamic page (full control, API) |	   | ✓
+Dynamic page (with template)	 | ✓	 | ✓
 
 Adding a `.styl` file to the page will load the style sheet on this page only.
 
@@ -141,25 +141,57 @@ Templates, controllers, scripts, styles and JSON files are reloaded when you sav
 ## Express-like API
 
 ```js
+// Routing
 aero.get('/hello', function(request, response) {
 	response.end('Hello!')
 })
 ```
 
 ```js
-aero.use(function(request, response, next) {
-	console.log(request.url) // Log every request
-	next()
+// Regex routing
+aero.get(/^\+(.*)$/, function(request, response) {
+	response.end('Google+ style routing')
 })
 ```
 
 ```js
-aero.use(require('passport').initialize()) // passport.js works out-of-the-box
+// Middleware
+aero.use(function(request, response, next) {
+	console.log(request.url) // Log every request
+	next()                   // Continue the call chain
+})
 ```
+
+```js
+// Passport.js works out-of-the-box
+aero.use(require('passport').initialize())
+```
+
+```js
+// Multiple `use` in one call
+let session = require('express-session')
+let passport = require('passport')
+
+let options = {
+	name: 'id',
+	secret: 'keyboard cat',
+	saveUninitialized: true,
+	resave: false
+}
+
+aero.use(
+	session(options),
+	passport.initialize(),
+	passport.session()
+)
+```
+
+Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
 
 ## Other
 
 * [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
+* [Status](https://github.com/blitzprog/aero/blob/master/docs/status.md)
 
 ## Similar software
 
@@ -170,10 +202,12 @@ Similar web servers:
 * [Koa](http://koajs.com/)
 * [Hapi](http://hapijs.com/)
 
-Similar frameworks:
+More or less similar frameworks:
 
 * [Sails](http://sailsjs.org/)
 * [Keystone](http://keystonejs.com/)
+* [Meteor](https://www.meteor.com/)
+* [Total](https://www.totaljs.com/)
 
 ## Websites using Aero
 
