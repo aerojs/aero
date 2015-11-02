@@ -9,7 +9,7 @@
 
 Aero is the fastest web framework on the node platform. It is ~~database~~ file based and git friendly.
 
-![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/benchmark.png "Shows requests per second. More is better. Tested with node 5.0.0 on ApacheBench.")
+![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 5.0.0 on ApacheBench.")
 
 ## Installation
 
@@ -18,6 +18,8 @@ echo "require('aero').run()" > index.js && npm install aero && node .
 ```
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
+
+[![Aero Installation & Live Reload](/docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)
 
 ### Play around
 
