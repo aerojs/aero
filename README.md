@@ -7,7 +7,9 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
-Aero is the fastest web framework on the node platform. It is based on [Jade](http://jade-lang.com/) and [Stylus](https://learnboost.github.io/stylus/).
+Aero is the fastest web framework on the node platform. It is ~~database~~ file based and git friendly.
+
+![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/benchmark.png "Shows requests per second. More is better. Tested with node 5.0.0 on ApacheBench.")
 
 ## Installation
 
@@ -23,26 +25,28 @@ Try to change the `home.jade` inside your `pages/home` directory. Aero notices t
 
 ## Pages
 
-Aero loads and watches the `pages` directory. For example the `helloworld` directory can contain:
+Aero loads and watches the `pages` directory for changes. Instead of adding routes via code you just add a directory inside `pages`, e.g. `pages/home` which can then be tracked by git.
+
+### Components
+
+For a page to be loaded by Aero it needs a `.jade` template or a `.js` controller.
+
+Page type                        | .jade | .js
+-------------------------------- | ------|-----
+Static page                      | ✓     |  
+Dynamic page (full control, API) |       | ✓
+Dynamic page (with template)     | ✓     | ✓
+
+Adding a `.styl` file to the page will load the style sheet on this page only.
+
+Adding a `.json` file will add all its data to your `.jade` template automatically.
+
+For example the `helloworld` directory may contain:
 
 * `helloworld.jade`
 * `helloworld.styl`
 * `helloworld.json`
 * `helloworld.js`
-
-### Components
-
-For a page to be recognized by Aero it needs a `.jade` template or a `.js` controller.
-
-Page type                   | .jade | .js
---------------------------- | ------|-----
-Static page                 | ✓     |  
-Dynamic page (full control) |       | ✓
-Dynamic page with template  | ✓     | ✓
-
-Adding a `.styl` file to the page will load the style sheet on this page only.
-
-Adding a `.json` file will add all its data to your `.jade` template automatically.
 
 ### Subdirectories
 
@@ -66,13 +70,80 @@ By default Aero will create a route based on the directory name. If you don't li
 
 For the frontpage you should use an empty string.
 
-## Benchmark
+## Styles
 
-![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/benchmark.png "Shows requests per second. More is better. Tested with node 5.0.0 on ApacheBench.")
+Style sheets are written in Stylus format using the `.styl` file extension inside the `styles` directory.
 
-[View source](https://github.com/blitzprog/webserver-benchmarks)
+Style loading order needs to be defined in your `config.json`. If you have 3 files called `first.styl`, `second.styl` and `third.styl`, specify the loading order in an array:
 
-## Documentation
+```json
+{
+	"styles": [
+		"first",
+		"second",
+		"third"
+	]
+}
+```
+
+### Live reload: Styles
+
+Styles are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when changing your stylus files.
+
+## Scripts
+
+You can place browser scripts in the `scripts` directory.
+These will be global and therefore available on every page.
+
+If you want to add a browser script to a single page only you should use a `.browser.js` file inside the page directory (warning: **experimental** feature, use at your own risk). If your page is called `home`, the file name should be `home.browser.js`.
+
+The loading order for global scripts needs to be defined in your `config.json`. If you have 3 files called `first.js`, `second.js` and `third.js`, specify the loading order in an array:
+
+```json
+{
+	"scripts": [
+		"first",
+		"second",
+		"third"
+	]
+}
+```
+
+### Live reload: Scripts
+
+Scripts are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when changing your scripts.
+
+## Controllers
+
+A controller is a module that exports an object with either a `get` or a `render` method. Here is an example for a controller which outputs "Hello World":
+
+```js
+module.exports = {
+	get: function(request, response) {
+		response.end('Hello World')
+	}
+}
+```
+
+The above controller works as a standalone (without any templates or other files required). Here's a controller that requires a `.jade` template inside the same directory using the `render` method:
+
+```js
+module.exports = {
+	render: function(request, render) {
+		render({
+			myJadeParameter: 'Hello World'
+		})
+	}
+}
+```
+
+Controllers are **not required** to serve a static page. Only add a controller if you have dynamic data that you need to use inside your template.
+
+### Live reload: Controllers
+
+Controllers are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when changing your controller code.
+
+## Other
 
 * [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
 
