@@ -22,8 +22,8 @@ let runExample = function(silent) {
 
 	// Google+ style routing
 	aero.get(/^\+(.*)$/, function(request, response) {
-		response.write(request.params[0] + '\n');
-		response.end('Google+ style routing');
+		response.write(request.params[0] + ': ');
+		response.end('Google+');
 	});
 
 	// Middleware

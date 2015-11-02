@@ -94,7 +94,7 @@ aero.on('server started', function() {
 		check('/images/..', 404);
 		check('/images/../', 403);
 		check('/images/../config.json', 403);
-		check('/+RegexRouting', 'RegexRouting\nGoogle+ style routing');
+		check('/+RegexRouting', 'RegexRouting: Google+');
 		check('/api', 'API root.');
 		check('/api/MyUserName', 'API root.');
 		check('/api/sub', 'API sub.');
@@ -132,6 +132,8 @@ aero.on('server started', function() {
 		});
 	});
 });
+
+aero.verbose = false
 
 // Run
 example('silent');

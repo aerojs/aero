@@ -16,6 +16,24 @@ describe('api', function() {
 		});
 	});
 
+	describe('get()', function() {
+		it('should be defined', function() {
+			assert(aero.get);
+		});
+	});
+
+	describe('use()', function() {
+		it('should be defined', function() {
+			assert(aero.use);
+		});
+	});
+
+	describe('on()', function() {
+		it('should be defined', function() {
+			assert(aero.on);
+		});
+	});
+
 	describe('server', function() {
 		it('should be defined', function() {
 			assert(aero.server);
