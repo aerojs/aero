@@ -86,10 +86,6 @@ Style loading order needs to be defined in your `config.json`. If you have 3 fil
 }
 ```
 
-### Live reload: Styles
-
-Styles are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when changing your stylus files.
-
 ## Scripts
 
 You can place browser scripts in the `scripts` directory.
@@ -108,10 +104,6 @@ The loading order for global scripts needs to be defined in your `config.json`. 
 	]
 }
 ```
-
-### Live reload: Scripts
-
-Scripts are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when changing your scripts.
 
 ## Controllers
 
@@ -139,9 +131,12 @@ module.exports = {
 
 Controllers are **not required** to serve a static page. Only add a controller if you have dynamic data that you need to use inside your template.
 
-### Live reload: Controllers
+## Live reload
 
-Controllers are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when changing your controller code.
+Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
+
+> **Note**: Aero currently does not support live reload for the main `config.json` file.
+> This will be implemented in a future release.
 
 ## Other
 
