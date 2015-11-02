@@ -131,6 +131,24 @@ module.exports = {
 
 Controllers are **not required** to serve a static page. Only add a controller if you have dynamic data that you need to use inside your template.
 
+Other request handlers, e.g. POST and DELETE, can be added to the same controller:
+
+```js
+module.exports = {
+	get: function(request, response) {
+		response.end('get it')
+	}
+
+	post: function(request, response) {   // DRAFT: Not supported yet
+		response.end('post it')
+	}
+
+	delete: function(request, response) { // DRAFT: Not supported yet
+		response.end('delete it')
+	}
+}
+```
+
 ## Live reload
 
 Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
