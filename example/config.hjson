@@ -1,0 +1,22 @@
+{
+	siteName: Aero tests
+	static: [
+		images
+	]
+	styles: [
+		base
+	]
+	scripts: [
+		test
+	]
+	security: {
+		key: ""
+		cert: ""
+	}
+	plugins: {
+		reset: {}
+		jquery: {}
+		kaze: {}
+	}
+	port: 4000
+}

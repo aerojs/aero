@@ -19,4 +19,4 @@ module.exports = {
 	favIcon: 'favicon.ico',
 	liveReloadPort: 9000,
 	port: 4000
-};
+}

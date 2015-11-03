@@ -3,6 +3,7 @@
 let fs = require('fs');
 let path = require('path');
 let aero = require('../lib');
+let hjson = require('hjson');
 let example = require('../example');
 let assert = require('assert');
 let supertest = require('supertest');
@@ -11,8 +12,11 @@ aero.on('server started', function() {
 	let request = supertest(aero.server.httpServer);
 
 	describe('example', function() {
-		it('should have a valid config.json file', function() {
-			assert(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'example', 'config.json'))));
+		it('should have a valid config.hjson file', function() {
+			let configPath = path.join(__dirname, '..', 'example', 'config.hjson')
+			let code = fs.readFileSync(configPath, 'utf8')
+
+			assert(hjson.parse(code));
 		});
 	});
 
@@ -93,7 +97,7 @@ aero.on('server started', function() {
 		check('/images/.', 404);
 		check('/images/..', 404);
 		check('/images/../', 403);
-		check('/images/../config.json', 403);
+		check('/images/../config.hjson', 403);
 		check('/+RegexRouting', 'RegexRouting: Google+');
 		check('/api', 'API root.');
 		check('/api/MyUserName', 'API root.');
