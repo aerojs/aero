@@ -29,7 +29,7 @@
 	},
 	"scripts": {
 		"test": "mocha",
-		"coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+		"coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000 && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
 		"example": "node example"
 	},
 	"engines": {
