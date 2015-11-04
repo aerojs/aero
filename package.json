@@ -1,9 +1,10 @@
 {
 	"name": "aero",
-	"version": "0.6.1",
+	"version": "0.6.2",
 	"description": "The fastest web framework on the node platform.",
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
+	"repository": "blitzprog/aero",
 	"homepage": "https://github.com/blitzprog/aero",
 	"main": "lib/index.js",
 	"dependencies": {
@@ -33,21 +34,22 @@
 		"coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000 && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
 		"example": "node example"
 	},
+	"files": [
+		"default",
+		"lib",
+		"plugins"
+	],
 	"engines": {
 		"node": ">= 4.0.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/blitzprog/aero.git"
 	},
 	"bugs": {
 		"url": "https://github.com/blitzprog/aero/issues"
 	},
 	"keywords": [
 		"web",
+		"website",
 		"framework",
 		"server",
-		"website",
 		"cms"
 	]
 }
