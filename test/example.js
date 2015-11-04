@@ -16,7 +16,7 @@ aero.on('server started', function() {
 			let configPath = path.join(__dirname, '..', 'example', 'config.hjson')
 			let code = fs.readFileSync(configPath, 'utf8')
 
-			assert(hjson.parse(code));
+			assert(hjson.parse(code + '\n'));
 		});
 	});
 
