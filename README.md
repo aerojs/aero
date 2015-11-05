@@ -2,9 +2,9 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Node.js Version][node-version-image]][node-version-url]
-[![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
+[![Linux Build Status][travis-image]][travis-url]
+[![windows Build Status][appveyor-image]][appveyor-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
 Aero is the fastest web framework on the node platform. It is ~~database~~ file based and git friendly.
@@ -14,7 +14,7 @@ Aero is the fastest web framework on the node platform. It is ~~database~~ file 
 ## Installation
 
 ```bash
-echo "require('aero').run()" > index.js && npm install aero && node .
+echo "require('aero').run()" > index.js && npm i aero && node .
 ```
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
@@ -93,7 +93,7 @@ These will be global and therefore available on every page.
 
 If you want to add a browser script to a single page only you should use a `.browser.js` file inside the page directory (warning: **experimental** feature, use at your own risk). If your page is called `home`, the file name should be `home.browser.js`.
 
-The loading order for global scripts needs to be defined in your `config.json`. If you have 3 files called `first.js`, `second.js` and `third.js`, specify the loading order in an array:
+The loading order for global scripts needs to be defined in your `config.hjson`. If you have 3 files called `first.js`, `second.js` and `third.js`, specify the loading order in an array:
 
 ```hjson
 scripts: [
@@ -238,10 +238,10 @@ More or less similar frameworks:
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
 [npm-url]: https://npmjs.org/package/aero
-[node-version-image]: https://img.shields.io/node/v/aero.svg
-[node-version-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/blitzprog/aero/master.svg
+[travis-image]: https://img.shields.io/travis/blitzprog/aero/master.svg?label=linux
 [travis-url]: https://travis-ci.org/blitzprog/aero
+[appveyor-image]: https://img.shields.io/appveyor/ci/blitzprog/aero.svg?label=windows
+[appveyor-url]: https://ci.appveyor.com/project/blitzprog/aero
 [coveralls-image]: https://img.shields.io/coveralls/blitzprog/aero/master.svg
 [coveralls-url]: https://coveralls.io/r/blitzprog/aero?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/aero.svg
