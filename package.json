@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "0.6.4",
+	"version": "0.6.5",
 	"description": "The fastest web framework on the node platform.",
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
