@@ -115,12 +115,12 @@ module.exports = {
 }
 ```
 
-The above controller works as a standalone (without any templates or other files required). Here's a controller that requires a `.jade` template inside the same directory using the `render` method:
+The above controller works as a standalone (without any templates or other files required). Here's a controller that requires a `.jade` template inside the same directory when you use the `render` method of the response object:
 
 ```js
 module.exports = {
-	render: function(request, render) {
-		render({
+	get: function(request, response) {
+		response.render({
 			myJadeParameter: 'Hello World'
 		})
 	}
@@ -189,7 +189,6 @@ let session = require('express-session')
 let passport = require('passport')
 
 let options = {
-	name: 'id',
 	secret: 'keyboard cat',
 	saveUninitialized: true,
 	resave: false
