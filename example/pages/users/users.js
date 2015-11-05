@@ -1,6 +1,6 @@
 module.exports = {
-	render: function(request, render) {
-		render({
+	get: function(request, response) {
+		response.render({
 			user: request.params[0],
 			type: request.params[1],
 			ip: request.connection.remoteAddress
