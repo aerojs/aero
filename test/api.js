@@ -8,10 +8,6 @@ describe('api', function() {
 		assert(aero.run);
 	});
 
-	it('aero.stop', function() {
-		assert(aero.stop);
-	});
-
 	it('aero.get', function() {
 		assert(aero.get);
 	});
@@ -24,15 +20,7 @@ describe('api', function() {
 		assert(aero.on);
 	});
 
-	it('aero.server', function() {
-		assert(aero.server);
-	});
-
-	it('aero.server.http', function() {
-		assert(aero.server.http);
-	});
-
-	it('aero.server.protocol', function() {
-		assert(aero.server.protocol);
+	it('aero.stop', function() {
+		assert(aero.stop);
 	});
 });
