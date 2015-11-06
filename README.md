@@ -151,9 +151,6 @@ module.exports = {
 
 Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
 
-> **Note**: Aero currently does not support live reload for the main `config.json` file.
-> This will be implemented in a future release.
-
 ## Express-like API
 
 ```js
