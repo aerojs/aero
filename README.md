@@ -66,7 +66,7 @@ By default Aero will create a route based on the directory name. If you don't li
 
 ```json
 {
-	url: "blog/categories"
+	"url": "blog/categories"
 }
 ```
 
