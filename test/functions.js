@@ -7,11 +7,11 @@ describe('functions', function() {
 		let loadPageJSON = require('../lib/functions/loadPageJSON');
 
 		it('should not throw when the JSON file does not exist', function(done) {
-			loadPageJSON('test/does not exist.hjson').then(done);
+			loadPageJSON('test/does not exist.json').then(done);
 		});
 
 		it('should not throw when the JSON file is defect', function(done) {
-			loadPageJSON('test/defect.hjson').then(done);
+			loadPageJSON('test/defect.json').then(done);
 		});
 	});
 

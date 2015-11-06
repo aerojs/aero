@@ -41,13 +41,13 @@ Dynamic page (with template)	 | ✓	 | ✓
 
 Adding a `.styl` file to the page will load the style sheet on this page only.
 
-Adding a `.hjson` file will add all its data to your `.jade` template automatically.
+Adding a `.json` file will add all its data to your `.jade` template automatically.
 
 For example the `helloworld` directory may contain:
 
 * `helloworld.jade`
 * `helloworld.styl`
-* `helloworld.hjson`
+* `helloworld.json`
 * `helloworld.js`
 
 ### Subdirectories
@@ -62,9 +62,9 @@ Aero scans your pages directory recursively and therefore also adds routes for s
 
 ### Change URL for a page
 
-By default Aero will create a route based on the directory name. If you don't like the default behaviour you can overwrite the route with the `url` parameter in the `.hjson` file:
+By default Aero will create a route based on the directory name. If you don't like the default behaviour you can overwrite the route with the `url` parameter in the `.json` file:
 
-```hjson
+```json
 {
 	url: "blog/categories"
 }
@@ -76,13 +76,13 @@ For the frontpage you should use an empty string.
 
 Style sheets are written in Stylus format using the `.styl` file extension inside the `styles` directory.
 
-Style loading order needs to be defined in your `config.hjson`. If you have 3 files called `first.styl`, `second.styl` and `third.styl`, specify the loading order in an array:
+Style loading order needs to be defined in your `config.json`. If you have 3 files called `first.styl`, `second.styl` and `third.styl`, specify the loading order in an array:
 
-```hjson
-styles: [
-	first
-	second
-	third
+```json
+"styles": [
+	"first",
+	"second",
+	"third"
 ]
 ```
 
@@ -93,13 +93,13 @@ These will be global and therefore available on every page.
 
 If you want to add a browser script to a single page only you should use a `.browser.js` file inside the page directory (warning: **experimental** feature, use at your own risk). If your page is called `home`, the file name should be `home.browser.js`.
 
-The loading order for global scripts needs to be defined in your `config.hjson`. If you have 3 files called `first.js`, `second.js` and `third.js`, specify the loading order in an array:
+The loading order for global scripts needs to be defined in your `config.json`. If you have 3 files called `first.js`, `second.js` and `third.js`, specify the loading order in an array:
 
-```hjson
-scripts: [
-	first
-	second
-	third
+```json
+"scripts": [
+	"first",
+	"second",
+	"third"
 ]
 ```
 
@@ -149,9 +149,9 @@ module.exports = {
 
 ## Live reload
 
-Templates, controllers, scripts, styles and HJSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
+Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
 
-> **Note**: Aero currently does not support live reload for the main `config.hjson` file.
+> **Note**: Aero currently does not support live reload for the main `config.json` file.
 > This will be implemented in a future release.
 
 ## Express-like API

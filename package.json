@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "0.6.7",
+	"version": "0.6.8",
 	"description": "The fastest web framework on the node platform.",
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
@@ -12,7 +12,6 @@
 		"etag": "1.x",
 		"jade": "1.x",
 		"http2": "3.x",
-		"hjson": "1.x",
 		"chalk": "1.x",
 		"stylus": "0.x",
 		"mkdirp": "0.x",
