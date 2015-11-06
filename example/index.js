@@ -1,6 +1,6 @@
 'use strict';
 
-let runExample = function(silent) {
+let runExample = function() {
 	// Modules
 	let aero = require('../lib');
 

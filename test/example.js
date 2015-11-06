@@ -7,7 +7,18 @@ let example = require('../example');
 let assert = require('assert');
 let supertest = require('supertest');
 
+let restarts = 0
+let restartCallback = undefined
+
 aero.on('server started', function() {
+	if(restartCallback && restarts === 1) {
+		restartCallback()
+		return
+	}
+
+	if(restarts !== 0)
+		return
+
 	let request = supertest(aero.server.httpServer);
 
 	describe('example', function() {
@@ -21,7 +32,7 @@ aero.on('server started', function() {
 
 	describe('modifications', function() {
 		it('should notice when a page has changed', function(done) {
-			aero.events.on('page modified', function(page) {
+			aero.on('page modified', function(page) {
 				assert(page === 'home');
 
 				request
@@ -35,7 +46,7 @@ aero.on('server started', function() {
 		});
 
 		it('should notice when a style has changed', function(done) {
-			aero.events.on('style modified', function(style) {
+			aero.on('style modified', function(style) {
 				assert(style === 'base');
 
 				request
@@ -49,7 +60,7 @@ aero.on('server started', function() {
 		});
 
 		it('should notice when a script has changed', function(done) {
-			aero.events.on('script modified', function(script) {
+			aero.on('script modified', function(script) {
 				assert(script === 'test');
 
 				request
@@ -104,7 +115,9 @@ aero.on('server started', function() {
 		check('/api/redirect', 302);
 		check('/api/custom', 'API custom.');
 		check('/api/custom/MyUserName', 'API custom.');
+	});
 
+	describe('other', function() {
 		it(`should respond via LiveReload server`, function(done) {
 			supertest(aero.liveReload.httpServer)
 				.get('/')
@@ -127,11 +140,11 @@ aero.on('server started', function() {
 				.expect(200, done);
 		});
 
-		it(`should not respond after stopping the server`, function(done) {
-			// TODO: Actually destroy the server and check with supertest
-			aero.stop().then(function() {
-				done();
-			});
+		it(`should restart`, function(done) {
+			restartCallback = done
+
+			restarts += 1
+			aero.restart()
 		});
 	});
 });
@@ -139,4 +152,4 @@ aero.on('server started', function() {
 aero.verbose = false
 
 // Run
-example('silent');
+example();

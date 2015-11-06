@@ -4,53 +4,35 @@ let aero = require('../lib');
 let assert = require('assert');
 
 describe('api', function() {
-	describe('run()', function() {
-		it('should be defined', function() {
-			assert(aero.run);
-		});
+	it('aero.run', function() {
+		assert(aero.run);
 	});
 
-	describe('stop()', function() {
-		it('should be defined', function() {
-			assert(aero.stop);
-		});
+	it('aero.stop', function() {
+		assert(aero.stop);
 	});
 
-	describe('get()', function() {
-		it('should be defined', function() {
-			assert(aero.get);
-		});
+	it('aero.get', function() {
+		assert(aero.get);
 	});
 
-	describe('use()', function() {
-		it('should be defined', function() {
-			assert(aero.use);
-		});
+	it('aero.use', function() {
+		assert(aero.use);
 	});
 
-	describe('on()', function() {
-		it('should be defined', function() {
-			assert(aero.on);
-		});
+	it('aero.on', function() {
+		assert(aero.on);
 	});
 
-	describe('server', function() {
-		it('should be defined', function() {
-			assert(aero.server);
-		});
-
-		it('should have a routes property', function() {
-			assert(aero.server.routes);
-		});
+	it('aero.server', function() {
+		assert(aero.server);
 	});
 
-	describe('events', function() {
-		it('should be defined', function() {
-			assert(aero.events);
-		});
+	it('aero.server.http', function() {
+		assert(aero.server.http);
+	});
 
-		it('should have an on() function', function() {
-			assert(aero.events.on);
-		});
+	it('aero.server.protocol', function() {
+		assert(aero.server.protocol);
 	});
 });
