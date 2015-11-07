@@ -4,8 +4,8 @@
 	"description": "The fastest web framework on the node platform.",
 	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
-	"repository": "blitzprog/aero",
-	"homepage": "https://github.com/blitzprog/aero",
+	"repository": "aerojs/aero",
+	"homepage": "https://github.com/aerojs/aero",
 	"main": "lib/index.js",
 	"dependencies": {
 		"ws": "0.x",
@@ -42,7 +42,7 @@
 		"node": ">= 4.0.0"
 	},
 	"bugs": {
-		"url": "https://github.com/blitzprog/aero/issues"
+		"url": "https://github.com/aerojs/aero/issues"
 	},
 	"keywords": [
 		"web",
