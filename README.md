@@ -240,8 +240,8 @@ More or less similar frameworks:
 [npm-url]: https://npmjs.org/package/aero
 [travis-image]: https://img.shields.io/travis/aerojs/aero/master.svg?label=linux
 [travis-url]: https://travis-ci.org/aerojs/aero
-[appveyor-image]: https://img.shields.io/appveyor/ci/aerojs/aero.svg?label=windows
-[appveyor-url]: https://ci.appveyor.com/project/aerojs/aero
+[appveyor-image]: https://img.shields.io/appveyor/ci/blitzprog/aero.svg?label=windows
+[appveyor-url]: https://ci.appveyor.com/project/blitzprog/aero
 [coveralls-image]: https://img.shields.io/coveralls/aerojs/aero/master.svg
 [coveralls-url]: https://coveralls.io/r/aerojs/aero?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/aero.svg
