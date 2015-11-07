@@ -91,8 +91,6 @@ Style loading order needs to be defined in your `config.json`. If you have 3 fil
 You can place browser scripts in the `scripts` directory.
 These will be global and therefore available on every page.
 
-If you want to add a browser script to a single page only you should use a `.browser.js` file inside the page directory (warning: **experimental** feature, use at your own risk). If your page is called `home`, the file name should be `home.browser.js`.
-
 The loading order for global scripts needs to be defined in your `config.json`. If you have 3 files called `first.js`, `second.js` and `third.js`, specify the loading order in an array:
 
 ```json
@@ -102,6 +100,8 @@ The loading order for global scripts needs to be defined in your `config.json`. 
 	"third"
 ]
 ```
+
+If you want to add a browser script to a single page only you should use a `.browser.js` file inside the page directory (warning: **experimental** feature, use at your own risk). If your page is called `home`, the file name should be `home.browser.js`.
 
 ## Controllers
 
@@ -201,8 +201,6 @@ aero.use(
 Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
 
 ## Colored output
-
-![Linux output (GNOME)](docs/images/colored-gnome.png)
 
 ![Windows output (cmder)](docs/images/colored-windows.png)
 
