@@ -19,7 +19,7 @@ echo "require('aero').run()" > index.js && npm i aero && node .
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
-[![Aero Installation & Live Reload](/docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)
+[![Aero Installation & Live Reload](docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)
 
 ### Play around
 
@@ -202,7 +202,9 @@ Aero aims to be as Express compatible as possible, however 100% API compatibilit
 
 ## Colored output
 
-![Windows output with cmder](http://puu.sh/lcakA/ce34a50a35.png)
+![Linux output (GNOME)](docs/images/colored-gnome.png)
+
+![Windows output (cmder)](docs/images/colored-windows.png)
 
 ## Written in ES 6
 

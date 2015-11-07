@@ -99,6 +99,8 @@ aero.on('server started', function() {
 		check('/very/special/route?get=1', 200);
 		check('/doesntexist', 404);
 		check('/404', 404);
+
+		// Static
 		check('/images/avatar.webp', 200);
 		check('/images/avatar.webp', 200); // test caching
 		check('/images/doesntexist.webp', 404);
@@ -108,13 +110,24 @@ aero.on('server started', function() {
 		check('/images/..', 404);
 		check('/images/../', 403);
 		check('/images/../config.json', 403);
+
+		// RegEx
 		check('/+RegexRouting', 'RegexRouting: Google+');
+
+		// API
 		check('/api', 'API root.');
 		check('/api/MyUserName', 'API root.');
 		check('/api/sub', 'API sub.');
 		check('/api/redirect', 302);
 		check('/api/custom', 'API custom.');
 		check('/api/custom/MyUserName', 'API custom.');
+
+		// Various strings passed to aero.get
+		aero.get('trailing-slash/', (req, res) => res.end('Ok.'))
+		aero.get('/both-slashes/', (req, res) => res.end('Ok.'))
+
+		check('/trailing-slash', 'Ok.');
+		check('/both-slashes', 'Ok.');
 	});
 
 	describe('other', function() {
