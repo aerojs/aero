@@ -200,6 +200,10 @@ aero.use(
 
 Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
 
+## Colored output
+
+![Windows output with cmder](http://puu.sh/lcakA/ce34a50a35.png)
+
 ## Written in ES 6
 
 Aero uses the latest ES 6 features present in node 4.x and 5.x. However if performance turns out to be an issue, the ES 5 way should be prioritized in the code.
