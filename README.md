@@ -238,13 +238,13 @@ More or less similar frameworks:
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
 [npm-url]: https://npmjs.org/package/aero
-[travis-image]: https://img.shields.io/travis/blitzprog/aero/master.svg?label=linux
-[travis-url]: https://travis-ci.org/blitzprog/aero
-[appveyor-image]: https://img.shields.io/appveyor/ci/blitzprog/aero.svg?label=windows
-[appveyor-url]: https://ci.appveyor.com/project/blitzprog/aero
-[coveralls-image]: https://img.shields.io/coveralls/blitzprog/aero/master.svg
-[coveralls-url]: https://coveralls.io/r/blitzprog/aero?branch=master
+[travis-image]: https://img.shields.io/travis/aerojs/aero/master.svg?label=linux
+[travis-url]: https://travis-ci.org/aerojs/aero
+[appveyor-image]: https://img.shields.io/appveyor/ci/aerojs/aero.svg?label=windows
+[appveyor-url]: https://ci.appveyor.com/project/aerojs/aero
+[coveralls-image]: https://img.shields.io/coveralls/aerojs/aero/master.svg
+[coveralls-url]: https://coveralls.io/r/aerojs/aero?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/aero.svg
 [downloads-url]: https://npmjs.org/package/aero
-[dependencies-image]: https://david-dm.org/blitzprog/aero.svg
-[dependencies-url]: https://david-dm.org/blitzprog/aero
+[dependencies-image]: https://david-dm.org/aerojs/aero.svg
+[dependencies-url]: https://david-dm.org/aerojs/aero
