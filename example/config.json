@@ -14,7 +14,7 @@
 		"cert": ""
 	},
 	"plugins": {
-		"reset": {},
+		"style-reset": {},
 		"jquery": {},
 		"kaze": {}
 	},

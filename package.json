@@ -1,8 +1,7 @@
 {
 	"name": "aero",
-	"version": "0.6.11",
+	"version": "0.7.0",
 	"description": "The fastest web framework on the node platform.",
-	"author": "Eduard Urbach <e.urbach@gmail.com> (http://blitzprog.org)",
 	"license": "GPL-3.0",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
@@ -38,17 +37,22 @@
 		"lib",
 		"plugins"
 	],
-	"engines": {
-		"node": ">= 4.0.0"
-	},
-	"bugs": {
-		"url": "https://github.com/aerojs/aero/issues"
-	},
 	"keywords": [
 		"web",
 		"website",
 		"framework",
 		"server",
 		"cms"
-	]
+	],
+	"engines": {
+		"node": ">= 4.0.0"
+	},
+	"bugs": {
+		"url": "https://github.com/aerojs/aero/issues"
+	},
+	"author": {
+		"name": "Eduard Urbach",
+		"email": "e.urbach@gmail.com",
+		"url": "http://blitzprog.org"
+	}
 }

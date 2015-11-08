@@ -33,11 +33,11 @@ Aero loads and watches the `pages` directory for changes. Instead of adding rout
 
 For a page to be loaded by Aero it needs a `.jade` template or a `.js` controller.
 
-Page type						| .jade | .js
--------------------------------- | ------|-----
-Static page					  | ✓	 |  
-Dynamic page (full control, API) |	   | ✓
-Dynamic page (with template)	 | ✓	 | ✓
+Page type                        | .jade | .js
+-------------------------------- | ----- | ---
+Static page                      | ✓    |
+Dynamic page (full control, API) |       | ✓
+Dynamic page (with template)     | ✓    | ✓
 
 Adding a `.styl` file to the page will load the style sheet on this page only.
 
