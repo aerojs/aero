@@ -14,7 +14,7 @@ Aero is the fastest web framework on the node platform. It is ~~database~~ file 
 ## Installation
 
 ```bash
-echo "require('aero').run()" > index.js && npm i aero && node .
+echo "require('aero').run()" > index.js && npm i aero --production && node .
 ```
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
