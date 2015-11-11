@@ -25,6 +25,32 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 Try to change `home.jade` inside your `pages/home` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
+## TL;DR - Aero in 2 minutes
+
+1. Instead of routing via code you just create a directory inside `pages`
+1. A page can have a template, style sheet, a controller and a JSON file:
+	* `hello/hello.jade`
+	* `hello/hello.styl`
+	* `hello/hello.js`
+	* `hello/hello.json`
+1. A controller is just an object that defines `get` or `post` methods. Or whatever you need.
+```js
+module.exports = { get: function(request, response) { response.end('Hello') } }
+```
+1. To feed dynamic data from a controller to a template just pass it to `response.render`
+```js
+response.render({ message: 'You requested ' + request.url })
+```
+```jade
+h1= message
+```
+1. Static pages only require a template file, e.g. `hello.jade`
+1. API pages only require a controller, e.g. `hello.js`
+1. Aero is powered by its own blazingly fast web server which has Express-like API
+```js
+aero.get('/', (req, res) => res.end('Hello World'))
+```
+
 ## Pages
 
 Aero loads and watches the `pages` directory for changes. Instead of adding routes via code you just add a directory inside `pages`, e.g. `pages/home` which can then be tracked by git.
