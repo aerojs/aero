@@ -163,7 +163,7 @@ module.exports = {
 		response.end('get it')
 	}
 
-	post: function(request, response) {   // DRAFT: Not supported yet
+	post: function(request, response) {
 		response.end('post it')
 	}
 
