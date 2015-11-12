@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "0.7.11",
+	"version": "0.7.12",
 	"description": "The fastest web framework on the node platform.",
 	"license": "GPL-3.0",
 	"repository": "aerojs/aero",
@@ -16,7 +16,7 @@
 		"mkdirp": "0.x",
 		"request": "2.x",
 		"bluebird": "3.x",
-		"uglify-js": ">=2.5",
+		"uglify-js": ">=2.6",
 		"mime-types": "2.x",
 		"node-watch": "0.x",
 		"html5-lint": "0.x",
