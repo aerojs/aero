@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "0.7.14",
+	"version": "0.7.15",
 	"description": "The fastest web framework on the node platform.",
 	"license": "GPL-3.0",
 	"repository": "aerojs/aero",
@@ -10,7 +10,7 @@
 		"ws": "0.x",
 		"etag": "1.x",
 		"jade": "1.x",
-		"http2": "3.x",
+		"spdy": ">=2.1",
 		"chalk": "1.x",
 		"stylus": "0.x",
 		"mkdirp": "0.x",
