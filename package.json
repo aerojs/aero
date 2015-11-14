@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "0.7.16",
+	"version": "0.8.0",
 	"description": "The fastest web framework on the node platform.",
 	"license": "GPL-3.0",
 	"repository": "aerojs/aero",
