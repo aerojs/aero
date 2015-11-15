@@ -1,4 +1,4 @@
-module.exports = {
+exports = {
 	siteName: 'Untitled website',
 	path: {
 		pages: 'pages',
