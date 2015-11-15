@@ -10,6 +10,13 @@ let supertest = require('supertest');
 let restarts = 0
 let restartCallback = undefined
 
+before(function() {
+	aero.verbose = false
+
+	// Run
+	return example()
+})
+
 aero.on('server started', function() {
 	if(restartCallback && restarts === 1) {
 		restartCallback()
@@ -161,8 +168,3 @@ aero.on('server started', function() {
 		});
 	});
 });
-
-aero.verbose = false
-
-// Run
-example();
