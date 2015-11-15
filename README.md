@@ -134,6 +134,12 @@ p My page content.
 
 Style sheets are written in [Stylus](https://github.com/stylus/stylus) format using the `.styl` file extension inside the `styles` directory.
 
+```stylus
+body
+	color white
+	background-color black
+```
+
 Style loading order needs to be defined in your `config.json`. If you have 3 files called `first.styl`, `second.styl` and `third.styl`, specify the loading order in an array:
 
 ```json
