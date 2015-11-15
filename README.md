@@ -154,7 +154,7 @@ Controllers are **not required** to serve a static page. Only add a controller i
 Other request handlers, e.g. `POST` and `DELETE`, can be added to the same controller:
 
 ```js
-exports = {
+module.exports = {
 	get: function(request, response) {
 		response.end('get it')
 	},
