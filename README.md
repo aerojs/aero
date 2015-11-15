@@ -35,7 +35,7 @@ Try to change `home.jade` inside your `pages/home` directory. Aero notices the c
 	* `hello/hello.json`
 * A controller is just an object that defines `get` or `post` methods. Or whatever you need.
 ```js
-module.exports = { get: function(request, response) { response.end('Hello') } }
+exports.get = (request, response) => response.end('Hello')
 ```
 * To feed dynamic data from a controller to a template just pass it to `response.render`
 ```js
@@ -134,22 +134,18 @@ If you want to add a browser script to a single page only you should use a `.bro
 A controller is a module that exports an object with either a `get` or a `render` method. Here is an example for a controller which outputs "Hello World":
 
 ```js
-module.exports = {
-	get: function(request, response) {
-		response.end('Hello World')
-	}
+exports.get = function(request, response) {
+	response.end('Hello World')
 }
 ```
 
 The above controller works as a standalone (without any templates or other files required). Here's a controller that requires a `.jade` template inside the same directory when you use the `render` method of the response object:
 
 ```js
-module.exports = {
-	get: function(request, response) {
-		response.render({
-			myJadeParameter: 'Hello World'
-		})
-	}
+exports.get = function(request, response) {
+	response.render({
+		myJadeParameter: 'Hello World'
+	})
 }
 ```
 
@@ -158,14 +154,14 @@ Controllers are **not required** to serve a static page. Only add a controller i
 Other request handlers, e.g. `POST` and `DELETE`, can be added to the same controller:
 
 ```js
-module.exports = {
+exports = {
 	get: function(request, response) {
 		response.end('get it')
-	}
+	},
 
 	post: function(request, response) {
 		response.end('post it')
-	}
+	},
 
 	delete: function(request, response) { // DRAFT: Not supported yet
 		response.end('delete it')
@@ -230,6 +226,26 @@ aero.use(
 ```
 
 Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
+
+## Events
+
+```js
+aero.on('server started', () => console.log('We are online!'))
+
+aero.on('all pages loaded', () => console.log('We have all the page contents!'))
+aero.on('all styles loaded', () => console.log('We have all the compiled styles!'))
+aero.on('all scripts loaded', () => console.log('We have all the minified scripts!'))
+
+aero.on('config loaded', () => console.log('Config loaded!'))
+aero.on('page loaded', page => console.log(`Page ${page.id} has been loaded`))
+aero.on('script loaded', script => console.log(`Script ${script.id} has been loaded`))
+aero.on('style loaded', style => console.log(`Style ${style.id} has been loaded`))
+
+aero.on('config modified', () => console.log('Config modified! Restarting Aero.'))
+aero.on('page modified', pageId => console.log(`Page ${pageId} has been modified`))
+aero.on('script modified', scriptId => console.log(`Script ${scriptId} has been modified`))
+aero.on('style modified', styleId => console.log(`Style ${styleId} has been modified`))
+```
 
 ## Colored output
 
