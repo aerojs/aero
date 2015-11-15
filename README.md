@@ -183,46 +183,37 @@ module.exports = {
 }
 ```
 
-## Live reload
-
-Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
-
-## HTML5 and JSON validation
-
-All of your HTML and JSON output is automatically checked on every change.
-HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
-
 ## Express-like API
 
+### Routing
 ```js
-// Routing
 aero.get('/hello', function(request, response) {
 	response.end('Hello!')
 })
 ```
 
+### Regex routing
 ```js
-// Regex routing
 aero.get(/^\+(.*)$/, function(request, response) {
 	response.end('Google+ style routing')
 })
 ```
 
+### Middleware
 ```js
-// Middleware
 aero.use(function(request, response, next) {
 	console.log(request.url) // Log every request
 	next()                   // Continue the call chain
 })
 ```
 
+#### Passport.js works out-of-the-box
 ```js
-// Passport.js works out-of-the-box
 aero.use(require('passport').initialize())
 ```
 
+#### Multiple 'use' with one call
 ```js
-// Multiple 'use' with one call
 aero.use(
 	session(options),
 	passport.initialize(),
@@ -230,9 +221,11 @@ aero.use(
 )
 ```
 
+### Express compatibility
+
 Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
 
-## Events
+### Events
 
 ```js
 aero.on('server started', () => console.log('We are online!'))
@@ -255,6 +248,15 @@ aero.on('style modified', styleId => console.log(`Style ${styleId} has been modi
 ## Colored output
 
 ![Windows output (cmder)](docs/images/colored-windows.png)
+
+## Live reload
+
+Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
+
+## Valid HTML 5
+
+All of your HTML and JSON output is automatically checked on every change.
+HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
 
 ## Written in ES 6
 
@@ -289,7 +291,6 @@ URL                                                                | Source
 [my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/blitzprog/nihongo-center.com)
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/blitzprog/increasedvoices.com)
 [animereleasenotifier.com](https://animereleasenotifier.com)       | [view source](https://github.com/blitzprog/animereleasenotifier.com)
-Yours? [Share your website!](https://github.com/aerojs/aero/edit/master/README.md)                               | -
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
 [npm-url]: https://npmjs.org/package/aero
