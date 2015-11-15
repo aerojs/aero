@@ -62,8 +62,6 @@ aero.get('/', (req, res) => res.end('Hello World'))
 
 ## Configuration
 
-Your configuration is stored in `config.json` and the data is incremental. This means you only need to include the settings that you changed.
-
 This is a valid `config.json` file:
 
 ```json
@@ -71,6 +69,8 @@ This is a valid `config.json` file:
 	"siteName": "My Awesome Site!"
 }
 ```
+
+Your configuration is incremental. This means you only need to include the settings that you changed.
 
 The settings that have not been specified will be loaded from the [default configuration](https://github.com/aerojs/aero/blob/master/default/config.js).
 
