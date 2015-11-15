@@ -208,16 +208,7 @@ aero.use(require('passport').initialize())
 ```
 
 ```js
-// Multiple `use` in one call
-let session = require('express-session')
-let passport = require('passport')
-
-let options = {
-	secret: 'keyboard cat',
-	saveUninitialized: true,
-	resave: false
-}
-
+// Multiple 'use' with one call
 aero.use(
 	session(options),
 	passport.initialize(),
@@ -246,6 +237,20 @@ aero.on('page modified', pageId => console.log(`Page ${pageId} has been modified
 aero.on('script modified', scriptId => console.log(`Script ${scriptId} has been modified`))
 aero.on('style modified', styleId => console.log(`Style ${styleId} has been modified`))
 ```
+
+## Configuration
+
+Your configuration is stored in `config.json` and the data is incremental. This means you only need to include the settings that you changed.
+
+This is a valid `config.json` file:
+
+```json
+{
+	"siteName": "My Awesome Site!"
+}
+```
+
+The settings that have not been specified will be loaded from the [default configuration](https://github.com/aerojs/aero/blob/master/default/config.js).
 
 ## Colored output
 
