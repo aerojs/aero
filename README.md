@@ -51,6 +51,20 @@ h1= message
 aero.get('/', (req, res) => res.end('Hello World'))
 ```
 
+## Configuration
+
+Your configuration is stored in `config.json` and the data is incremental. This means you only need to include the settings that you changed.
+
+This is a valid `config.json` file:
+
+```json
+{
+	"siteName": "My Awesome Site!"
+}
+```
+
+The settings that have not been specified will be loaded from the [default configuration](https://github.com/aerojs/aero/blob/master/default/config.js).
+
 ## Pages
 
 Aero loads and watches the `pages` directory for changes. Instead of adding routes via code you just add a directory inside `pages`, e.g. `pages/home` which can then be tracked by git.
@@ -237,20 +251,6 @@ aero.on('page modified', pageId => console.log(`Page ${pageId} has been modified
 aero.on('script modified', scriptId => console.log(`Script ${scriptId} has been modified`))
 aero.on('style modified', styleId => console.log(`Style ${styleId} has been modified`))
 ```
-
-## Configuration
-
-Your configuration is stored in `config.json` and the data is incremental. This means you only need to include the settings that you changed.
-
-This is a valid `config.json` file:
-
-```json
-{
-	"siteName": "My Awesome Site!"
-}
-```
-
-The settings that have not been specified will be loaded from the [default configuration](https://github.com/aerojs/aero/blob/master/default/config.js).
 
 ## Colored output
 
