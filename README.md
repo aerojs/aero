@@ -289,7 +289,6 @@ Aero uses the latest ES 6 features present in node 4.x and 5.x. However if perfo
 ## Other
 
 * [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
-* [Status](https://github.com/blitzprog/aero/blob/master/docs/status.md)
 
 ## Similar software
 
