@@ -27,7 +27,7 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 Instead of routing `/hello` via code you just create a `hello` directory inside `pages`.
 
-A page can have a template, style sheet, a controller and a JSON file:
+A page can have a [template](#templates), [style sheet](#styles), a [controller](#controllers) and a JSON file:
 
 * `hello/hello.jade`
 * `hello/hello.styl`
