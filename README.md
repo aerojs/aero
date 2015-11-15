@@ -21,32 +21,41 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 [![Aero Installation & Live Reload](docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)
 
-### Play around
+![TL;DR](docs/images/tldr.png)
 
-Try to change `home.jade` inside your `pages/home` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
+## Aero in 30 seconds
 
-## TL;DR - Aero in 30 seconds
+Instead of routing via code you just create a directory inside `pages`.
 
-* Instead of routing via code you just create a directory inside `pages`
-* A page can have a template, style sheet, a controller and a JSON file:
-	* `hello/hello.jade`
-	* `hello/hello.styl`
-	* `hello/hello.js`
-	* `hello/hello.json`
-* A controller is just an object that defines `get` or `post` methods. Or whatever you need.
+A page can have a template, style sheet, a controller and a JSON file:
+
+* `hello/hello.jade`
+* `hello/hello.styl`
+* `hello/hello.js`
+* `hello/hello.json`
+
+A controller is just an object that defines `get` or `post` methods. Or whatever you need.
+
 ```js
 exports.get = (request, response) => response.end('Hello')
 ```
-* To feed dynamic data from a controller to a template just pass it to `response.render`
+
+To feed dynamic data from a controller to a template just pass it to `response.render`.
+
 ```js
 response.render({ message: 'You requested ' + request.url })
 ```
+
 ```jade
 h1= message
 ```
-* Static pages only require a template file, e.g. `hello.jade`
-* API pages only require a controller, e.g. `hello.js`
-* Aero is powered by its own blazingly fast web server which has Express-like API
+
+Static pages only require a template file, e.g. `hello.jade`.
+
+REST API pages only require a controller, e.g. `hello.js`.
+
+Aero is powered by its own blazingly fast web server which has [Express-like API](#express-like-api).
+
 ```js
 aero.get('/', (req, res) => res.end('Hello World'))
 ```
