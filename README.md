@@ -25,7 +25,7 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 ## Aero in 30 seconds
 
-Instead of routing via code you just create a directory inside `pages`.
+Instead of routing `/hello` via code you just create a `hello` directory inside `pages`.
 
 A page can have a template, style sheet, a controller and a JSON file:
 
