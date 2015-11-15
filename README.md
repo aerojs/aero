@@ -112,9 +112,18 @@ By default Aero will create a route based on the directory name. If you don't li
 
 For the frontpage you should use an empty string.
 
+## Templates
+
+Templates are written using [Jade](http://jade-lang.com/) syntax.
+
+```jade
+h1 Page title
+p My page content.
+```
+
 ## Styles
 
-Style sheets are written in Stylus format using the `.styl` file extension inside the `styles` directory.
+Style sheets are written in [Stylus](https://github.com/stylus/stylus) format using the `.styl` file extension inside the `styles` directory.
 
 Style loading order needs to be defined in your `config.json`. If you have 3 files called `first.styl`, `second.styl` and `third.styl`, specify the loading order in an array:
 
