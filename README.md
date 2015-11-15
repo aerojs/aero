@@ -11,7 +11,7 @@ Aero is the fastest web framework on the node platform. It is ~~database~~ file 
 
 ![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 5.0.0 on ApacheBench.")
 
-# Installation
+## Installation
 
 ```bash
 echo "require('aero').run()" > index.js && npm i aero --production && node .
@@ -21,11 +21,11 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 [![Aero Installation & Live Reload](docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)
 
-## Play around
+### Play around
 
 Try to change `home.jade` inside your `pages/home` directory. Aero notices the changes, recompiles the page and forces your browser to reload it automatically.
 
-# TL;DR - Aero in 30 seconds
+## TL;DR - Aero in 30 seconds
 
 * Instead of routing via code you just create a directory inside `pages`
 * A page can have a template, style sheet, a controller and a JSON file:
@@ -51,7 +51,7 @@ h1= message
 aero.get('/', (req, res) => res.end('Hello World'))
 ```
 
-# Configuration
+## Configuration
 
 Your configuration is stored in `config.json` and the data is incremental. This means you only need to include the settings that you changed.
 
@@ -65,11 +65,11 @@ This is a valid `config.json` file:
 
 The settings that have not been specified will be loaded from the [default configuration](https://github.com/aerojs/aero/blob/master/default/config.js).
 
-# Pages
+## Pages
 
 Aero loads and watches the `pages` directory for changes. Instead of adding routes via code you just add a directory inside `pages`, e.g. `pages/home` which can then be tracked by git.
 
-## Components
+### Components
 
 For a page to be loaded by Aero it needs a `.jade` template or a `.js` controller.
 
@@ -90,7 +90,7 @@ For example the `helloworld` directory may contain:
 * `helloworld.json`
 * `helloworld.js`
 
-## Subdirectories
+### Subdirectories
 
 Aero scans your pages directory recursively and therefore also adds routes for subpages automatically:
 
@@ -100,7 +100,7 @@ Aero scans your pages directory recursively and therefore also adds routes for s
 /api/users/uploads
 ```
 
-## Change URL for a page
+### Change URL for a page
 
 By default Aero will create a route based on the directory name. If you don't like the default behaviour you can overwrite the route with the `url` parameter in the `.json` file:
 
@@ -112,7 +112,7 @@ By default Aero will create a route based on the directory name. If you don't li
 
 For the frontpage you should use an empty string.
 
-# Styles
+## Styles
 
 Style sheets are written in Stylus format using the `.styl` file extension inside the `styles` directory.
 
@@ -126,7 +126,7 @@ Style loading order needs to be defined in your `config.json`. If you have 3 fil
 ]
 ```
 
-# Scripts
+## Scripts
 
 You can place browser scripts in the `scripts` directory.
 These will be global and therefore available on every page.
@@ -143,7 +143,7 @@ The loading order for global scripts needs to be defined in your `config.json`. 
 
 If you want to add a browser script to a single page only you should use a `.browser.js` file inside the page directory (warning: **experimental** feature, use at your own risk). If your page is called `home`, the file name should be `home.browser.js`.
 
-# Controllers
+## Controllers
 
 A controller is a module that exports an object with either a `get` or a `render` method. Here is an example for a controller which outputs "Hello World":
 
@@ -183,23 +183,23 @@ module.exports = {
 }
 ```
 
-# Express-like API
+## Express-like API
 
-## Routing
+### Routing
 ```js
 aero.get('/hello', function(request, response) {
 	response.end('Hello!')
 })
 ```
 
-## Regex routing
+### Regex routing
 ```js
 aero.get(/^\+(.*)$/, function(request, response) {
 	response.end('Google+ style routing')
 })
 ```
 
-## Middleware
+### Middleware
 ```js
 aero.use(function(request, response, next) {
 	console.log(request.url) // Log every request
@@ -207,12 +207,12 @@ aero.use(function(request, response, next) {
 })
 ```
 
-### Passport.js works out-of-the-box
+#### Passport.js works out-of-the-box
 ```js
 aero.use(require('passport').initialize())
 ```
 
-### Multiple 'use' with one call
+#### Multiple 'use' with one call
 ```js
 aero.use(
 	session(options),
@@ -221,11 +221,11 @@ aero.use(
 )
 ```
 
-## Express compatibility
+### Express compatibility
 
 Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
 
-## Events
+### Events
 
 ```js
 aero.on('server started', () => console.log('We are online!'))
@@ -245,29 +245,29 @@ aero.on('script modified', scriptId => console.log(`Script ${scriptId} has been 
 aero.on('style modified', styleId => console.log(`Style ${styleId} has been modified`))
 ```
 
-# Colored output
+## Colored output
 
 ![Windows output (cmder)](docs/images/colored-windows.png)
 
-# Live reload
+## Live reload
 
 Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic browser refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
 
-# Valid HTML 5
+## Valid HTML 5
 
 All of your HTML and JSON output is automatically checked on every change.
 HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
 
-# Written in ES 6
+## Written in ES 6
 
 Aero uses the latest ES 6 features present in node 4.x and 5.x. However if performance turns out to be an issue, the ES 5 way should be prioritized in the code.
 
-# Other
+## Other
 
 * [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
 * [Status](https://github.com/blitzprog/aero/blob/master/docs/status.md)
 
-# Similar software
+## Similar software
 
 Similar web servers:
 
@@ -283,7 +283,7 @@ More or less similar frameworks:
 * [Meteor](https://www.meteor.com/)
 * [Total](https://www.totaljs.com/)
 
-# Websites using Aero
+## Websites using Aero
 
 URL                                                                | Source
 ------------------------------------------------------------------ | ------
