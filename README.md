@@ -78,7 +78,7 @@ The settings that have not been specified will be loaded from the [default confi
 
 Aero loads and watches the `pages` directory for changes. Instead of adding routes via code you just add a directory inside `pages`, e.g. `pages/home` which can then be tracked by git.
 
-### Components
+### Contents
 
 For a page to be loaded by Aero it needs a `.jade` template or a `.js` controller.
 
