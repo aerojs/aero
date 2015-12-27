@@ -282,6 +282,10 @@ Templates, controllers, scripts, styles and JSON files are reloaded when you sav
 All of your HTML and JSON output is automatically checked on every change.
 HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
 
+## IPv6 support
+
+Aero automatically handles both IPv4 and IPv6 requests, no additional setup required.
+
 ## Written in ES 6
 
 Aero uses the latest ES 6 features present in node 4.x and 5.x. However if performance turns out to be an issue, the ES 5 way should be prioritized in the code.
