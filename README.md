@@ -314,10 +314,10 @@ More or less similar frameworks:
 
 URL                                                                | Source
 ------------------------------------------------------------------ | ------
-[blitzprog.org](http://blitzprog.org)                              | [view source](https://github.com/blitzprog/blitzprog.org)
-[my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/blitzprog/nihongo-center.com)
+[blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)
+[my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/blitzprog/increasedvoices.com)
-[animereleasenotifier.com](https://animereleasenotifier.com)       | [view source](https://github.com/blitzprog/animereleasenotifier.com)
+[animereleasenotifier.com](https://animereleasenotifier.com)       | [view source](https://github.com/animenotifier/animereleasenotifier.com)
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
 [npm-url]: https://npmjs.org/package/aero
