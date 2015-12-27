@@ -11,12 +11,15 @@ module.exports = {
 		key: '',
 		cert: ''
 	},
+	ports: {
+		http: 4000,
+		https: 4001,
+		liveReload: 9000
+	},
 	static: [],
 	styles: [],
 	scripts: [],
 	fonts: [],
 	plugins: {},
-	favIcon: 'favicon.ico',
-	liveReloadPort: 9000,
-	port: 4000
+	favIcon: 'favicon.ico'
 }
