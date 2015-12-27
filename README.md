@@ -316,7 +316,7 @@ URL                                                                | Source
 ------------------------------------------------------------------ | ------
 [blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)
 [my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)
-[increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/blitzprog/increasedvoices.com)
+[increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)
 [animereleasenotifier.com](https://animereleasenotifier.com)       | [view source](https://github.com/animenotifier/animereleasenotifier.com)
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
