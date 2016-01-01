@@ -1,13 +1,13 @@
 {
 	"name": "aero",
-	"version": "0.8.15",
+	"version": "0.8.16",
 	"description": "The fastest web framework on the node platform.",
 	"license": "GPL-3.0",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
 	"main": "lib/index.js",
 	"dependencies": {
-		"ws": "0.x",
+		"ws": "1.x",
 		"etag": "1.x",
 		"jade": "1.x",
 		"spdy": ">=2.1",
