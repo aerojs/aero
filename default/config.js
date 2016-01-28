@@ -14,6 +14,7 @@ module.exports = {
 	ports: {
 		http: 4000,
 		https: 4001,
+		admin: 4002,
 		liveReload: 9000
 	},
 	static: [],
