@@ -247,12 +247,11 @@ aero.use(
 
 ### Generators
 
-Wait for async database request to finish (Promise):
+Wait for async request to finish (Promise):
 
 ```js
-// Controller file
 exports.get = function*(request, response) {
-	let users = yield database.get('Users')
+	let users = yield database.getAll('Users')
 
 	response.render({
 		users
@@ -260,12 +259,11 @@ exports.get = function*(request, response) {
 }
 ```
 
-### Generators using arrays
+#### Yield arrays
 
-Wait for multiple async requests to finish (Promises):
+Wait for multiple async requests to finish:
 
 ```js
-// Controller file
 exports.get = function*(request, response) {
 	yield [
 		database.set('Key 1', 'Data 1'),
@@ -277,12 +275,11 @@ exports.get = function*(request, response) {
 }
 ```
 
-### Generators using objects
+#### Yield objects
 
-Wait for multiple async requests to finish (Promises):
+Wait for multiple async requests to finish:
 
 ```js
-// Controller file
 exports.get = function*(request, response) {
 	let data = yield {
 		key1: database.get('Key 1'),
@@ -294,20 +291,26 @@ exports.get = function*(request, response) {
 }
 ```
 
-### Rewrite URL / Pre-Routing
+### Rewrite URL
+
+#### Pre-Routing
 ```js
 aero.rewrite((request, response) => {
-	// Standard routes
-	if(request.url.startsWith('/+'))
+	// Treat /+MyName as /user/MyName
+	if(request.url.startsWith('/+')) {
 		request.url = '/user/' + request.url.substring(2)
+		return
+	}
 
-	// Ajax routes are prefixed by an underscore directory
-	if(request.url.startsWith('/_/+'))
+	// Ajax routes
+	if(request.url.startsWith('/_/+')) {
 		request.url = '/_/user/' + request.url.substring(4)
+		return
+	}
 })
 ```
 
-### Rewrite URL / Redirect
+#### Redirect
 ```js
 aero.rewrite((request, response) => {
 	if(request.headers.host.indexOf('old-domain.com') !== -1) {
