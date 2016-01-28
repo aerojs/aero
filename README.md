@@ -7,7 +7,7 @@
 [![windows Build Status][appveyor-image]][appveyor-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
-Aero is the fastest web framework on the node platform. It is ~~database~~ file based and git friendly.
+Aero is the fastest web framework on the node platform. It is file based and git friendly.
 
 ![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 5.0.0 on ApacheBench.")
 
@@ -172,7 +172,7 @@ If you want to add a browser script to a single page only you should use a `.bro
 A controller is a module that exports an object with either a `get` or a `render` method. Here is an example for a controller which outputs "Hello World":
 
 ```js
-exports.get = function(request, response) {
+exports.get = (request, response) => {
 	response.end('Hello World')
 }
 ```
@@ -180,7 +180,7 @@ exports.get = function(request, response) {
 The above controller works as a standalone (without any templates or other files required). Here's a controller that requires a `.jade` template inside the same directory when you use the `render` method of the response object:
 
 ```js
-exports.get = function(request, response) {
+exports.get = (request, response) => {
 	response.render({
 		myJadeParameter: 'Hello World'
 	})
@@ -193,15 +193,15 @@ Other request handlers, e.g. `POST` and `DELETE`, can be added to the same contr
 
 ```js
 module.exports = {
-	get: function(request, response) {
+	get: (request, response) => {
 		response.end('get it')
 	},
 
-	post: function(request, response) {
+	post: (request, response) => {
 		response.end('post it')
 	},
 
-	delete: function(request, response) { // DRAFT: Not supported yet
+	delete: (request, response) => { // DRAFT: Not supported yet
 		response.end('delete it')
 	}
 }
@@ -211,14 +211,14 @@ module.exports = {
 
 ### Routing
 ```js
-aero.get('/hello', function(request, response) {
+aero.get('/hello', (request, response) => {
 	response.end('Hello!')
 })
 ```
 
 ### Regex routing
 ```js
-aero.get(/^\+(.*)$/, function(request, response) {
+aero.get(/^\+(.*)$/, (request, response) => {
 	response.end('Google+ style routing')
 })
 ```
@@ -243,6 +243,82 @@ aero.use(
 	passport.initialize(),
 	passport.session()
 )
+```
+
+### Generators
+
+Wait for async database request to finish (Promise):
+
+```js
+// Controller file
+exports.get = function*(request, response) {
+	let users = yield database.get('Users')
+
+	response.render({
+		users
+	})
+}
+```
+
+### Generators using arrays
+
+Wait for multiple async requests to finish (Promises):
+
+```js
+// Controller file
+exports.get = function*(request, response) {
+	yield [
+		database.set('Key 1', 'Data 1'),
+		database.set('Key 2', 'Data 2'),
+		database.set('Key 3', 'Data 3')
+	]
+
+	response.end('Finished')
+}
+```
+
+### Generators using objects
+
+Wait for multiple async requests to finish (Promises):
+
+```js
+// Controller file
+exports.get = function*(request, response) {
+	let data = yield {
+		key1: database.get('Key 1'),
+		key2: database.get('Key 2'),
+		key3: database.get('Key 3')
+	}
+
+	response.render(data)
+}
+```
+
+### Rewrite URL / Pre-Routing
+```js
+aero.rewrite((request, response) => {
+	// Standard routes
+	if(request.url.startsWith('/+'))
+		request.url = '/user/' + request.url.substring(2)
+
+	// Ajax routes are prefixed by an underscore directory
+	if(request.url.startsWith('/_/+'))
+		request.url = '/_/user/' + request.url.substring(4)
+})
+```
+
+### Rewrite URL / Redirect
+```js
+aero.rewrite((request, response) => {
+	if(request.headers.host.indexOf('old-domain.com') !== -1) {
+		// Redirect from old to new domain
+        response.redirect('https://new-domain.com' + request.url)
+
+		// By returning true we stop the call chain.
+		// Routing will not happen.
+        return true
+    }
+})
 ```
 
 ### Express compatibility
@@ -286,9 +362,9 @@ HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
 
 Aero automatically handles both IPv4 and IPv6 requests, no additional setup required.
 
-## Written in ES 6
+## Written in modern ES
 
-Aero uses the latest ES 6 features present in node 4.x and 5.x. However if performance turns out to be an issue, the ES 5 way should be prioritized in the code.
+Aero uses the latest ES features present in node 4.x and 5.x.
 
 ## Other
 
@@ -303,21 +379,14 @@ Similar web servers:
 * [Koa](http://koajs.com/)
 * [Hapi](http://hapijs.com/)
 
-More or less similar frameworks:
-
-* [Sails](http://sailsjs.org/)
-* [Keystone](http://keystonejs.com/)
-* [Meteor](https://www.meteor.com/)
-* [Total](https://www.totaljs.com/)
-
 ## Websites using Aero
 
 URL                                                                | Source
 ------------------------------------------------------------------ | ------
 [blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)
 [my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)
+[notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)
-[animereleasenotifier.com](https://animereleasenotifier.com)       | [view source](https://github.com/animenotifier/animereleasenotifier.com)
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
 [npm-url]: https://npmjs.org/package/aero
