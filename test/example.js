@@ -2,22 +2,44 @@
 
 let fs = require('fs');
 let path = require('path');
-let aero = require('../lib');
+let app = require('../lib')();
 let example = require('../example');
 let assert = require('assert');
 let supertest = require('supertest');
 
+app.verbose = false
+
 let restarts = 0
 let restartCallback = undefined
 
-before(function() {
-	aero.verbose = false
+describe('api', function() {
+	it('app.run', () => {
+		assert(app.run);
+	});
 
+	it('app.get', () => {
+		assert(app.get);
+	});
+
+	it('app.use', () => {
+		assert(app.use);
+	});
+
+	it('app.on', () => {
+		assert(app.on);
+	});
+
+	it('app.stop', () => {
+		assert(app.stop);
+	});
+});
+
+before(function() {
 	// Run
 	return example()
-})
+})+
 
-aero.on('server started', function() {
+app.on('server started', function() {
 	if(restartCallback && restarts === 1) {
 		restartCallback()
 		return
@@ -26,7 +48,7 @@ aero.on('server started', function() {
 	if(restarts !== 0)
 		return
 
-	let request = supertest(aero.server.httpServer);
+	let request = supertest(app.server.httpServer);
 
 	describe('example', function() {
 		it('should have a valid config.json file', function() {
@@ -39,7 +61,7 @@ aero.on('server started', function() {
 
 	describe('modifications', function() {
 		it('should notice when a page has changed', function(done) {
-			aero.on('page modified', function(page) {
+			app.on('page modified', function(page) {
 				assert(page === 'home');
 
 				request
@@ -53,7 +75,7 @@ aero.on('server started', function() {
 		});
 
 		it('should notice when a style has changed', function(done) {
-			aero.on('style modified', function(style) {
+			app.on('style modified', function(style) {
 				assert(style === 'base');
 
 				request
@@ -61,13 +83,13 @@ aero.on('server started', function() {
 					.expect(200, done);
 			});
 
-			let stylePath = path.join(__dirname, '..', 'example', 'styles', aero.config.styles[0] + '.styl');
+			let stylePath = path.join(__dirname, '..', 'example', 'styles', app.config.styles[0] + '.styl');
 			let styleCode = fs.readFileSync(stylePath, 'utf8');
 			fs.writeFile(stylePath, styleCode, 'utf8');
 		});
 
 		it('should notice when a script has changed', function(done) {
-			aero.on('script modified', function(script) {
+			app.on('script modified', function(script) {
 				assert(script === 'test');
 
 				request
@@ -75,7 +97,7 @@ aero.on('server started', function() {
 					.expect(200, done);
 			});
 
-			let scriptPath = path.join(__dirname, '..', 'example', 'scripts', aero.config.scripts[0] + '.js');
+			let scriptPath = path.join(__dirname, '..', 'example', 'scripts', app.config.scripts[0] + '.js');
 			let scriptCode = fs.readFileSync(scriptPath, 'utf8');
 			fs.writeFile(scriptPath, scriptCode, 'utf8');
 		});
@@ -129,9 +151,9 @@ aero.on('server started', function() {
 		check('/api/custom', 'API custom.');
 		check('/api/custom/MyUserName', 'API custom.');
 
-		// Various strings passed to aero.get
-		aero.get('trailing-slash/', (req, res) => res.end('Ok.'))
-		aero.get('/both-slashes/', (req, res) => res.end('Ok.'))
+		// Various strings passed to app.get
+		app.get('trailing-slash/', (req, res) => res.end('Ok.'))
+		app.get('/both-slashes/', (req, res) => res.end('Ok.'))
 
 		check('/trailing-slash', 'Ok.');
 		check('/both-slashes', 'Ok.');
@@ -139,21 +161,21 @@ aero.on('server started', function() {
 
 	describe('other', function() {
 		it(`should respond via LiveReload server`, function(done) {
-			supertest(aero.liveReload.httpServer)
+			supertest(app.liveReload.httpServer)
 				.get('/')
 				.expect(200, done)
 		})
 
 		it(`should respond with 404 when the favicon does not exist`, function(done) {
-			aero.server.favIconData = null;
+			app.server.favIconData = null;
 
 			request
-				.get('/' + aero.config.favIcon)
+				.get('/' + app.config.favIcon)
 				.expect(404, done);
 		});
 
 		it(`should respond correctly after removing middleware`, function(done) {
-			aero.server.modifiers = [];
+			app.server.modifiers = [];
 
 			request
 				.get('/')
@@ -164,7 +186,7 @@ aero.on('server started', function() {
 			restartCallback = done
 
 			restarts += 1
-			aero.restart()
+			app.restart()
 		});
 	});
 });
