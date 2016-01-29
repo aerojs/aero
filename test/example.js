@@ -2,17 +2,16 @@
 
 let fs = require('fs');
 let path = require('path');
-let app = require('../lib')();
-let example = require('../example');
+let app = require('../example');
 let assert = require('assert');
 let supertest = require('supertest');
 
 app.verbose = false
 
-let restarts = 0
-let restartCallback = undefined
+//let restarts = 0
+//let restartCallback = undefined
 
-describe('api', function() {
+/*describe('api', function() {
 	it('app.run', () => {
 		assert(app.run);
 	});
@@ -32,21 +31,16 @@ describe('api', function() {
 	it('app.stop', () => {
 		assert(app.stop);
 	});
-});
+});*/
 
-before(function() {
-	// Run
-	return example()
-})+
-
-app.on('server started', function() {
-	if(restartCallback && restarts === 1) {
+app.ready.then(() => {
+	/*if(restartCallback && restarts === 1) {
 		restartCallback()
 		return
 	}
 
 	if(restarts !== 0)
-		return
+		return*/
 
 	let request = supertest(app.server.httpServer);
 
@@ -182,11 +176,11 @@ app.on('server started', function() {
 				.expect(200, done);
 		});
 
-		it(`should restart`, function(done) {
+		/*it(`should restart`, function(done) {
 			restartCallback = done
 
 			restarts += 1
 			app.restart()
-		});
+		});*/
 	});
-});
+})
