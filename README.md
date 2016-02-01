@@ -14,7 +14,7 @@ Aero is the fastest web framework on the node platform. It is file based and git
 ## Installation
 
 ```bash
-echo "require('aero').run()" > index.js && npm i aero --production && node .
+echo "require('aero')().run()" > index.js && npm i aero --production && node .
 ```
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
@@ -57,7 +57,7 @@ REST API pages only require a controller, e.g. `hello.js`.
 Aero is powered by its own blazingly fast web server which has [Express-like API](#express-like-api).
 
 ```js
-aero.get('/', (req, res) => res.end('Hello World'))
+app.get('/', (req, res) => res.end('Hello World'))
 ```
 
 ## Configuration
@@ -84,9 +84,9 @@ For a page to be loaded by Aero it needs a `.jade` template or a `.js` controlle
 
 Page type                        | .jade | .js
 -------------------------------- | ----- | ---
-Static page                      | ✓    |
+Static page                      | ✓     |
 Dynamic page (full control, API) |       | ✓
-Dynamic page (with template)     | ✓    | ✓
+Dynamic page (with template)     | ✓     | ✓
 
 Adding a `.styl` file to the page will load the style sheet on this page only.
 
@@ -209,23 +209,29 @@ module.exports = {
 
 ## Express-like API
 
+### Creating an app
+```js
+let aero = require('aero')
+let app = aero()
+```
+
 ### Routing
 ```js
-aero.get('/hello', (request, response) => {
+app.get('/hello', (request, response) => {
 	response.end('Hello!')
 })
 ```
 
 ### Regex routing
 ```js
-aero.get(/^\+(.*)$/, (request, response) => {
+app.get(/^\+(.*)$/, (request, response) => {
 	response.end('Google+ style routing')
 })
 ```
 
 ### Middleware
 ```js
-aero.use(function(request, response, next) {
+app.use(function(request, response, next) {
 	console.log(request.url) // Log every request
 	next()                   // Continue the call chain
 })
@@ -233,12 +239,12 @@ aero.use(function(request, response, next) {
 
 #### Passport.js works out-of-the-box
 ```js
-aero.use(require('passport').initialize())
+app.use(require('passport').initialize())
 ```
 
 #### Multiple 'use' with one call
 ```js
-aero.use(
+app.use(
 	session(options),
 	passport.initialize(),
 	passport.session()
@@ -295,7 +301,7 @@ exports.get = function*(request, response) {
 
 #### Pre-Routing
 ```js
-aero.rewrite((request, response) => {
+app.rewrite((request, response) => {
 	// Treat /+MyName as /user/MyName
 	if(request.url.startsWith('/+')) {
 		request.url = '/user/' + request.url.substring(2)
@@ -312,7 +318,7 @@ aero.rewrite((request, response) => {
 
 #### Redirect
 ```js
-aero.rewrite((request, response) => {
+app.rewrite((request, response) => {
 	if(request.headers.host.indexOf('old-domain.com') !== -1) {
 		// Redirect from old to new domain
         response.redirect('https://new-domain.com' + request.url)
@@ -331,21 +337,21 @@ Aero aims to be as Express compatible as possible, however 100% API compatibilit
 ### Events
 
 ```js
-aero.on('server started', () => console.log('We are online!'))
+app.on('server started', () => console.log('We are online!'))
 
-aero.on('all pages loaded', () => console.log('We have all the page contents!'))
-aero.on('all styles loaded', () => console.log('We have all the compiled styles!'))
-aero.on('all scripts loaded', () => console.log('We have all the minified scripts!'))
+app.on('all pages loaded', () => console.log('We have all the page contents!'))
+app.on('all styles loaded', () => console.log('We have all the compiled styles!'))
+app.on('all scripts loaded', () => console.log('We have all the minified scripts!'))
 
-aero.on('config loaded', () => console.log('Config loaded!'))
-aero.on('page loaded', page => console.log(`Page ${page.id} has been loaded`))
-aero.on('script loaded', script => console.log(`Script ${script.id} has been loaded`))
-aero.on('style loaded', style => console.log(`Style ${style.id} has been loaded`))
+app.on('config loaded', () => console.log('Config loaded!'))
+app.on('page loaded', page => console.log(`Page ${page.id} has been loaded`))
+app.on('script loaded', script => console.log(`Script ${script.id} has been loaded`))
+app.on('style loaded', style => console.log(`Style ${style.id} has been loaded`))
 
-aero.on('config modified', () => console.log('Config modified! Restarting Aero.'))
-aero.on('page modified', pageId => console.log(`Page ${pageId} has been modified`))
-aero.on('script modified', scriptId => console.log(`Script ${scriptId} has been modified`))
-aero.on('style modified', styleId => console.log(`Style ${styleId} has been modified`))
+app.on('config modified', () => console.log('Config modified! Restarting Aero.'))
+app.on('page modified', pageId => console.log(`Page ${pageId} has been modified`))
+app.on('script modified', scriptId => console.log(`Script ${scriptId} has been modified`))
+app.on('style modified', styleId => console.log(`Style ${styleId} has been modified`))
 ```
 
 ## Colored output
@@ -371,7 +377,7 @@ Aero uses the latest ES features present in node 4.x and 5.x.
 
 ## Other
 
-* [Goals](https://github.com/blitzprog/aero/blob/master/docs/goals.md)
+* [Goals](https://github.com/aerojs/aero/blob/master/docs/goals.md)
 
 ## Similar software
 
