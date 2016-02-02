@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"aero-style-reset": "*",
+		"aero-jquery": "*",
+		"aero-kaze": "*"
+	}
+}

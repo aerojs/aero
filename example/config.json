@@ -13,11 +13,6 @@
 		"key": "",
 		"cert": ""
 	},
-	"plugins": {
-		"style-reset": {},
-		"jquery": {},
-		"kaze": {}
-	},
 	"ports": {
 		"http": 4000,
 		"https": 4001,

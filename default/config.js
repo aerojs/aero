@@ -1,5 +1,10 @@
 module.exports = {
-	siteName: 'Untitled website',
+	title: 'Untitled website',
+	static: [],
+	styles: [],
+	scripts: [],
+	fonts: [],
+	favIcon: 'favicon.ico',
 	path: {
 		pages: 'pages',
 		layout: 'layout',
@@ -14,13 +19,6 @@ module.exports = {
 	ports: {
 		http: 4000,
 		https: 4001,
-		admin: 4002,
 		liveReload: 9000
-	},
-	static: [],
-	styles: [],
-	scripts: [],
-	fonts: [],
-	plugins: {},
-	favIcon: 'favicon.ico'
+	}
 }
