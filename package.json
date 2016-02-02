@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "0.9.1",
+	"version": "0.9.2",
 	"description": "The fastest web framework on the node platform.",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
@@ -46,7 +46,7 @@
 		"framework"
 	],
 	"engines": {
-		"node": ">= 4.0.0"
+		"node": ">=4.0.0"
 	},
 	"bugs": {
 		"url": "https://github.com/aerojs/aero/issues"
