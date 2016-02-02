@@ -1,8 +1,12 @@
 module.exports = {
 	name: 'untitled-website',
 	version: '0.0.0',
-	description: '',
+	description: 'My untitled website.',
 	keywords: [],
-	homepage: null,
-	dependencies: {}
+	homepage: '',
+	repository: '',
+	license: '',
+	dependencies: {
+		aero: '*'
+	}
 }
