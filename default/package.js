@@ -7,8 +7,6 @@ module.exports = {
 	repository: '',
 	license: '',
 	dependencies: {
-		'aero': '*',
-		'aero-style-reset': '*',
-		'aero-kaze': '*'
+		'aero': '*'
 	}
 }
