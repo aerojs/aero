@@ -31,7 +31,7 @@ app.use(function*(request, response, next) {
 })
 ```
 
-### Multiple 'use' with one call
+## Multiple 'use' with one call
 ```js
 app.use(
 	session(options),

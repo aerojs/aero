@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"blue-tape": "*",
-		"tap-spec": "*",
+		"tap-diff": "*",
 		"supertest": "*",
 		"supertest-as-promised": "*"
 	},

@@ -1,11 +1,5 @@
-let app = null
-
-test('Create app', t => {
-	app = aero('test/app')
-	t.ok(app, 'app created')
-})
-
-test('API defined', t => {
+test('API: Functions', t => {
+	let app = aero('test/app')
 	let methods = [
 		'run',
 		'stop',
@@ -16,20 +10,19 @@ test('API defined', t => {
 		'on'
 	]
 
+	t.plan(methods.length)
 	methods.forEach(method => t.ok(app[method], `app.${method}`))
 })
 
-test('File system routing', t => {
-	return Promise.all([
-		fetch(app, '/').expect(200),
-		fetch(app, '/').expect(200)
-	])
-})
+test('API: Members', t => {
+	let app = aero('test/app')
+	let members = [
+		'config',
+		'package',
+		'server',
+		'verbose'
+	]
 
-test('Custom routing', t => {
-	app.get('/custom', (request, response) => {
-		response.end('OK')
-	})
-
-	return fetch(app, '/custom').expect('OK')
+	t.plan(members.length)
+	members.forEach(member => t.ok(app[member], `app.${member}`))
 })

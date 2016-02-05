@@ -1,16 +1,16 @@
 let fs = require('fs')
 let tape = require('blue-tape')
-let tapSpec = require('tap-spec')
+let tapDiff = require('tap-diff')
 let supertest = require('supertest-as-promised')
 
 // Colorize
-tape.createStream().pipe(tapSpec()).pipe(process.stdout)
+tape.createStream().pipe(tapDiff()).pipe(process.stdout)
 
 // Global variables in tests
 global.aero = require('../lib')
 global.Promise = require('bluebird')
 global.fetch = (app, route) => {
-	return supertest(app).get(route)
+	return supertest(app.server.httpServer).get(route)
 }
 
 // Wrapper around tape which auto-converts generators to coroutines
