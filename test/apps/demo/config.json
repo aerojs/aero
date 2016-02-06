@@ -3,6 +3,6 @@
 	"static": [],
 	"styles": [],
 	"scripts": [],
-	"fonts": [],
+	"fonts": ["Open Sans"],
 	"icons": []
 }
