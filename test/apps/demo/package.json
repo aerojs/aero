@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"description": "Aero demo website.",
 	"dependencies": {
-		"aero": "*"
+		"aero": "*",
+		"aero-kaze": "*"
 	}
 }
