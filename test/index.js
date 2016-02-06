@@ -8,7 +8,6 @@ tape.createStream().pipe(tapDiff()).pipe(process.stdout)
 
 // Global variables in tests
 global.aero = require('../lib')
-global.Promise = require('bluebird')
 global.fetch = (app, route) => {
 	return supertest(app.server.httpServer).get(route)
 }
