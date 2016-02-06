@@ -29,7 +29,8 @@
 		"supertest-as-promised": "*"
 	},
 	"scripts": {
-		"test": "node --use_strict test"
+		"test": "node --use_strict test",
+		"demo": "node --use_strict test/apps/demo"
 	},
 	"files": [
 		"default",
