@@ -48,11 +48,6 @@ global.rmdir = function(dirPath, removeSelf) {
 }
 
 // Run all tests
-fs.readdir('test', (error, files) => {
-	files.forEach(file => {
-		if(file === 'index.js' || file === 'apps')
-			return
-
-		require('./' + file)
-	})
+fs.readdir('test/tests', (error, files) => {
+	files.forEach(file => require('./tests/' + file))
 })

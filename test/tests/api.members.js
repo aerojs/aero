@@ -1,5 +1,5 @@
 test('API: Members', t => {
-	let app = aero('test/apps/empty')
+	let app = aero()
 	let members = [
 		'root',
 		'version',
@@ -8,5 +8,5 @@ test('API: Members', t => {
 	]
 
 	t.plan(members.length)
-	members.forEach(member => t.ok(app[member], `app.${member}`))
+	members.forEach(member => t.notEqual(app[member], undefined, `app.${member}`))
 })
