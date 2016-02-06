@@ -13,16 +13,3 @@ test('API: Functions', t => {
 	t.plan(methods.length)
 	methods.forEach(method => t.ok(app[method], `app.${method}`))
 })
-
-test('API: Members', t => {
-	let app = aero('test/app')
-	let members = [
-		'config',
-		'package',
-		'server',
-		'verbose'
-	]
-
-	t.plan(members.length)
-	members.forEach(member => t.ok(app[member], `app.${member}`))
-})

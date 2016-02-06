@@ -5,6 +5,9 @@ test('API: Server', t => {
 		'stop'
 	]
 
-	t.plan(methods.length)
 	methods.forEach(method => t.ok(app.server[method], `app.server.${method}`))
+
+	t.notEqual(app.server.protocol, undefined, 'app.server.protocol')
+	t.notEqual(app.server.port, undefined, 'app.server.port')
+	t.end()
 })
