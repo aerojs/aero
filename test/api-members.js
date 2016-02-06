@@ -1,12 +1,9 @@
 test('API: Members', t => {
 	let app = aero('test/app')
 	let members = [
-		'config',
-		'package',
 		'server',
 		'verbose',
-		'root',
-		'ready'
+		'root'
 	]
 
 	t.plan(members.length)
