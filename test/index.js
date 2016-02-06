@@ -20,10 +20,37 @@ global.test = (name, func) => {
 	return tape(name, func)
 }
 
+// rmdir
+global.rmdir = function(dirPath, removeSelf) {
+	removeSelf = removeSelf !== undefined ? removeSelf : true
+
+	try {
+		var files = fs.readdirSync(dirPath)
+	} catch(e) {
+		console.error(e)
+		return
+	}
+
+	for(let file of files) {
+		if(file === '.gitignore')
+			continue
+
+		let filePath = dirPath + '/' + file
+
+		if(fs.statSync(filePath).isFile())
+			fs.unlinkSync(filePath)
+		else
+			rmdir(filePath)
+	}
+
+	if(removeSelf)
+		fs.rmdirSync(dirPath)
+}
+
 // Run all tests
 fs.readdir('test', (error, files) => {
 	files.forEach(file => {
-		if(file === 'index.js' || file === 'app')
+		if(file === 'index.js' || file === 'apps')
 			return
 
 		require('./' + file)

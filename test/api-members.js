@@ -1,9 +1,10 @@
 test('API: Members', t => {
-	let app = aero('test/app')
+	let app = aero('test/apps/empty')
 	let members = [
+		'root',
+		'version',
 		'server',
-		'verbose',
-		'root'
+		'verbose'
 	]
 
 	t.plan(members.length)

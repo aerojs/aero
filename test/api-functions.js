@@ -1,5 +1,5 @@
 test('API: Functions', t => {
-	let app = aero('test/app')
+	let app = aero('test/apps/empty')
 	let methods = [
 		'run',
 		'stop',
