@@ -8,6 +8,8 @@
 	"main": "lib/index.js",
 	"dependencies": {
 		"autoprefixer-stylus": "0.x",
+		"babel-core": "6.x",
+		"babel-preset-es2015": "*",
 		"bluebird": "3.x",
 		"chalk": "1.x",
 		"etag": "1.x",
