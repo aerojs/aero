@@ -1,7 +1,7 @@
-test('App: Demo', t => {
+test('App: Demo', Promise.coroutine(function*(t) {
 	let app = aero('test/apps/demo')
-	
-	return app.run().then(() => {
-		t.appOk(app)
-	}).then(() => app.stop())
-})
+
+	yield app.run()
+	t.appOk(app)
+	yield app.stop()
+}))

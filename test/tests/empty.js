@@ -1,12 +1,13 @@
-test('App: Empty', t => {
+test('App: Empty', Promise.coroutine(function*(t) {
 	rmdir('test/apps/empty', false, ['.gitignore'])
 
-	let app = aero('test/apps/empty')
-	let ready = app.run()
+	let app = aero('test/apps/demo')
 
-	return app.ready.then(() => {
-		t.appOk(app)
+	yield app.run()
+	yield app.restart()
+	t.appOk(app)
+	t.pass('app.restart')
+	yield app.stop()
 
-		rmdir('test/apps/empty', false, ['.gitignore'])
-	}).then(() => app.stop())
-})
+	rmdir('test/apps/empty', false, ['.gitignore'])
+}))
