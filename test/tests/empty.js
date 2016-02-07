@@ -1,5 +1,5 @@
 test('App: Empty', t => {
-	rmdir('test/apps/empty', false)
+	rmdir('test/apps/empty', false, ['.gitignore'])
 
 	let app = aero('test/apps/empty')
 	let ready = app.run()
@@ -7,6 +7,6 @@ test('App: Empty', t => {
 	return app.ready.then(() => {
 		t.appOk(app)
 
-		rmdir('test/apps/empty', false)
+		rmdir('test/apps/empty', false, ['.gitignore'])
 	}).then(() => app.stop())
 })

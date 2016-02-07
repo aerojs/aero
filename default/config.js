@@ -12,10 +12,6 @@ module.exports = {
 		scripts: 'scripts',
 		security: 'security'
 	},
-	security: {
-		key: '',
-		cert: ''
-	},
 	ports: {
 		http: 4000,
 		https: 4001,

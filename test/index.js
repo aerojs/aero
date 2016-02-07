@@ -21,7 +21,7 @@ global.test = (name, func) => {
 }
 
 // rmdir
-global.rmdir = function(dirPath, removeSelf) {
+global.rmdir = function(dirPath, removeSelf, excludeFiles) {
 	removeSelf = removeSelf !== undefined ? removeSelf : true
 
 	try {
@@ -32,7 +32,7 @@ global.rmdir = function(dirPath, removeSelf) {
 	}
 
 	for(let file of files) {
-		if(file === '.gitignore')
+		if(excludeFiles && excludeFiles.indexOf(file) !== -1)
 			continue
 
 		let filePath = dirPath + '/' + file
