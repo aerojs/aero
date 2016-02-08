@@ -4,7 +4,7 @@
 	"description": "Aero demo website.",
 	"dependencies": {
 		"aero": "*",
-		"aero-style-reset": "*",
-		"aero-kaze": "*"
+		"aero-reset": "*",
+		"aero-ajax": "*"
 	}
 }
