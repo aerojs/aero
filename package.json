@@ -21,7 +21,7 @@
 		"pem": "1.x",
 		"request": "2.x",
 		"spdy": "3.x",
-		"stylus": "0.x",
+		"stylus": "https://github.com/stylus/stylus/tarball/dev",
 		"uglify-js": ">=2.6",
 		"ws": ">=1.0.1"
 	},
