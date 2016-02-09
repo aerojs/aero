@@ -1,7 +1,9 @@
 # Aero in 30 seconds
 
+## Routing
 Instead of routing `/hello` via code you simply create a `hello` directory inside `pages`.
 
+## Pages
 A page can have a [template](Templates.md), [style sheet](Styles.md), a [controller](Controllers.md), a [client script](Scripts.md) and a JSON file:
 
 * `hello/hello.jade`
@@ -10,6 +12,7 @@ A page can have a [template](Templates.md), [style sheet](Styles.md), a [control
 * `hello/hello.client.js`
 * `hello/hello.json`
 
+## Controllers
 A controller is just an object that defines `get` or `post` methods. Or whatever you need.
 
 ```js
@@ -26,11 +29,14 @@ response.render({ message: 'You requested ' + request.url })
 h1= message
 ```
 
+## Static pages
 Static pages only require a template file, e.g. `hello.jade`.
 
+## REST API
 REST API pages only require a controller, e.g. `hello.js`.
 
-Aero is powered by its own blazingly fast web server which has [Express-like API](#express-like-api).
+## Server API
+Aero is powered by its own blazingly fast web server which has [Express-like API](API.md).
 
 ```js
 app.get('/', (req, res) => res.end('Hello World'))
