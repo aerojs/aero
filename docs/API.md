@@ -22,6 +22,15 @@ app.get(/^\+(.*)$/, (request, response) => {
 
 ## Middleware
 ```js
+app.use(function(request, response, next) {
+	console.log(request.url)
+	next()
+})
+```
+
+## Async middleware
+
+```js
 app.use(function*(request, response, next) {
 	let start = new Date
 	yield next()
@@ -30,6 +39,8 @@ app.use(function*(request, response, next) {
 	console.log(request.url, ms + ' ms')
 })
 ```
+
+Not supported yet.
 
 ## Multiple 'use' with one call
 ```js
