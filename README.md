@@ -46,7 +46,7 @@ Templates, controllers, scripts, styles and JSON files are reloaded when you sav
 
 ## Ajaxification
 
-Aero code uses the latest ES features present in node 4.x and 5.x. Additionally your client scripts are transformed using Babel ES 2015 which enables you to utilize next-generation ES without worrying about browser compatibilities.
+If you like you can use the `aero-ajax` [plugin](docs/Plugins.md) to switch from a standard website to an AJAX-powered website with minimal effort.
 
 ## Modern ES
 
