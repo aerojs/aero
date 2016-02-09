@@ -40,6 +40,36 @@ app.use(
 )
 ```
 
+## Pre-Routing
+```js
+app.rewrite((request, response) => {
+	// Handle /+MyName requests as /user/MyName internally
+	if(request.url.startsWith('/+')) {
+		request.url = '/user/' + request.url.substring('/+'.length)
+		return
+	}
+
+	// Also rewrite ajax routes for the aero-ajax plugin
+	if(request.url.startsWith('/_/+')) {
+		request.url = '/_/user/' + request.url.substring('/_/+'.length)
+		return
+	}
+})
+```
+
+## Redirect
+```js
+app.rewrite((request, response) => {
+	if(request.headers.host.indexOf('old-domain.com') !== -1) {
+        response.redirect('https://new-domain.com' + request.url)
+
+		// By returning true we stop the call chain.
+		// Therefore routing will not happen.
+        return true
+    }
+})
+```
+
 ## Events
 
 ```js
@@ -63,3 +93,7 @@ app.on('page modified', pageId => console.log(`Page ${pageId} has been modified`
 app.on('script modified', scriptId => console.log(`Script ${scriptId} has been modified`))
 app.on('style modified', styleId => console.log(`Style ${styleId} has been modified`))
 ```
+
+## Express compatibility
+
+Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
