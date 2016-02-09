@@ -7,6 +7,7 @@ A page can have a [template](Templates.md), [style sheet](Styles.md), a [control
 * `hello/hello.jade`
 * `hello/hello.styl`
 * `hello/hello.js`
+* `hello/hello.client.js`
 * `hello/hello.json`
 
 A controller is just an object that defines `get` or `post` methods. Or whatever you need.
