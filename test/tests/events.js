@@ -15,7 +15,7 @@ const events = [
 
 	'page loaded',
 	'script loaded',
-	'style loaded',
+	'style loaded'
 
 	// 'config modified',
 	// 'page modified',

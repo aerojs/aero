@@ -33,7 +33,8 @@
 	},
 	"scripts": {
 		"test": "node --use_strict test",
-		"demo": "node --use_strict test/apps/demo"
+		"demo": "node --use_strict test/apps/demo",
+		"empty": "node --use_strict test/apps/empty"
 	},
 	"files": [
 		"default",
