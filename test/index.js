@@ -1,13 +1,21 @@
-let fs = require('fs')
-let tape = require('blue-tape')
-let tapDiff = require('tap-diff')
-let supertest = require('supertest-as-promised')
+const fs = require('fs')
+const tape = require('blue-tape')
+const tapDiff = require('tap-diff')
+const supertest = require('supertest-as-promised')
+const assert = require('assert')
 
 // Colorize
 tape.createStream().pipe(tapDiff()).pipe(process.stdout)
 
-// Global variables in tests
-global.aero = require('../lib')
+// Aero app creation with output disabled
+let newApp = require('../lib')
+global.aero = root => {
+	let app = newApp(root)
+	app.verbose = false
+	return app
+}
+
+// Network request tool
 global.fetch = (app, route) => {
 	return supertest(app.server.httpServer).get(route)
 }
@@ -49,21 +57,23 @@ global.rmdir = function(dirPath, removeSelf, excludeFiles) {
 
 // Check app basics
 tape.Test.prototype.appOk = function(app) {
-	this.ok(app.config, 'app.config')
-	this.ok(app.config.title, 'app.config.title')
-	this.ok(app.config.ports, 'app.config.ports')
-	this.ok(app.config.ports.http, 'app.config.ports.http')
-	this.ok(app.config.ports.https, 'app.config.ports.https')
-	this.ok(app.config.ports.liveReload, 'app.config.ports.liveReload')
+	return this.doesNotThrow(() => {
+		assert(app.config)
+		assert(app.config.title)
+		assert(app.config.ports)
+		assert(app.config.ports.http)
+		assert(app.config.ports.https)
+		assert(app.config.ports.liveReload)
 
-	this.ok(app.package, 'app.package')
-	this.ok(app.package.name, 'app.package.name')
-	this.ok(app.package.version, 'app.package.version')
-	this.ok(app.package.description, 'app.package.description')
-	this.ok(app.package.dependencies, 'app.package.dependencies')
+		assert(app.package)
+		assert(app.package.name)
+		assert(app.package.version)
+		assert(app.package.description)
+		assert(app.package.dependencies)
 
-	this.ok(app.server.ready, 'app.server.ready')
-	this.ok(app.server.ready.then, 'app.server.ready.then')
+		assert(app.server.ready)
+		assert(app.server.ready.then)
+	}, 'seems to be healthy')
 }
 
 // Run all tests
