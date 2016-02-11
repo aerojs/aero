@@ -32,3 +32,8 @@ exports.styles = ['html-reset'] // html-reset.styl
 ## List of plugins
 
 Official plugins are hosted on the [Aero organization](https://github.com/aerojs) page.
+
+### Recommended plugins
+
+* [aero-reset](https://github.com/aerojs/aero-reset)
+* [aero-ajax](https://github.com/aerojs/aero-ajax)
