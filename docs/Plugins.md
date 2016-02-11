@@ -2,7 +2,7 @@
 
 ## Using a plugin
 
-Simply add the plugin you want to your `dependencies` in `package.json`, e.g. if you need the [aero-ajax](https://github.com/aerojs/aero-ajax) plugin:
+Add the plugin you want to your `dependencies` in `package.json`, e.g. if you need the [aero-ajax](https://github.com/aerojs/aero-ajax) plugin:
 
 ```json
 "dependencies": {
