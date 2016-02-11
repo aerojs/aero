@@ -19,25 +19,15 @@ A controller is just an object that defines `get` or `post` methods. Or whatever
 exports.get = (request, response) => response.end('Hello')
 ```
 
-To feed dynamic data from a controller to a template just pass it to `response.render`.
+To feed dynamic data from a controller to a template just pass it to `response.render`:
 
 ```js
-response.render({ message: 'You requested ' + request.url })
+response.render({
+	message: 'You requested ' + request.url
+})
 ```
 
+In the template:
 ```jade
 h1= message
-```
-
-## Static pages
-Static pages only require a template file, e.g. `hello.jade`.
-
-## REST API
-REST API pages only require a controller, e.g. `hello.js`.
-
-## Server API
-Aero is powered by its own blazingly fast web server which has [Express-like API](API.md).
-
-```js
-app.get('/', (req, res) => res.end('Hello World'))
 ```
