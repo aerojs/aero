@@ -19,7 +19,7 @@ A controller is just an object that defines `get` or `post` methods. Or whatever
 exports.get = (request, response) => response.end('Hello')
 ```
 
-To feed dynamic data from a controller to a template just pass it to `response.render`:
+To feed dynamic data from a controller to a template we pass it to `response.render`:
 
 ```js
 response.render({
