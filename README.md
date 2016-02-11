@@ -23,8 +23,7 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 ## Documentation
 
-Please read [Aero in 30 seconds](docs/QuickGuide.md).
-
+* [Aero in 30 seconds](docs/QuickGuide.md)
 * [API](docs/API.md)
 * [Configuration](docs/Configuration.md)
 * [Pages](docs/Pages.md)
@@ -34,7 +33,7 @@ Please read [Aero in 30 seconds](docs/QuickGuide.md).
 * [Scripts](docs/Scripts.md)
 * [Layouts](docs/Layouts.md)
 * [Plugins](docs/Plugins.md)
-* [HTTP 2](docs/HTTP2.md)
+* [HTTPS](docs/HTTPS.md)
 
 ## Colored output
 
