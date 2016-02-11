@@ -1,5 +1,5 @@
 test('Test App: Empty', function*(t) {
-	rmdir('test/apps/empty', false, ['.gitignore'])
+	rmdir('test/apps/empty', false, ['.gitignore', 'index.js'])
 
 	let app = aero('test/apps/empty')
 
