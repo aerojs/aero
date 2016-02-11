@@ -21,10 +21,12 @@ echo "require('aero')().run()" > index.js && npm i aero --production && node --u
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
+## Quick Guide
+
+Read [Aero in 30 seconds](docs/QuickGuide.md).
+
 ## Documentation
 
-* [Aero in 30 seconds](docs/QuickGuide.md)
-* [API](docs/API.md)
 * [Configuration](docs/Configuration.md)
 * [Pages](docs/Pages.md)
 * [Templates](docs/Templates.md)
@@ -33,7 +35,8 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 * [Scripts](docs/Scripts.md)
 * [Layouts](docs/Layouts.md)
 * [Plugins](docs/Plugins.md)
-* [HTTPS](docs/HTTPS.md)
+* [HTTP/2](docs/HTTPS.md)
+* [API](docs/API.md)
 
 ## Colored output
 
