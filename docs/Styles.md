@@ -19,3 +19,7 @@ Optionally you can define the loading order in your `config.json`. If you have 3
 ```
 
 Files that have not been specified in the `styles` array are loaded in undefined order at the end.
+
+### Global `config.styl`
+
+You can add a global `config.styl` inside the `styles` directory which will be included before every single style you load. Make sure it only contains variable definitions (like colors) which have no impact on file size.

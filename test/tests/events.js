@@ -7,7 +7,7 @@ const events = [
 	'all pages loaded',
 	'all styles loaded',
 	'all scripts loaded',
-	'all fonts loaded',
+	//'all fonts loaded',
 
 	'config loaded',
 	'package loaded',
