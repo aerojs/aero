@@ -30,7 +30,9 @@
 		"blue-tape": "*",
 		"tap-diff": "*",
 		"supertest": "*",
-		"supertest-as-promised": "*"
+		"supertest-as-promised": "*",
+		"aero-reset": "*",
+		"aero-ajax": "*"
 	},
 	"scripts": {
 		"test": "node --use_strict test",
