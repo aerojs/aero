@@ -14,6 +14,7 @@
 		"chalk": "1.x",
 		"etag": "1.x",
 		"html5-lint": "0.x",
+		"image-size": "0.x",
 		"jade": "1.x",
 		"node-watch": "0.x",
 		"mime-types": "2.x",
@@ -47,6 +48,12 @@
 		"server",
 		"framework"
 	],
+	"directories": {
+		"lib": "lib",
+		"doc": "docs",
+		"example": "test/apps/demo",
+		"test": "test"
+    },
 	"engines": {
 		"node": ">=4.0.0"
 	},

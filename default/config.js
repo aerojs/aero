@@ -5,6 +5,8 @@ module.exports = {
 	scripts: [],
 	fonts: [],
 	icons: [],
+	languages: ['en'],
+	manifest: {},
 	path: {
 		pages: 'pages',
 		layout: 'layout',

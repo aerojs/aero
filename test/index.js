@@ -71,6 +71,9 @@ tape.Test.prototype.appOk = function(app) {
 		assert(app.package.description)
 		assert(app.package.dependencies)
 
+		assert(app.manifest)
+		assert(app.manifest.name)
+
 		assert(app.server.ready)
 		assert(app.server.ready.then)
 	}, 'seems to be healthy')
