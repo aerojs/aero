@@ -1,13 +1,10 @@
-const fs = require('fs')
-const tape = require('blue-tape')
-const tapSpec = require('tap-spec')
-//const tapDiff = require('tap-diff')
-const supertest = require('supertest-as-promised')
-const assert = require('assert')
+let fs = require('fs')
+let tape = require('blue-tape')
+let tapDiff = require('tap-diff')
+let supertest = require('supertest-as-promised')
 
 // Colorize
-//tape.createStream().pipe(tapDiff()).pipe(process.stdout)
-tape.createStream().pipe(tapSpec()).pipe(process.stdout)
+tape.createStream().pipe(tapDiff()).pipe(process.stdout)
 
 // Aero app creation with output disabled
 let newApp = require('../lib')
@@ -55,30 +52,6 @@ global.rmdir = function(dirPath, removeSelf, excludeFiles) {
 
 	if(removeSelf)
 		fs.rmdirSync(dirPath)
-}
-
-// Check app basics
-tape.Test.prototype.appOk = function(app) {
-	return this.doesNotThrow(() => {
-		assert(app.config)
-		assert(app.config.title)
-		assert(app.config.ports)
-		assert(app.config.ports.http)
-		assert(app.config.ports.https)
-		assert(app.config.ports.liveReload)
-
-		assert(app.package)
-		assert(app.package.name)
-		assert(app.package.version)
-		assert(app.package.description)
-		assert(app.package.dependencies)
-
-		assert(app.manifest)
-		assert(app.manifest.name)
-
-		assert(app.server.ready)
-		assert(app.server.ready.then)
-	}, 'seems to be healthy')
 }
 
 // Run all tests
