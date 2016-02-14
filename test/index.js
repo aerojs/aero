@@ -1,11 +1,13 @@
 const fs = require('fs')
 const tape = require('blue-tape')
-const tapDiff = require('tap-diff')
+const tapSpec = require('tap-spec')
+//const tapDiff = require('tap-diff')
 const supertest = require('supertest-as-promised')
 const assert = require('assert')
 
 // Colorize
-tape.createStream().pipe(tapDiff()).pipe(process.stdout)
+//tape.createStream().pipe(tapDiff()).pipe(process.stdout)
+tape.createStream().pipe(tapSpec()).pipe(process.stdout)
 
 // Aero app creation with output disabled
 let newApp = require('../lib')

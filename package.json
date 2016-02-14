@@ -28,7 +28,7 @@
 	},
 	"devDependencies": {
 		"blue-tape": "*",
-		"tap-diff": "*",
+		"tap-spec": "*",
 		"supertest": "*",
 		"supertest-as-promised": "*",
 		"aero-reset": "*",
