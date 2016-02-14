@@ -2,9 +2,11 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
+<!--
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![windows Build Status][appveyor-image]][appveyor-url]
+-->
 [![Dependencies][dependencies-image]][dependencies-url]
 
 Aero is the fastest web framework on the node platform. It is git friendly and works with Express middleware.
@@ -50,7 +52,7 @@ Templates, controllers, scripts, styles and JSON files are reloaded when you sav
 
 ## Ajaxification
 
-If you like you can use the `aero-ajax` [plugin](docs/Plugins.md) to switch from a standard website to an AJAX-powered website with minimal effort.
+If you like you can use the [aero-ajax](https://github.com/aerojs/aero-ajax) plugin to switch from a standard website to an AJAX-powered website with minimal effort.
 
 ## Modern ES
 
