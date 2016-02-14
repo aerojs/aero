@@ -4,7 +4,7 @@ The parsing of URL parameters is slightly different to usual servers.
 
 For example, let's assume you have a page called `users` which is available by visiting `/users`. The same page and its controller will be called when you request `/users/MyName` or even `/users/MyName/profile`.
 
-In all cases you can access `request.params` inside the users controller which gives you an array of parameters:
+In all cases you can access `request.params` inside the `users.js` controller which gives you an array of parameters:
 
 ```js
 // users
