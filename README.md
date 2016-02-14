@@ -36,6 +36,7 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 * [Layouts](docs/Layouts.md)
 * [Plugins](docs/Plugins.md)
 * [HTTP/2](docs/HTTPS.md)
+* [Web Manifest](docs/Manifest.md)
 * [API](docs/API.md)
 
 ## Colored output
