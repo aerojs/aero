@@ -69,6 +69,7 @@ Aero automatically handles both IPv4 and IPv6 requests.
 
 ## Similar frameworks
 
+* [Harp](http://harpjs.com/)
 * [Express](http://expressjs.com/)
 * [Koa](http://koajs.com/)
 * [Restify](http://mcavage.me/node-restify/)
