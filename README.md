@@ -77,13 +77,13 @@ Aero automatically handles both IPv4 and IPv6 requests.
 
 ## Websites using Aero
 
-URL                                                                | Source
------------------------------------------------------------------- | ------
-[blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)
-[increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)
-[my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)
-[nihongo-center.com](http://my.nihongo-center.com)                 | [view source](https://github.com/nihongocenter/nihongo-center.com)
-[notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)
+URL                                                                | Source | [PageSpeed](https://developers.google.com/speed/pagespeed/insights/)
+------------------------------------------------------------------ | ------ | ---------
+[blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)                 | 100/100
+[notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)                | 100/100
+[nihongo-center.com](http://my.nihongo-center.com)                 | [view source](https://github.com/nihongocenter/nihongo-center.com)        | 100/100
+[my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)     | 98/100
+[increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       | 98/100
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
 [npm-url]: https://npmjs.org/package/aero
