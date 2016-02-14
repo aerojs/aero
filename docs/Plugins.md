@@ -33,7 +33,11 @@ exports.styles = ['html-reset'] // html-reset.styl
 
 Official plugins are hosted on the [Aero organization](https://github.com/aerojs) page.
 
-### Recommended plugins
+## Highly recommended plugins
+
+These plugins are a must-have for any modern site and they synergize well with Aero:
 
 * [aero-reset](https://github.com/aerojs/aero-reset)
 * [aero-ajax](https://github.com/aerojs/aero-ajax)
+
+Including the ajax plugin will also change the behaviour of LiveReload to reload your pages via AJAX calls instead of a full browser reload.
