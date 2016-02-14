@@ -35,7 +35,7 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 * [Scripts](docs/Scripts.md)
 * [Layouts](docs/Layouts.md)
 * [Plugins](docs/Plugins.md)
-* [HTTP/2](docs/HTTPS.md)
+* [HTTP/2](docs/HTTP2.md)
 * [Web Manifest](docs/Manifest.md)
 * [API](docs/API.md)
 
