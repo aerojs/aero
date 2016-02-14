@@ -45,3 +45,19 @@ Layout components follow the same naming convention as pages. If your directory 
 * `layout.styl`
 * `layout.json`
 * `layout.js`
+
+## Pre-defined headers
+
+Every Aero website includes these in your `head` tag by default and there is no need to add that boilerplate by yourself:
+
+### Web manifest
+
+```html
+<link rel="manifest" href="manifest.json">
+```
+
+### Mobile viewport
+
+```html
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+```
