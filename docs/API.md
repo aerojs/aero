@@ -72,12 +72,12 @@ app.rewrite((request, response) => {
 ```js
 app.rewrite((request, response) => {
 	if(request.headers.host.indexOf('old-domain.com') !== -1) {
-        response.redirect('https://new-domain.com' + request.url)
+		response.redirect('https://new-domain.com' + request.url)
 
 		// By returning true we stop the call chain.
 		// Therefore routing will not happen.
-        return true
-    }
+		return true
+	}
 })
 ```
 

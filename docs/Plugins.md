@@ -7,7 +7,7 @@ Add the plugin you want to your `dependencies` in `package.json`, e.g. if you ne
 ```json
 "dependencies": {
 	"aero": "*",
-    "aero-ajax": "*"
+	"aero-ajax": "*"
 }
 ```
 
