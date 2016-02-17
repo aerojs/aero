@@ -17,7 +17,7 @@ Aero is the fastest web framework on the node platform. It is git friendly and w
 ## Installation
 
 ```bash
-echo "require('aero')().run()" > index.js && npm i aero --production && node --use_strict .
+echo "require('aero')().run()" > index.js && npm i aero --production && node .
 ```
 
 [![Aero Installation & Live Reload](docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)
