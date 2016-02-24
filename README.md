@@ -2,9 +2,9 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Dependencies][dependencies-image]][dependencies-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![windows Build Status][appveyor-image]][appveyor-url]
+[![Dependencies][dependencies-image]][dependencies-url]
 
 <!--
 [![Coverage Status][coveralls-image]][coveralls-url]
