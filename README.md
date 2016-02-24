@@ -91,9 +91,7 @@ URL                                                                | Source | [P
 [my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)     | 98/100
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       | 98/100
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
-
-by [Eduard Urbach](https://blitzprog.org) [@blitzprog](https://github.com/blitzprog)
+[![By Eduard Urbach](http://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/blitzprog)
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
 [npm-url]: https://npmjs.org/package/aero
