@@ -1,4 +1,5 @@
 let fs = require('fs')
+let path = require('path')
 let tape = require('blue-tape')
 let tapDiff = require('tap-diff')
 let supertest = require('supertest-as-promised')
@@ -55,6 +56,5 @@ global.rmdir = function(dirPath, removeSelf, excludeFiles) {
 }
 
 // Run all tests
-fs.readdir('test/tests', (error, files) => {
-	files.forEach(file => require('./tests/' + file))
-})
+let files = fs.readdirSync('test/tests')
+files.forEach(file => require(path.resolve(path.join('./test/tests', file))))

@@ -1,5 +1,4 @@
 let assert = require('assert')
-
 let appOk = function(t, app) {
 	return t.doesNotThrow(() => {
 		assert(app.config)
@@ -20,7 +19,7 @@ let appOk = function(t, app) {
 
 		assert(app.server.ready)
 		assert(app.server.ready.then)
-	}, 'seems to be healthy')
+	}, 'healthy')
 }
 
 test('Test App: Empty', function*(t) {
