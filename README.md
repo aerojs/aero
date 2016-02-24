@@ -3,11 +3,11 @@
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Dependencies][dependencies-image]][dependencies-url]
+[![Linux Build Status][travis-image]][travis-url]
+[![windows Build Status][appveyor-image]][appveyor-url]
 
 <!--
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Linux Build Status][travis-image]][travis-url]
-[![windows Build Status][appveyor-image]][appveyor-url]
 -->
 
 Aero is the fastest web framework on the node platform. It is git friendly and works with Express middleware.
