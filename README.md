@@ -41,36 +41,36 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 * [Web Manifest](docs/Manifest.md)
 * [API](docs/API.md)
 
-## Colored output
+## Colored
 
 ![Windows output (cmder)](docs/images/colored-windows.png)
 
-## Live reload
+## Live
 
 Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic page refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
 
-## Ajaxification
+## Ajax
 
 If you like you can use the [aero-ajax](https://github.com/aerojs/aero-ajax) plugin to switch from a standard website to an AJAX-powered website with minimal effort.
 
-## Modern ES
+## Modern
 
 Aero code uses the latest ES features present in node 4.x and 5.x. Additionally your client scripts are transformed using Babel ES 2015 which enables you to utilize next-generation ES without worrying about browser compatibilities.
 
-## GitHub hook
+## GitHub
 
 You can set up your GitHub project to call https://mydomain.com/git/pull if you want instant updates for your remote server on every `git push`.
 
-## Valid HTML 5
+## HTML 5
 
 All of your HTML and JSON output is automatically checked on every change.
 HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
 
-## IPv6 support
+## IPv6
 
 Aero automatically handles both IPv4 and IPv6 requests.
 
-## Similar frameworks
+## Similar
 
 * [Harp](http://harpjs.com/)
 * [Express](http://expressjs.com/)
@@ -78,7 +78,7 @@ Aero automatically handles both IPv4 and IPv6 requests.
 * [Restify](http://mcavage.me/node-restify/)
 * [Hapi](http://hapijs.com/)
 
-## Websites using Aero
+## Examples
 
 URL                                                                | Source | [PageSpeed](https://developers.google.com/speed/pagespeed/insights/)
 ------------------------------------------------------------------ | ------ | ---------
@@ -88,6 +88,8 @@ URL                                                                | Source | [P
 [my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)     | 98/100
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       | 98/100
 
+---
+
 [![By Eduard Urbach](http://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/blitzprog)
 
 [npm-image]: https://img.shields.io/npm/v/aero.svg
@@ -96,7 +98,7 @@ URL                                                                | Source | [P
 [travis-url]: https://travis-ci.org/aerojs/aero
 [appveyor-image]: https://img.shields.io/appveyor/ci/blitzprog/aero.svg?label=windows
 [appveyor-url]: https://ci.appveyor.com/project/blitzprog/aero
-[coveralls-image]: https://img.shields.io/coveralls/aerojs/aero/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/aerojs/aero/master+.svg
 [coveralls-url]: https://coveralls.io/r/aerojs/aero?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/aero.svg
 [downloads-url]: https://npmjs.org/package/aero
