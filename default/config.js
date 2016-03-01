@@ -1,5 +1,6 @@
 module.exports = {
 	title: 'Untitled website',
+	domains: [],
 	static: [],
 	styles: [],
 	scripts: [],
