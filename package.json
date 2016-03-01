@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "1.1.14",
+	"version": "1.1.15",
 	"description": "The fastest web framework on the node platform.",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
@@ -30,15 +30,15 @@
 	"devDependencies": {
 		"blue-tape": "*",
 		"tap-diff": "*",
-		"supertest": "*",
-		"supertest-as-promised": "*",
+		"istanbul": "*",
+		"coveralls": "*",
 		"aero-reset": "*",
 		"aero-ajax": "*"
 	},
 	"scripts": {
-		"test": "node --use_strict test",
-		"demo": "node --use_strict test/apps/demo",
-		"empty": "node --use_strict test/apps/empty"
+		"test": "./node_modules/istanbul/lib/cli.js cover test",
+		"demo": "node test/apps/demo",
+		"empty": "node test/apps/empty"
 	},
 	"files": [
 		"cache",

@@ -1,0 +1,1 @@
+exports.get = (request, response) => response.end('api')

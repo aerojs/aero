@@ -1,60 +1,70 @@
-let fs = require('fs')
-let path = require('path')
-let tape = require('blue-tape')
-let tapDiff = require('tap-diff')
-let supertest = require('supertest-as-promised')
+require('strict-mode')(function () {
+	'use strict'
 
-// Colorize
-tape.createStream().pipe(tapDiff()).pipe(process.stdout)
+	let fs = require('fs')
+	let path = require('path')
+	let tape = require('blue-tape')
+	let tapDiff = require('tap-diff')
+	let Promise = require('bluebird')
+	let requester = Promise.promisifyAll(require('request'))
+	global.aero = require('../lib')
 
-// Aero app creation with output disabled
-let newApp = require('../lib')
-global.aero = root => {
-	let app = newApp(root)
-	app.verbose = false
-	return app
-}
+	// Colorize
+	tape.createStream().pipe(tapDiff()).pipe(process.stdout)
 
-// Network request tool
-global.fetch = (app, route) => {
-	return supertest(app.server.httpServer).get(route)
-}
+	// Instead of setting
+	// `app.verbose = false`
+	// we overwrite the console functions because
+	// `app.verbose` produces flawed coverage results.
+	console.log = () => {}
+	console.warn = () => {}
+	console.error = () => {}
 
-// Wrapper around tape which auto-converts generators to coroutines
-global.test = (name, func) => {
-	if(func.constructor.name === 'GeneratorFunction')
-		func = Promise.coroutine(func)
-
-	return tape(name, func)
-}
-
-// rmdir
-global.rmdir = function(dirPath, removeSelf, excludeFiles) {
-	removeSelf = removeSelf !== undefined ? removeSelf : true
-
-	try {
-		var files = fs.readdirSync(dirPath)
-	} catch(e) {
-		console.error(e)
-		return
+	// Network request tool
+	global.fetch = (app, route) => {
+		return requester.getAsync(app.localURL(route)).then(response => response.body)
 	}
 
-	for(let file of files) {
-		if(excludeFiles && excludeFiles.indexOf(file) !== -1)
-			continue
-
-		let filePath = dirPath + '/' + file
-
-		if(fs.statSync(filePath).isFile())
-			fs.unlinkSync(filePath)
-		else
-			rmdir(filePath)
+	global.fetchPost = (app, route) => {
+		return requester.postAsync(app.localURL(route)).then(response => response.body)
 	}
 
-	if(removeSelf)
-		fs.rmdirSync(dirPath)
-}
+	// Wrapper around tape which auto-converts generators to coroutines
+	global.test = (name, func) => {
+		if(func.constructor.name === 'GeneratorFunction')
+			func = Promise.coroutine(func)
 
-// Run all tests
-let files = fs.readdirSync('test/tests')
-files.forEach(file => require(path.resolve(path.join('./test/tests', file))))
+		return tape(name, func)
+	}
+
+	// rmdir
+	global.rmdir = function(dirPath, removeSelf, excludeFiles) {
+		removeSelf = removeSelf !== undefined ? removeSelf : true
+
+		try {
+			var files = fs.readdirSync(dirPath)
+		} catch(e) {
+			console.error(e)
+			return
+		}
+
+		for(let file of files) {
+			if(excludeFiles && excludeFiles.indexOf(file) !== -1)
+				continue
+
+			let filePath = dirPath + '/' + file
+
+			if(fs.statSync(filePath).isFile())
+				fs.unlinkSync(filePath)
+			else
+				rmdir(filePath)
+		}
+
+		if(removeSelf)
+			fs.rmdirSync(dirPath)
+	}
+
+	// Run all tests
+	let files = fs.readdirSync('test/tests')
+	files.forEach(file => require(path.resolve(path.join('./test/tests', file))))
+})
