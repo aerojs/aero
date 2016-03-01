@@ -36,9 +36,10 @@
 		"aero-ajax": "*"
 	},
 	"scripts": {
-		"test": "./node_modules/istanbul/lib/cli.js cover test",
 		"demo": "node test/apps/demo",
-		"empty": "node test/apps/empty"
+		"empty": "node test/apps/empty",
+		"test": "./node_modules/istanbul/lib/cli.js cover test",
+		"coveralls": "./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info"
 	},
 	"files": [
 		"cache",
