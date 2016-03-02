@@ -12,7 +12,7 @@ Your configuration is incremental. This means you only need to include the setti
 
 ## Members
 
-### config.title
+### title
 
 Your public website title. Usually used in layout files and in the [manifest](Manifest.md).
 
@@ -22,7 +22,17 @@ Your public website title. Usually used in layout files and in the [manifest](Ma
 }
 ```
 
-### config.fonts
+### domain
+
+The website domain you are using in production.
+
+```json
+{
+	"domain": "example.com"
+}
+```
+
+### fonts
 
 A list of [Google Fonts](https://www.google.com/fonts). You can also add `:bold` and `:italic` to load additional variants of the font.
 
@@ -35,7 +45,7 @@ A list of [Google Fonts](https://www.google.com/fonts). You can also add `:bold`
 }
 ```
 
-### config.icons
+### icons
 
 A list of relative paths to icons you would like to use for your [manifest](Manifest.md). In the future this list will also be used to select your favicon.
 
@@ -49,7 +59,7 @@ A list of relative paths to icons you would like to use for your [manifest](Mani
 }
 ```
 
-### config.languages
+### languages
 
 A list of language codes for your website. The first entry is your main language and is also used in the [manifest](Manifest.md).
 

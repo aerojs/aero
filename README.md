@@ -39,6 +39,7 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 * [Events](docs/Events.md)
 * [HTTP/2](docs/HTTP2.md)
 * [Web Manifest](docs/Manifest.md)
+* [Sitemap](docs/Sitemap.md)
 * [API](docs/API.md)
 
 ## Colored
