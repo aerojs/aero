@@ -81,13 +81,13 @@ Aero automatically handles both IPv4 and IPv6 requests.
 
 ## Examples
 
-URL                                                                | Source | [PageSpeed](https://developers.google.com/speed/pagespeed/insights/)
+URL                                                                | Source | PageSpeed
 ------------------------------------------------------------------ | ------ | ---------
-[blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)                 | 100/100
-[notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)                | 100/100
-[nihongo-center.com](https://nihongo-center.com)                   | [view source](https://github.com/nihongocenter/nihongo-center.com)        | 100/100
-[my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)     | 98/100
-[increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       | 98/100
+[blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)                 | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://blitzprog.org&tab=desktop)
+[notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)                | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://notify.moe&tab=desktop)
+[nihongo-center.com](https://nihongo-center.com)                   | [view source](https://github.com/nihongocenter/nihongo-center.com)        | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://nihongo-center.com&tab=desktop)
+[my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)     | [98 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://my.nihongo-center.com&tab=desktop)
+[increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       | [98 / 100](https://developers.google.com/speed/pagespeed/insights/?url=http://increasedvoices.com&tab=desktop)
 
 ---
 
