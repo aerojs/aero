@@ -1,6 +1,6 @@
 module.exports = {
+	domain: '',
 	title: 'Untitled website',
-	domains: [],
 	static: [],
 	styles: [],
 	scripts: [],
