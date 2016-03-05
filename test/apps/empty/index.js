@@ -1,4 +1,4 @@
-let aero = require('../../../lib')
-let app = aero('test/apps/empty')
+const aero = require('../../../lib')
+const app = aero('test/apps/empty')
 
 app.run()
