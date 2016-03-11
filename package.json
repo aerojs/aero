@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "1.2.7",
+	"version": "1.2.8",
 	"description": "The fastest web framework on the node platform.",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
@@ -23,7 +23,7 @@
 		"request": "2.x",
 		"spdy": "3.x",
 		"strict-mode": "*",
-		"stylus": "https://github.com/stylus/stylus/tarball/dev",
+		"stylus": ">=0.54.0",
 		"uglify-js": ">=2.6",
 		"ws": ">=1.0.1"
 	},
