@@ -51,6 +51,11 @@ app.use(
 )
 ```
 
+## Redirect
+```js
+app.redirect('/index.html', '/')
+```
+
 ## Pre-Routing
 ```js
 app.rewrite((request, response) => {
@@ -68,7 +73,7 @@ app.rewrite((request, response) => {
 })
 ```
 
-## Redirect
+## Redirect domains
 ```js
 app.rewrite((request, response) => {
 	if(request.headers.host.indexOf('old-domain.com') !== -1) {
