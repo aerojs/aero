@@ -72,3 +72,11 @@ A list of language codes for your website. The first entry is your main language
 	]
 }
 ```
+
+## Production vs. Development
+
+Always set the environment variable `NODE_ENV` to `production` on your production systems as it will disable LiveReload and improve performance. You can do this by editing `/etc/environment` or adding the following line to your `.profile` or `.bashrc` file:
+
+```bash
+export NODE_ENV=production
+```
