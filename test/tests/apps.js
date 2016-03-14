@@ -29,6 +29,7 @@ test('Test App: Empty', function*(t) {
 
 	yield app.run()
 	appOk(t, app)
+	t.ok(yield fetch(app, '/'), 'front page')
 	yield app.stop()
 })
 
@@ -37,5 +38,6 @@ test('Test App: Demo', function*(t) {
 
 	yield app.run()
 	appOk(t, app)
+	t.ok(yield fetch(app, '/'), 'front page')
 	yield app.stop()
 })
