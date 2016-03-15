@@ -73,6 +73,21 @@ A list of language codes for your website. The first entry is your main language
 }
 ```
 
+### redirect
+
+A map of routes that should be redirected to another route (permanently via 301 status code). This is especially useful for SEO to make outdated backlinks behave correctly.
+
+```json
+{
+	"redirect": {
+		"en/frontpage.html": "/",
+		"weblog": "/blog"
+	}
+}
+```
+
+The target URL is directly used as a parameter for the HTTP redirect so it should always be prefixed by a `/`.
+
 ## Production vs. Development
 
 Always set the environment variable `NODE_ENV` to `production` on your production systems as it will disable LiveReload and improve performance. You can do this by editing `/etc/environment` or adding the following line to your `.profile` or `.bashrc` file:

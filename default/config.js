@@ -8,6 +8,7 @@ module.exports = {
 	icons: [],
 	languages: ['en'],
 	manifest: {},
+	redirect: {},
 	path: {
 		pages: 'pages',
 		layout: 'layout',
