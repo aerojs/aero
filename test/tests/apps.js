@@ -19,7 +19,7 @@ let appOk = function(t, app) {
 
 		assert(app.server.ready)
 		assert(app.server.ready.then)
-	}, 'healthy')
+	}, 'app is healthy')
 }
 
 test('Test App: Empty', function*(t) {
@@ -28,8 +28,11 @@ test('Test App: Empty', function*(t) {
 	let app = aero('test/apps/empty')
 
 	yield app.run()
+
 	appOk(t, app)
-	t.ok(yield fetch(app, '/'), 'front page')
+
+	t.ok(yield fetch(app, '/'), '/')
+
 	yield app.stop()
 })
 
@@ -37,7 +40,14 @@ test('Test App: Demo', function*(t) {
 	let app = aero('test/apps/demo')
 
 	yield app.run()
+
 	appOk(t, app)
-	t.ok(yield fetch(app, '/'), 'front page')
+
+	t.ok(yield fetch(app, '/'), '/')
+	t.ok(yield fetch(app, '/_/'), '/_/')
+	t.ok(yield fetch(app, '/api'), '/api')
+	t.ok(yield fetch(app, '/_/api'), '/_/api')
+	t.equal(yield fetch(app, '/redirect'), yield fetch(app, '/'), '/redirect')
+
 	yield app.stop()
 })

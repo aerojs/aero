@@ -4,5 +4,8 @@
 	"styles": [],
 	"scripts": [],
 	"fonts": ["Open Sans"],
-	"icons": []
+	"icons": [],
+	"redirect": {
+		"/redirect": "/"
+	}
 }
