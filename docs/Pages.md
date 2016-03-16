@@ -16,12 +16,14 @@ Adding a `.styl` file to the page will load the style sheet on this page only.
 
 Adding a `.json` file will add all its data to your `.jade` template automatically.
 
-For example the `helloworld` directory may contain:
+For example the `hello` directory may contain:
 
-* `helloworld.jade`
-* `helloworld.styl`
-* `helloworld.json`
-* `helloworld.js`
+* `hello.jade` (template)
+* `hello.styl` (style sheet)
+* `hello.js` (controller)
+* `hello.client.js` (client script)
+* `hello.json` (data)
+* `hello.jsonld` ([linked data](http://json-ld.org/))
 
 ## Subdirectories
 

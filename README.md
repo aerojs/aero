@@ -71,6 +71,10 @@ HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
 
 Aero automatically handles both IPv4 and IPv6 requests.
 
+## SEO
+
+All AJAX links are still fully functional when JavaScript is disabled (useful for search engines). You can also add [structured data](https://developers.google.com/structured-data/) via [JSON-LD](http://json-ld.org/) to help search engines better understand the content of your pages.
+
 ## Similar
 
 * [Harp](http://harpjs.com/)
