@@ -73,7 +73,7 @@ Aero automatically handles both IPv4 and IPv6 requests.
 
 ## SEO
 
-All AJAX links are still fully functional when JavaScript is disabled (useful for search engines). You can also add [structured data](https://developers.google.com/structured-data/) via [JSON-LD](http://json-ld.org/) to help search engines better understand the content of your pages.
+Page loading speed is one of the many ranking factors in Google. It is also the main focus of the Aero project. Additionally, all AJAX links are still fully functional when JavaScript is disabled which makes crawling easier for search engines. You can also add [structured data](https://developers.google.com/structured-data/) via [JSON-LD](http://json-ld.org/) to help crawlers understand the content of your pages. [Sitemaps](docs/Sitemap.md) are automatically generated.
 
 ## Similar
 
