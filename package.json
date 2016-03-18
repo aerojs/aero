@@ -17,7 +17,7 @@
 		"image-size": "0.x",
 		"jade": "1.x",
 		"node-watch": "0.x",
-		"marked": "0.x",
+		"marked": ">=0.3.5",
 		"mime-types": "2.x",
 		"mkdirp": "0.x",
 		"pem": "1.x",
