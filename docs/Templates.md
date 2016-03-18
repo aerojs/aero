@@ -16,7 +16,11 @@ Markdown example:
 Content.
 ```
 
-## Render markdown in Jade
+## Standalone markdown
+
+You do not need a Jade template if your page only uses Markdown.
+
+## Jade: Render page markdown
 
 ```jade
 != app.markdown(page.markdown)
