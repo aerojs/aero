@@ -86,6 +86,21 @@ app.rewrite((request, response) => {
 })
 ```
 
+## Accessing HTTP server
+
+You can retrieve the http server object using:
+
+```js
+app.server.http
+```
+
+## Accessing all routes
+
+```js
+Object.keys(app.server.routes)     // ['GET', 'POST']
+Object.keys(app.server.routes.GET) // ['', 'blog', 'contact']
+```
+
 ## Express compatibility
 
 Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
