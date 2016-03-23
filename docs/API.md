@@ -51,6 +51,22 @@ app.use(
 )
 ```
 
+## Ready
+
+`app.run()` returns `app.ready` which is a promise that gets resolved when the server loaded all pages and started the server.
+
+```js
+app.run().then(() => {
+    console.log('We are online!')
+})
+```
+
+```js
+app.ready.then(() => {
+    console.log('We are online!')
+})
+```
+
 ## Redirect
 ```js
 app.redirect('/index.html', '/')
