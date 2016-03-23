@@ -102,6 +102,12 @@ app.rewrite((request, response) => {
 })
 ```
 
+## Root directory
+
+```js
+app.root
+```
+
 ## Accessing HTTP server
 
 You can retrieve the http server object using:
@@ -115,6 +121,28 @@ app.server.http
 ```js
 Object.keys(app.server.routes)     // ['GET', 'POST']
 Object.keys(app.server.routes.GET) // ['', 'blog', 'contact']
+```
+
+## Response
+
+### Send a JSON object or JSON string
+
+```js
+response.json({
+	example: 'JSON data'
+})
+```
+
+### Redirect to another URL
+
+```js
+response.redirect('https://google.com')
+```
+
+### Send a file
+
+```js
+response.sendFile('data.txt')
 ```
 
 ## Express compatibility
