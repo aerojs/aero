@@ -34,4 +34,4 @@ Every Jade template has access to the `app` variable. Page templates can additio
 
 ## app.markdown
 
-The `app.markdown` function expects the markdown code as the first parameter and returns the rendered HTML. For details check out  [marked](https://github.com/chjj/marked).
+The `app.markdown` function expects the markdown code as the first parameter and returns the rendered HTML. For details check out  [remarkable](https://github.com/jonschlinkert/remarkable).
