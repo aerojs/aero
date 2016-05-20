@@ -20,7 +20,7 @@
 		"mime-types": "2.x",
 		"mkdirp": "0.x",
 		"pem": "1.x",
-		"remarkable": "1.x",
+		"remarkable": ">=1.6",
 		"request": "2.x",
 		"spdy": "3.x",
 		"strict-mode": "*",
