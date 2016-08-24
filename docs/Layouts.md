@@ -37,7 +37,7 @@ exports.render = function(request, render) {
 }
 ```
 
-It doesn't make sense to define `get` or `post` methods for layout controllers which is why the exported function needs to be have the generic name `render`. The `response` parameter is also dropped and replaced by a special `render` function as the 2nd parameter.
+It doesn't make sense to define `get` or `post` methods for layout controllers which is why the exported function needs to have the generic name `render`. The `response` parameter is also dropped and replaced by a special `render` function as the 2nd parameter.
 
 Layout components follow the same naming convention as pages. If your directory is called `layout` then it can include the following files:
 

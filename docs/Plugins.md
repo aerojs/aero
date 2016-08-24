@@ -12,9 +12,9 @@ Add the plugin you want to your `dependencies` in `package.json`, e.g. if you ne
 ```
 
 ## Making your own plugin
-A plugin is just an npm package with a name that start with `aero-` and defines a simple API. The following 3 methods can be used to define a plugin:
+A plugin is just an npm package with the name prefix `aero-` which defines a simple API. The following 3 methods can be used to define a plugin:
 
-### Function
+### As a function
 ```js
 module.exports = app => console.log('My awesome plugin got loaded!')
 ```

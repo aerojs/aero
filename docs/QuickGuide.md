@@ -13,7 +13,7 @@ A page can have a [template](Templates.md), [style sheet](Styles.md), a [control
 * `hello/hello.json`
 
 ## Controllers
-A controller is just an object that defines `get` or `post` methods. Or whatever you need.
+The `hello.js` controller is just an object that defines `get` or `post` methods. Or whatever you need.
 
 ```js
 exports.get = (request, response) => response.end('Hello')
@@ -27,7 +27,7 @@ response.render({
 })
 ```
 
-In the template:
+In the `hello.jade` template we can now access `message`:
 ```jade
 h1= message
 ```
