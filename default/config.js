@@ -14,7 +14,8 @@ module.exports = {
 		layout: 'layout',
 		styles: 'styles',
 		scripts: 'scripts',
-		security: 'security'
+		security: 'security',
+		startup: 'startup'
 	},
 	ports: {
 		http: 4000,
