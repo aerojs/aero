@@ -9,6 +9,7 @@ module.exports = {
 	languages: ['en'],
 	manifest: {},
 	redirect: {},
+	headers: {},
 	path: {
 		pages: 'pages',
 		layout: 'layout',
