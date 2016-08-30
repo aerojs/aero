@@ -86,6 +86,20 @@ A map of routes that should be redirected to another route (permanently via 301 
 }
 ```
 
+### validation
+
+Disable html5 validation manually when HTML5 Validator is offline
+
+***Default:*** true
+
+```json
+{
+	"validation": {
+		"html5": false
+	}
+}
+```
+
 The target URL is directly used as a parameter for the HTTP redirect so it should always be prefixed by a `/`.
 
 ## Production vs. Development
