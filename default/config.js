@@ -22,5 +22,8 @@ module.exports = {
 		http: 4000,
 		https: 4001,
 		liveReload: 9000
+	},
+	validation:{
+		html5: true
 	}
 }
