@@ -145,6 +145,12 @@ response.redirect('https://google.com')
 response.sendFile('data.txt')
 ```
 
+### Status code
+
+```js
+response.status = 404
+```
+
 ## Express compatibility
 
 Aero aims to be as Express compatible as possible, however 100% API compatibility is not the goal.
