@@ -37,7 +37,7 @@ test('Test App: Router', function*(t) {
 	t.notOk(yield fetch(app, '/api'), 'app.unroute')
 
 	// Git pull
-	t.ok(yield fetchPost(app, '/git/pull'), '/git/pull')
+	//t.ok(yield fetchPost(app, '/git/pull'), '/git/pull')
 
 	yield app.stop()
 })

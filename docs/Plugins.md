@@ -41,3 +41,7 @@ These plugins are a must-have for any modern site and they synergize well with A
 * [aero-ajax](https://github.com/aerojs/aero-ajax)
 
 Including the ajax plugin will also change the behaviour of LiveReload to reload your pages via AJAX calls instead of a full browser reload.
+
+You can also use:
+
+* [aero-git](https://github.com/aerojs/aero-git) to instantly see changes on a `git push`
