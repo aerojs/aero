@@ -19,6 +19,11 @@ let appOk = function(t, app) {
 
 		assert(app.server.ready)
 		assert(app.server.ready.then)
+
+		assert(app.averageResponseTime !== undefined)
+		assert(app.averageResponseSize !== undefined)
+		assert(app.stylesSize !== undefined)
+		assert(app.scriptsSize !== undefined)
 	}, 'app is healthy')
 }
 
