@@ -20,10 +20,10 @@ let appOk = function(t, app) {
 		assert(app.server.ready)
 		assert(app.server.ready.then)
 
-		assert(app.averageResponseTime !== undefined)
-		assert(app.averageResponseSize !== undefined)
-		assert(app.stylesSize !== undefined)
-		assert(app.scriptsSize !== undefined)
+		assert(app.averageResponseTime >= 0)
+		assert(app.averageResponseSize >= 0)
+		assert(app.stylesSize >= 0)
+		assert(app.scriptsSize >= 0)
 	}, 'app is healthy')
 }
 
@@ -53,6 +53,7 @@ test('Test App: Demo', function*(t) {
 	t.ok(yield fetch(app, '/api'), '/api')
 	t.ok(yield fetch(app, '/_/api'), '/_/api')
 	t.equal(yield fetch(app, '/redirect'), yield fetch(app, '/'), '/redirect')
+	t.equal(yield fetch(app, '/sendfile'), require('fs').readFileSync('package.json', 'utf8'), '/sendfile')
 
 	yield app.stop()
 })
