@@ -1,7 +1,9 @@
 test('Restart', function*(t) {
-	let app = aero('test/apps/demo')
-
+	global.app = aero('test/apps/empty')
 	yield app.run()
+
+	appOk(t, app)
+
 	yield app.restart()
 	yield app.stop()
 

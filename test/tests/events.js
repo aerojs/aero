@@ -25,12 +25,13 @@ const events = [
 ]
 
 test('Events', function*(t) {
-	let app = aero('test/apps/demo')
+	global.app = aero('test/apps/demo')
 	let fired = {}
 
 	events.forEach(eventName => app.on(eventName, () => fired[eventName] = true))
 
 	yield app.run()
+	appOk(t, app)
 
 	// Trigger modification events
 	// resave(path.join(app.root, 'pages/home/home.jade'))

@@ -3,6 +3,7 @@ require('strict-mode')(function () {
 
 	let fs = require('fs')
 	let path = require('path')
+	let assert = require('assert')
 	let tape = require('blue-tape')
 	let tapDiff = require('tap-diff')
 	let Promise = require('bluebird')
@@ -68,6 +69,34 @@ require('strict-mode')(function () {
 
 		if(removeSelf)
 			fs.rmdirSync(dirPath)
+	}
+
+	global.appOk = function(t, app) {
+		return t.doesNotThrow(() => {
+			assert(app.config)
+			assert(app.config.title)
+			assert(app.config.ports)
+			assert(app.config.ports.http)
+			assert(app.config.ports.https)
+			assert(app.config.ports.liveReload)
+
+			assert(app.package)
+			assert(app.package.name)
+			assert(app.package.version)
+			assert(app.package.description)
+			assert(app.package.dependencies)
+
+			assert(app.manifest)
+			assert(app.manifest.name)
+
+			assert(app.server.ready)
+			assert(app.server.ready.then)
+
+			assert(app.averageResponseTime >= 0)
+			assert(app.averageResponseSize >= 0)
+			assert(app.stylesSize >= 0)
+			assert(app.scriptsSize >= 0)
+		}, 'app is healthy')
 	}
 
 	// Run all tests

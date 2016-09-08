@@ -11,7 +11,7 @@ const okRoutes = [
 ]
 
 test('Test App: Router', function*(t) {
-	let app = aero('test/apps/router')
+	global.app = aero('test/apps/router')
 
 	let equalTest = Promise.coroutine(function*(route) {
 		t.equal(yield fetch(app, route), route, '/' + route)
@@ -21,6 +21,7 @@ test('Test App: Router', function*(t) {
 	})
 
 	yield app.run()
+	appOk(t, app)
 
 	yield equalRoutes.map(equalTest)
 	yield okRoutes.map(okTest)
