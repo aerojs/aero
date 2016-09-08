@@ -7,8 +7,6 @@ const equalRoutes = [
 const okRoutes = [
 	'static',
 	'dynamic',
-	'robots.txt',
-	'sitemap.txt',
 	'images/benchmark.png'
 ]
 
