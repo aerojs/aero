@@ -1,14 +1,15 @@
 require('strict-mode')(function () {
 	'use strict'
 
-	let fs = require('fs')
 	let path = require('path')
 	let assert = require('assert')
 	let tape = require('blue-tape')
 	let tapDiff = require('tap-diff')
 	let Promise = require('bluebird')
-	let requester = Promise.promisifyAll(require('request'))
+
+	global.fs = require('fs')
 	global.aero = require('../lib')
+	global.requester = Promise.promisifyAll(require('request'))
 
 	// Colorize
 	tape.createStream().pipe(tapDiff()).pipe(process.stdout)
