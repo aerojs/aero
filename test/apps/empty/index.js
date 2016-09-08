@@ -1,4 +1,4 @@
-const aero = require('../../../lib')
-const app = aero('test/apps/empty')
+let aero = require('../../../lib')
 
+global.app = aero('test/apps/empty')
 module.exports = app.run()
