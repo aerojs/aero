@@ -1,0 +1,1 @@
+app.rewrite((request, response) => null)

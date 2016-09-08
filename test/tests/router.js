@@ -14,10 +14,10 @@ test('Test App: Router', function*(t) {
 	global.app = aero('test/apps/router')
 
 	let equalTest = Promise.coroutine(function*(route) {
-		t.equal(yield fetch(app, route), route, '/' + route)
+		t.equal((yield fetch(app, route)).body, route, '/' + route)
 	})
 	let okTest = Promise.coroutine(function*(route) {
-		t.ok(yield fetch(app, route), '/' + route)
+		t.ok((yield fetch(app, route)).body, '/' + route)
 	})
 
 	yield app.run()
@@ -26,17 +26,14 @@ test('Test App: Router', function*(t) {
 	yield equalRoutes.map(equalTest)
 	yield okRoutes.map(okTest)
 
-	t.ok(JSON.parse(yield fetch(app, '/api/json')), '/api/json')
+	t.ok(JSON.parse((yield fetch(app, '/api/json')).body), '/api/json')
 
 	// Regex route
-	//t.equal(yield fetch(app, '/+MyUserName'), 'MyUserName', '/+MyUserName')
+	t.equal((yield fetch(app, '/+MyUserName')).body, 'MyUserName', '/+MyUserName')
 
 	// Unroute
 	app.unroute('api')
-	t.notOk(yield fetch(app, '/api'), 'app.unroute')
-
-	// Git pull
-	//t.ok(yield fetchPost(app, '/git/pull'), '/git/pull')
+	t.notOk((yield fetch(app, '/api')).body, 'app.unroute')
 
 	yield app.stop()
 })

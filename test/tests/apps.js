@@ -5,7 +5,7 @@ test('Test App: Empty', function*(t) {
 	yield app.run()
 
 	appOk(t, app)
-	t.ok(yield fetch(app, '/'), '/')
+	t.ok((yield fetch(app, '/')).body, '/')
 
 	yield app.stop()
 })
@@ -16,12 +16,21 @@ test('Test App: Demo', function*(t) {
 
 	appOk(t, app)
 
-	t.ok(yield fetch(app, '/'), '/')
-	t.ok(yield fetch(app, '/_/'), '/_/')
-	t.ok(yield fetch(app, '/api'), '/api')
-	t.ok(yield fetch(app, '/_/api'), '/_/api')
-	t.equal(yield fetch(app, '/redirect'), yield fetch(app, '/'), '/redirect')
-	t.equal(yield fetch(app, '/sendfile'), require('fs').readFileSync('package.json', 'utf8'), '/sendfile')
+	let frontPage = yield fetch(app, '/')
+	t.ok(frontPage.body, '/')
+	t.equal(frontPage.statusCode, 200, '/ (status code)')
+
+	t.ok((yield fetch(app, '/_/')).body, '/_/')
+	t.ok((yield fetch(app, '/api')).body, '/api')
+	t.ok((yield fetch(app, '/_/api')).body, '/_/api')
+	t.equal((yield fetch(app, '/redirect')).body, (yield fetch(app, '/')).body, '/redirect')
+	t.equal((yield fetch(app, '/sendfile')).body, require('fs').readFileSync('package.json', 'utf8'), '/sendfile')
+
+	let syntaxError = yield fetch(app, '/syntaxerror')
+	t.ok(syntaxError.body.startsWith('SyntaxError'), '/syntaxerror')
+	t.equal(syntaxError.statusCode, 500, '/syntaxerror (status code)')
+
+	app.liveReload.broadcast({})
 
 	yield app.stop()
 })

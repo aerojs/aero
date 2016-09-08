@@ -1,0 +1,1 @@
+app.post('/post', (request, response) => response.end('success'))

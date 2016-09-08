@@ -26,14 +26,14 @@ require('strict-mode')(function () {
 		return requester.getAsync({
 			url: app.localURL(route),
 			rejectUnauthorized: false
-		}).then(response => response.body)
+		})
 	}
 
 	global.fetchPost = (app, route) => {
 		return requester.postAsync({
 			url: app.localURL(route),
 			rejectUnauthorized: false
-		}).then(response => response.body)
+		})
 	}
 
 	// Wrapper around tape which auto-converts generators to coroutines

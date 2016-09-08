@@ -1,1 +1,0 @@
-exports.get = (request, response) => response.sendFile('package.json')

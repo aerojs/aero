@@ -148,7 +148,7 @@ response.sendFile('data.txt')
 ### Status code
 
 ```js
-response.status = 404
+response.statusCode = 404
 ```
 
 ## Express compatibility
