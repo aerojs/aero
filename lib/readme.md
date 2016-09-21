@@ -3,9 +3,9 @@ Aero Web Framework
 Thank you for taking your time looking at the source code
 for the Aero framework. It is a project that I made mostly
 for myself because I wanted a server that was flexible enough
-to support dynamic routes - a feature that Express was (or still is?) lacking.
+to support dynamic routes - a feature that Express was *or still is?* lacking.
 Performance was not my original motivation to write this framework.
-It just accidentally turned out to be very fast, doing things efficiently and
+It just accidentally turned out to be very fast, doing things efficiently
 and always adhering to DRY rules.
 
 Source Code Guide
