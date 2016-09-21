@@ -26,6 +26,11 @@ test('Test App: Router', function*(t) {
 	yield equalRoutes.map(equalTest)
 	yield okRoutes.map(okTest)
 
+	// Invalid file requests
+	t.equal((yield fetch(app, '/images/../')).statusCode, 403, '/images/../ [403]')
+	t.equal((yield fetch(app, '/images/folder/')).statusCode, 404, '/images/folder/ [404]')
+	t.equal((yield fetch(app, '/images/doesnotexist')).statusCode, 404, '/images/doesnotexist [404]')
+
 	t.ok(JSON.parse((yield fetch(app, '/api/json')).body), '/api/json')
 
 	// Regex route

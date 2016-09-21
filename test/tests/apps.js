@@ -18,7 +18,7 @@ test('Test App: Demo', function*(t) {
 
 	let frontPage = yield fetch(app, '/')
 	t.ok(frontPage.body, '/')
-	t.equal(frontPage.statusCode, 200, '/ (status code)')
+	t.equal(frontPage.statusCode, 200, '/ [200]')
 
 	t.ok((yield fetch(app, '/_/')).body, '/_/')
 	t.ok((yield fetch(app, '/api')).body, '/api')
@@ -28,11 +28,11 @@ test('Test App: Demo', function*(t) {
 
 	let syntaxError = yield fetch(app, '/error/syntax')
 	t.ok(syntaxError.body.startsWith('SyntaxError'), '/error/syntax')
-	t.equal(syntaxError.statusCode, 500, '/error/syntax (status code)')
+	t.equal(syntaxError.statusCode, 500, '/error/syntax [500]')
 
 	let controllerError = yield fetch(app, '/error/controller')
 	t.ok(controllerError.body.startsWith('ReferenceError'), '/error/controller')
-	t.equal(controllerError.statusCode, 500, '/error/controller (status code)')
+	t.equal(controllerError.statusCode, 500, '/error/controller [500]')
 
 	// Live modification
 	let testPath = 'test/apps/demo/pages/home/home.jade'
@@ -49,7 +49,7 @@ test('Test App: Demo', function*(t) {
 		url: app.localURL('/').replace('https', 'http').replace(':' + app.config.ports.https, ':' + app.config.ports.http),
 		rejectUnauthorized: false
 	})
-	t.equal(redirectedFrontPage.statusCode, 200, 'HTTP redirect (status code)')
+	t.equal(redirectedFrontPage.statusCode, 200, 'HTTP redirect [200]')
 	t.equal(redirectedFrontPage.body, newFrontPage.body, 'HTTP redirect')
 
 	app.liveReload.broadcast({})
