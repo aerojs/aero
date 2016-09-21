@@ -7,7 +7,7 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
-Aero is the fastest web framework on the node platform. It is git friendly and works with Express middleware.
+Aero is the fastest web framework on the node platform. Web development should be easy and efficient.
 
 [![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 6.5.0 on ApacheBench.")](https://github.com/blitzprog/webserver-benchmarks)
 
