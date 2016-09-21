@@ -23,6 +23,7 @@ test('Test App: Demo', function*(t) {
 	t.ok((yield fetch(app, '/_/')).body, '/_/')
 	t.ok((yield fetch(app, '/api')).body, '/api')
 	t.ok((yield fetch(app, '/_/api')).body, '/_/api')
+	t.equal((yield fetch(app, '/favicon.ico')).statusCode, 404, '/favicon.ico [404]')
 	t.equal((yield fetch(app, '/redirect')).body, (yield fetch(app, '/')).body, '/redirect')
 	t.equal((yield fetch(app, '/sendfile')).body, require('fs').readFileSync('package.json', 'utf8'), '/sendfile')
 
@@ -33,6 +34,13 @@ test('Test App: Demo', function*(t) {
 	let controllerError = yield fetch(app, '/error/controller')
 	t.ok(controllerError.body.startsWith('ReferenceError'), '/error/controller')
 	t.equal(controllerError.statusCode, 500, '/error/controller [500]')
+
+	t.ok((yield fetch(app, '/?layout=1')).body, '/?layout=1')
+
+	let manifest = JSON.parse((yield fetch(app, '/manifest.json')).body)
+	t.ok(manifest, 'manifest')
+	t.ok(manifest.name, 'manifest.name')
+	t.ok(manifest.display, 'manifest.display')
 
 	// Live modification
 	let testPath = 'test/apps/demo/pages/home/home.jade'

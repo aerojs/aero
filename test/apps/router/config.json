@@ -1,4 +1,7 @@
 {
 	"title": "Aero Router Test",
-	"static": ["images"]
+	"static": ["images"],
+	"icons": [
+		"images/benchmark.png"
+	]
 }

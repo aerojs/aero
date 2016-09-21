@@ -1,7 +1,9 @@
 {
 	"title": "Aero Demo",
 	"static": [],
-	"styles": [],
+	"styles": [
+		"base"
+	],
 	"scripts": [],
 	"fonts": ["Open Sans"],
 	"icons": [],
