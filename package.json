@@ -46,8 +46,7 @@
 	"files": [
 		"cache",
 		"default",
-		"lib",
-		"plugins"
+		"lib"
 	],
 	"keywords": [
 		"web",
