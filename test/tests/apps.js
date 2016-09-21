@@ -26,9 +26,13 @@ test('Test App: Demo', function*(t) {
 	t.equal((yield fetch(app, '/redirect')).body, (yield fetch(app, '/')).body, '/redirect')
 	t.equal((yield fetch(app, '/sendfile')).body, require('fs').readFileSync('package.json', 'utf8'), '/sendfile')
 
-	let syntaxError = yield fetch(app, '/syntaxerror')
-	t.ok(syntaxError.body.startsWith('SyntaxError'), '/syntaxerror')
-	t.equal(syntaxError.statusCode, 500, '/syntaxerror (status code)')
+	let syntaxError = yield fetch(app, '/error/syntax')
+	t.ok(syntaxError.body.startsWith('SyntaxError'), '/error/syntax')
+	t.equal(syntaxError.statusCode, 500, '/error/syntax (status code)')
+
+	let controllerError = yield fetch(app, '/error/controller')
+	t.ok(controllerError.body.startsWith('ReferenceError'), '/error/controller')
+	t.equal(controllerError.statusCode, 500, '/error/controller (status code)')
 
 	// Live modification
 	let testPath = 'test/apps/demo/pages/home/home.jade'
