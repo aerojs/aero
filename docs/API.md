@@ -16,7 +16,7 @@ app.get('/hello', (request, response) => {
 ## Regex routing
 ```js
 app.get(/^\+(.*)$/, (request, response) => {
-	response.end('Google+ style routing')
+	response.end(request.params[0])
 })
 ```
 
