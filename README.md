@@ -60,7 +60,7 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 
 ## Examples
 
-URL                                                                | Source | Size* | Speed*
+URL                                                                | Source | Size | Speed
 ------------------------------------------------------------------ | ------ | ---------
 [blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)                 | 12 KB | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://blitzprog.org&tab=desktop)
 [notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)                | 15 KB | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://notify.moe&tab=desktop)
