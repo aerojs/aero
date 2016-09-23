@@ -12,10 +12,11 @@ Source Code Guide
 -----------------
 `index.js` is the main file which forces all Aero-related packages to
 run in strict mode. We need strict mode to use ES6 features like `let`.
-Aero is written in object-oriented style and is composed of 5 main classes:
+Aero is written in object-oriented style and is composed of 6 main classes:
 
 * App
 * Layout
+* Linter
 * LiveReload
 * Page
 * Server
