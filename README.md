@@ -21,6 +21,22 @@ echo "require('aero')().run()" > index.js && npm i aero --production && node .
 
 Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 
+## Features
+
+* Optimized for high latency environments
+* Extremely fast router
+* Instantly see changes while developing
+* ES 6 support for client scripts
+* HTML 5 linter runs after every change
+* Follows DRY like it's the bible
+* Can update your live server on every git commit
+* Similar to: [Harp](http://harpjs.com/), [Express](http://expressjs.com/), [Koa](http://koajs.com/), [Restify](http://mcavage.me/node-restify/), [Hapi](http://hapijs.com/)
+* Has all the good stuff: HTTP/2, IPv6, Web Manifest
+
+## Colored
+
+![Windows output (cmder)](docs/images/colored-windows.png)
+
 ## Quick Guide
 
 Read [Aero in 30 seconds](docs/QuickGuide.md).
@@ -42,37 +58,13 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 * [Web Manifest](docs/Manifest.md)
 * [API](docs/API.md)
 
-## Features
-
-* Performance-focused web server
-* Highly optimized page loading time
-* Instantly see changes while developing
-* ES 6 support for client scripts
-* HTML 5 linter runs after every change
-* Follows DRY like it's the bible
-* Can update your live server on every git commit
-* All the good stuff: HTTP/2, IPv6, Web Manifest
-
-## Colored
-
-![Windows output (cmder)](docs/images/colored-windows.png)
-
-## Similar
-
-* [Harp](http://harpjs.com/)
-* [Express](http://expressjs.com/)
-* [Koa](http://koajs.com/)
-* [Restify](http://mcavage.me/node-restify/)
-* [Hapi](http://hapijs.com/)
-
 ## Examples
 
 URL                                                                | Source | PageSpeed
 ------------------------------------------------------------------ | ------ | ---------
 [blitzprog.org](https://blitzprog.org)                             | [view source](https://github.com/blitzprog/blitzprog.org)                 | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://blitzprog.org&tab=desktop)
 [notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)                | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://notify.moe&tab=desktop)
-[nihongo-center.com](https://nihongo-center.com)                   | [view source](https://github.com/nihongocenter/nihongo-center.com)        | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://nihongo-center.com&tab=desktop)
-[my.nihongo-center.com](http://my.nihongo-center.com)              | [view source](https://github.com/nihongocenter/my.nihongo-center.com)     | [98 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://my.nihongo-center.com&tab=desktop)
+[nihongo-center.com](https://nihongo-center.com)                   | [view source](https://github.com/nihongocenter/nihongo-center.com)        | [99 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://nihongo-center.com&tab=desktop)
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       | [98 / 100](https://developers.google.com/speed/pagespeed/insights/?url=http://increasedvoices.com&tab=desktop)
 
 ---
