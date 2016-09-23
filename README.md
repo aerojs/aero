@@ -42,38 +42,18 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 * [Web Manifest](docs/Manifest.md)
 * [API](docs/API.md)
 
-## Colored
+## Features
+
+* Performance-focused web server
+* Highly optimized page loading time
+* Instantly see changes while developing
+* ES 6 support for client scripts
+* HTML 5 linter runs after every change
+* Follows DRY like it's the bible
+* Can update your live server on every git commit
+* All the good stuff: HTTP/2, IPv6, Web Manifest
 
 ![Windows output (cmder)](docs/images/colored-windows.png)
-
-## Live
-
-Templates, controllers, scripts, styles and JSON files are reloaded when you save them in your editor and cause an automatic page refresh. There is no need to restart Aero when editing your project, therefore boosting your productivity.
-
-## Ajax
-
-If you like you can use the [aero-ajax](https://github.com/aerojs/aero-ajax) plugin to switch from a standard website to an AJAX-powered website with minimal effort.
-
-## Modern
-
-Aero code uses the latest ES features present in node 4.x and 5.x. Additionally your client scripts are transformed using Babel ES 2015 which enables you to utilize next-generation ES without worrying about browser compatibilities.
-
-## GitHub
-
-You can set up your GitHub project to call https://mydomain.com/git/pull if you want instant updates for your remote server on every `git push`.
-
-## HTML 5
-
-All of your HTML and JSON output is automatically checked on every change.
-HTML5 is linted via `html5-lint` which uses https://html5.validator.nu/.
-
-## IPv6
-
-Aero automatically handles both IPv4 and IPv6 requests.
-
-## SEO
-
-Page loading speed is one of the many ranking factors in Google. It is also the main focus of the Aero project. Additionally, all AJAX links are still fully functional when JavaScript is disabled which makes crawling easier for search engines. You can also add [structured data](https://developers.google.com/structured-data/) via [JSON-LD](http://json-ld.org/) to help crawlers understand the content of your pages. [Sitemaps](https://github.com/aerojs/aero-sitemap) can be automatically generated via additional plugins.
 
 ## Similar
 
