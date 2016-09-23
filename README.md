@@ -53,6 +53,8 @@ Read [Aero in 30 seconds](docs/QuickGuide.md).
 * Can update your live server on every git commit
 * All the good stuff: HTTP/2, IPv6, Web Manifest
 
+## Colored
+
 ![Windows output (cmder)](docs/images/colored-windows.png)
 
 ## Similar
