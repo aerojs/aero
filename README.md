@@ -67,7 +67,7 @@ URL                                                                | Source | Si
 [nihongo-center.com](https://nihongo-center.com)                   | [view source](https://github.com/nihongocenter/nihongo-center.com)        | 13 KB | [99 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://nihongo-center.com&tab=desktop)
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       |  5 KB | [98 / 100](https://developers.google.com/speed/pagespeed/insights/?url=http://increasedvoices.com&tab=desktop)
 
-**Size**: Includes **HTML**, **CSS** and **JS** of the frontpage. Excludes external videos and images.  
+**Size**: Includes compressed **HTML**, **CSS** and **JS** of the frontpage. Excludes external videos and images.  
 **Speed**: Measured by **Google PageSpeed**. Does not represent real-world loading speed.
 
 ---
