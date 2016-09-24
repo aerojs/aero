@@ -1,6 +1,10 @@
 const fs = require('fs')
 const path = require('path')
-const resave = file => fs.writeFileSync(file, fs.readFileSync(file, 'utf8'), 'utf8')
+const resave = (file, added) => {
+	let content = fs.readFileSync(file, 'utf8')
+	fs.writeFileSync(file, content + added, 'utf8')
+	Promise.delay(250).then(() => fs.writeFileSync(file, content, 'utf8'))
+}
 const events = [
 	'server started',
 
@@ -34,10 +38,10 @@ test('Events', function*(t) {
 	appOk(t, app)
 
 	// Trigger modification events
-	// resave(path.join(app.root, 'pages/home/home.jade'))
-	// resave(path.join(app.root, 'scripts/init.js'))
-	// resave(path.join(app.root, 'styles/base.styl'))
 	// resave(path.join(app.root, 'config.json'))
+	resave(app.path('pages/home/home.jade'), '\np Reload works.')
+	resave(app.path('scripts/init.js'), '\nconsole.log("Reload works")')
+	resave(app.path('styles/base.styl'), '\nreloadWorks = true')
 
 	yield app.stop()
 
