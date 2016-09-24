@@ -2,6 +2,7 @@ test('Test App: Empty', function*(t) {
 	rmdir('test/apps/empty', false, ['.gitignore', 'index.js'])
 
 	global.app = aero('test/apps/empty')
+	fs.unlinkSync(app.cacheFile)
 	yield app.run()
 
 	appOk(t, app)
