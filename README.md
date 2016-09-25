@@ -19,7 +19,7 @@ echo "require('aero')().run()" > index.js && npm i aero --production && node .
 
 [![Aero Installation & Live Reload](docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)
 
-Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
+Visit [http://localhost:4000/](http://localhost:4000/) in your browser and check out [Aero in 30 seconds](docs/QuickGuide.md).
 
 ## Features
 
@@ -33,13 +33,9 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser.
 * Similar to: [Harp](http://harpjs.com/), [Express](http://expressjs.com/), [Koa](http://koajs.com/), [Restify](http://mcavage.me/node-restify/), [Hapi](http://hapijs.com/)
 * Has all the good stuff: HTTP/2, IPv6, Web Manifest
 
-## Colored
+## Screenshot
 
-![Windows output (cmder)](docs/images/colored-windows.png)
-
-## Quick Guide
-
-Read [Aero in 30 seconds](docs/QuickGuide.md).
+![Terminal output](docs/images/terminal.png)
 
 ## Documentation
 
@@ -66,6 +62,8 @@ URL                                                                | Source | Si
 [notify.moe](https://notify.moe)                                   | [view source](https://github.com/animenotifier/notify.moe)                | 15 KB | [100 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://notify.moe&tab=desktop)
 [nihongo-center.com](https://nihongo-center.com)                   | [view source](https://github.com/nihongocenter/nihongo-center.com)        | 13 KB | [99 / 100](https://developers.google.com/speed/pagespeed/insights/?url=https://nihongo-center.com&tab=desktop)
 [increasedvoices.com](http://increasedvoices.com)                  | [view source](https://github.com/mysticalnight/increasedvoices.com)       |  5 KB | [98 / 100](https://developers.google.com/speed/pagespeed/insights/?url=http://increasedvoices.com&tab=desktop)
+
+---
 
 **Size**: Includes compressed **HTML**, **CSS** and **JS** of the frontpage. Excludes external videos and images.  
 **Speed**: Measured by **Google PageSpeed**. Does not represent real-world loading speed.
