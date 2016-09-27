@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "1.8.1",
+	"version": "1.8.2",
 	"description": "The fastest web framework on the node platform.",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
@@ -19,6 +19,7 @@
 		"mime-types": "2.x",
 		"mkdirp": "0.x",
 		"pem": "1.x",
+		"purify-css": "https://github.com/blitzprog/purifycss.git",
 		"remarkable": ">=1.6",
 		"request": "2.x",
 		"spdy": "3.x",
