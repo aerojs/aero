@@ -7,9 +7,7 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
-Aero is the fastest web framework on the node platform. It makes web development efficient and easy.
-
-[![Aero vs. Express vs. Koa vs. Restify vs. Node](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 6.5.0 on ApacheBench.")](https://github.com/blitzprog/webserver-benchmarks)
+Might cause your phone to explode because Aero sites load too fast. You have been warned.
 
 ## Installation
 
@@ -23,15 +21,21 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser and check
 
 ## Features
 
-* Optimized for high latency environments
-* Extremely fast router
-* Instantly see changes while developing
-* ES 6 support for client scripts
-* HTML 5 linter runs after every change
-* Follows DRY like it's the bible
-* Can update your live server on every git commit
-* Similar to: [Harp](http://harpjs.com/), [Express](http://expressjs.com/), [Koa](http://koajs.com/), [Restify](http://mcavage.me/node-restify/), [Hapi](http://hapijs.com/)
-* Has all the good stuff: HTTP/2, IPv6, Web Manifest
+* Routes your pages faster than you can say "Quidditch".
+* Optimizes your website for high latency environments (a.k.a. mobile networks).
+* Allows you to write modern ES 6 with [full browser compatibility](https://github.com/aerojs/aero-transpile-scripts).
+* Validates HTML 5 for you. Just delete your [html5.validator.nu](https://html5.validator.nu) bookmark already.
+* Lets you instantly see local changes in the browser. Use 2 monitors if you're the Al Capone of web devs.
+* Make changes to a prototype while your boss is watching? Aero can [update your live server on every git commit](https://github.com/aerojs/aero-git).
+* Prevents typical *"Oops I forgot the parameter checks"* by testing all routes.
+* *99% of execution time is spent in 1% of your code.* Find that 1% by looking at response time & size of your pages.
+* Reduces your site's bandwidth hunger by using brotli instead of gzip for static contents.
+* Free ice cream: HTTP/2, IPv6, Web Manifest.
+* More ice cream via plugins: https://github.com/aerojs
+
+## Benchmark
+
+[![Aero Router Performance](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 6.5.0 on ApacheBench.")](https://github.com/blitzprog/webserver-benchmarks)
 
 ## Screenshot
 
