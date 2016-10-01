@@ -24,7 +24,7 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser and check
 * Routes your pages faster than you can say "Quidditch".
 * Optimizes your website for high latency environments (a.k.a. mobile networks).
 * Allows you to write modern ES 6 with [full browser compatibility](https://github.com/aerojs/aero-transpile-scripts).
-* Validates HTML 5 for you. Just delete your [html5.validator.nu](https://html5.validator.nu) bookmark already.
+* Validates HTML 5 for you. Just delete that [html5.validator.nu](https://html5.validator.nu) bookmark already.
 * Lets you instantly see local changes in the browser. Use 2 monitors if you're the Al Capone of web devs.
 * Make changes to a prototype while your boss is watching? Aero can [update your live server on every git commit](https://github.com/aerojs/aero-git).
 * Prevents typical *"Oops I forgot the parameter checks"* by testing all routes.
