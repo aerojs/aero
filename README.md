@@ -7,7 +7,7 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
-Might cause your phone to explode because Aero sites load too fast. You have been warned.
+Might cause your phone to explode as your site will load too fast. You have been warned.
 
 ## Installation
 
