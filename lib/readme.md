@@ -21,4 +21,4 @@ Aero is written in object-oriented style and is composed of 6 main classes:
 * Page
 * Server
 
-Each class's source code can be found in a subdirectory under `lib` and the class entry point is `index.js`. The module `extendClass.js` loads all files in a class directory and appends the exported functions as methods to the prototype of the class (except for `index.js` itself). Therefore if you want to add a new method to the class you only need to add a new file in the class directory and export a function. Generator functions are automatically converted to coroutines.
+Each class's source code can be found in a subdirectory under `lib` and the class entry point is `index.js`. The module `loadClass.js` loads all files in a class directory and appends the exported functions as methods to the prototype of the class (except for `index.js` itself). Therefore if you want to add a new method to the class you only need to add a new file in the class directory and export a function. Generator functions are automatically converted to coroutines.
