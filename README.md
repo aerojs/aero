@@ -33,14 +33,6 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser and check
 * Free ice cream: HTTP/2, IPv6, Web Manifest.
 * More ice cream via plugins: https://github.com/aerojs
 
-## Benchmark
-
-[![Aero Router Performance](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 6.5.0 on ApacheBench.")](https://github.com/blitzprog/webserver-benchmarks)
-
-## Screenshot
-
-![Terminal output](docs/images/terminal.png)
-
 ## Documentation
 
 * [Configuration](docs/Configuration.md)
@@ -55,8 +47,16 @@ Visit [http://localhost:4000/](http://localhost:4000/) in your browser and check
 * [Parameters](docs/Parameters.md)
 * [Events](docs/Events.md)
 * [HTTP/2](docs/HTTP2.md)
-* [Web Manifest](docs/Manifest.md)
+* [Manifest](docs/Manifest.md)
 * [API](docs/API.md)
+
+## Benchmark
+
+[![Aero Router Performance](docs/images/benchmark.png "Shows requests per second. More is better. Tested with node 6.5.0 on ApacheBench.")](https://github.com/blitzprog/webserver-benchmarks)
+
+## Screenshot
+
+![Terminal output](docs/images/terminal.png)
 
 ## Examples
 
