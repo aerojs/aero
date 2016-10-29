@@ -29,7 +29,7 @@ test('Test App: Demo', function*(t) {
 	t.equal((yield fetch(app, '/sendfile')).body, require('fs').readFileSync('package.json', 'utf8'), '/sendfile')
 
 	let syntaxError = yield fetch(app, '/error/syntax')
-	t.ok(syntaxError.body.startsWith('SyntaxError'), '/error/syntax')
+	t.ok(syntaxError.body.startsWith('Error'), '/error/syntax')
 	t.equal(syntaxError.statusCode, 500, '/error/syntax [500]')
 
 	let controllerError = yield fetch(app, '/error/controller')
