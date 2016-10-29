@@ -6,7 +6,7 @@ Instead of routing `/hello` via code you simply create a `hello` directory insid
 ## Pages
 A page can have a [template](Templates.md), [style sheet](Styles.md), a [controller](Controllers.md), a [client script](Scripts.md) and a JSON file:
 
-* `hello/hello.jade`
+* `hello/hello.pug`
 * `hello/hello.styl`
 * `hello/hello.js`
 * `hello/hello.client.js`
@@ -27,7 +27,7 @@ response.render({
 })
 ```
 
-In the `hello.jade` template we can now access `message`:
+In the `hello.pug` template we can now access `message`:
 ```jade
 h1= message
 ```

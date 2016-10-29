@@ -8,7 +8,7 @@ exports.get = (request, response) => {
 }
 ```
 
-The above controller works as a standalone (without any templates or other files required). Here's a controller that requires a `.jade` template inside the same directory when you use the `render` method of the response object:
+The above controller works as a standalone (without any templates or other files required). Here's a controller that requires a `.pug` template inside the same directory when you use the `render` method of the response object:
 
 ```js
 exports.get = (request, response) => {

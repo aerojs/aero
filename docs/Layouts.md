@@ -3,7 +3,7 @@
 Aero is designed to work with single-layout websites that can be easily ajaxified.
 If you need multiple layouts you can create multiple Aero apps with different root directories in one node instance.
 
-The default `layout.jade` is as simple as this:
+The default `layout.pug` is as simple as this:
 
 ```jade
 doctype html
@@ -41,7 +41,7 @@ It doesn't make sense to define `get` or `post` methods for layout controllers w
 
 Layout components follow the same naming convention as pages. If your directory is called `layout` then it can include the following files:
 
-* `layout.jade`
+* `layout.pug`
 * `layout.styl`
 * `layout.json`
 * `layout.js`

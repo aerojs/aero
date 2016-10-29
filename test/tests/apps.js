@@ -44,7 +44,7 @@ test('Test App: Demo', function*(t) {
 	t.ok(manifest.display, 'manifest.display')
 
 	// Live modification
-	let testPath = 'test/apps/demo/pages/home/home.jade'
+	let testPath = 'test/apps/demo/pages/home/home.pug'
 	let contents = fs.readFileSync(testPath, 'utf8')
 	fs.writeFileSync(testPath, contents.replace('Work', 'Chaos'), 'utf8')
 	yield Promise.delay(250)

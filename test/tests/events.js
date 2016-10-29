@@ -39,7 +39,7 @@ test('Events', function*(t) {
 
 	// Trigger modification events
 	// resave(path.join(app.root, 'config.json'))
-	resave(app.path('pages/home/home.jade'), '\np Reload works.')
+	resave(app.path('pages/home/home.pug'), '\np Reload works.')
 	resave(app.path('scripts/init.js'), '\nconsole.log("Reload works")')
 	resave(app.path('styles/base.styl'), '\nreloadWorks = true')
 

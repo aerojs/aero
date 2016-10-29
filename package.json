@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "1.8.9",
+	"version": "2.0.0",
 	"description": "The fastest web framework on the node platform.",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
@@ -11,7 +11,6 @@
 		"brotli": "1.x",
 		"bluebird": "3.x",
 		"chalk": "1.x",
-		"etag": "1.x",
 		"htmllint": "0.x",
 		"image-size": "0.x",
 		"jade": "1.x",
@@ -27,7 +26,8 @@
 		"strict-mode": "*",
 		"stylus": ">=0.54.0",
 		"uglify-js-harmony": ">=2.6",
-		"ws": ">=1.1.1"
+		"ws": ">=1.1.1",
+		"xxhash": "0.x"
 	},
 	"devDependencies": {
 		"blue-tape": "*",
