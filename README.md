@@ -12,7 +12,7 @@ Might cause your phone to explode as your site will load too fast. You have been
 ## Installation
 
 ```bash
-echo "require('aero')().run()" > index.js && npm i aero --production && node .
+echo "require('aero')().run()" > index.js && yarn add aero && node .
 ```
 
 [![Aero Installation & Live Reload](docs/images/aero-installation.png)](https://youtu.be/rcyO3C_cRB4)

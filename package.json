@@ -1,7 +1,7 @@
 {
 	"name": "aero",
 	"version": "2.0.0",
-	"description": "The fastest web framework on the node platform.",
+	"description": "The fastest node.js framework.",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
 	"license": "GPL-3.0",
@@ -11,8 +11,8 @@
 		"brotli": "1.x",
 		"bluebird": "3.x",
 		"chalk": "1.x",
-		"htmllint": "0.x",
 		"image-size": "0.x",
+		"limiter": "1.x",
 		"load-class": "1.x",
 		"node-watch": "0.x",
 		"mime-types": "2.x",
