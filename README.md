@@ -86,6 +86,6 @@ URL                                                                | Source | Si
 [downloads-url]: https://npmjs.org/package/aero
 [dependencies-image]: https://david-dm.org/aerojs/aero.svg
 [dependencies-url]: https://david-dm.org/aerojs/aero
-[discord-image]: https://img.shields.io/badge/discord-aerojs-738bd7.svg
+[discord-image]: https://img.shields.io/badge/discord-aero-738bd7.svg
 [discord-url]: https://discord.gg/vyk2MnK
 
