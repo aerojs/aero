@@ -5,7 +5,7 @@
 [![Linux Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependencies-image]][dependencies-url]
-[![Discord][discord-image]][discord-url]]
+[![Discord][discord-image]][discord-url]
 
 Might cause your phone to explode as your site will load too fast. You have been warned.
 
