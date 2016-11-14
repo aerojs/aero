@@ -5,6 +5,7 @@
 [![Linux Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependencies-image]][dependencies-url]
+[![Discord][discord-image]][discord-url]]
 
 Might cause your phone to explode as your site will load too fast. You have been warned.
 
@@ -85,3 +86,6 @@ URL                                                                | Source | Si
 [downloads-url]: https://npmjs.org/package/aero
 [dependencies-image]: https://david-dm.org/aerojs/aero.svg
 [dependencies-url]: https://david-dm.org/aerojs/aero
+[discord-image]: https://img.shields.io/badge/discord-aerojs-738bd7.svg
+[discord-url]: https://discord.gg/vyk2MnK
+
