@@ -20,7 +20,6 @@ module.exports = {
 	},
 	ports: {
 		http: 4000,
-		https: 4001,
-		liveReload: 9000
+		https: 4001
 	}
 }
