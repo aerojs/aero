@@ -8,19 +8,19 @@
 	"main": "lib/index.js",
 	"dependencies": {
 		"autoprefixer-stylus": "0.x",
-		"brotli": "1.x",
 		"bluebird": "3.x",
+		"brotli": "1.x",
 		"chalk": "1.x",
 		"image-size": "0.x",
 		"limiter": "1.x",
 		"load-class": "1.x",
-		"node-watch": "0.x",
+		"markdown-it": "8.x",
 		"mime-types": "2.x",
 		"mkdirp": "0.x",
+		"node-watch": "0.x",
 		"pem": "1.x",
 		"pug": "2.0.0-beta6",
 		"purify-css": "git://github.com/blitzprog/purifycss.git",
-		"markdown-it": "8.x",
 		"request": "2.x",
 		"spdy": "3.x",
 		"strict-mode": "*",
@@ -30,12 +30,12 @@
 		"xxhash": "0.x"
 	},
 	"devDependencies": {
-		"blue-tape": "*",
-		"tap-diff": "*",
-		"istanbul": "*",
-		"coveralls": "*",
+		"aero-ajax": "*",
 		"aero-reset": "*",
-		"aero-ajax": "*"
+		"blue-tape": "*",
+		"coveralls": "*",
+		"istanbul": "*",
+		"tap-diff": "*"
 	},
 	"scripts": {
 		"demo": "node test/apps/demo",
