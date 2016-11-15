@@ -26,6 +26,7 @@
 		"strict-mode": "*",
 		"stylus": ">=0.54.0",
 		"uglify-js-harmony": ">=2.6",
+		"uws": "0.x",
 		"ws": ">=1.1.1",
 		"xxhash": "0.x"
 	},
@@ -62,7 +63,7 @@
 		"test": "test"
 	},
 	"engines": {
-		"node": ">=4.0.0"
+		"node": ">=6.0.0"
 	},
 	"bugs": {
 		"url": "https://github.com/aerojs/aero/issues"

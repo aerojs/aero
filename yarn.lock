@@ -1537,6 +1537,10 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
+uws:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/uws/-/uws-0.11.0.tgz#c5d1111027befc702c4955a40977b88c0cc67215"
+
 verror@1.3.6:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/verror/-/verror-1.3.6.tgz#cff5df12946d297d2baaefaa2689e25be01c005c"
