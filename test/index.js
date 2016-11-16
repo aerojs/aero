@@ -79,7 +79,6 @@ require('strict-mode')(function () {
 			assert(app.config.ports)
 			assert(app.config.ports.http)
 			assert(app.config.ports.https)
-			assert(app.config.ports.liveReload)
 
 			assert(app.package)
 			assert(app.package.name)
