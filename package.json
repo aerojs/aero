@@ -26,8 +26,8 @@
 		"spdy": "3.x",
 		"strict-mode": "*",
 		"stylus": ">=0.54.0",
-		"uglify-js-harmony": ">=2.6",
-		"uws": "0.x",
+		"uglify-js-harmony": ">=2.6.0",
+		"uws": ">=0.11.0",
 		"ws": ">=1.1.1"
 	},
 	"devDependencies": {
