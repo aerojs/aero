@@ -179,8 +179,8 @@ camelcase@^2.0.1:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-2.1.1.tgz#7c1d16d679a1bbe59ca02cacecfb011e201f5a1f"
 
 caniuse-db@^1.0.30000539, caniuse-db@^1.0.30000540:
-  version "1.0.30000581"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000581.tgz#9a707e1cff67a36bf624636d4662ea9fe041f3a8"
+  version "1.0.30000584"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000584.tgz#cfbce897a48145fa73f96d893025581e838648c4"
 
 caseless@~0.11.0:
   version "0.11.0"
@@ -937,7 +937,7 @@ object-assign@^4.0.1, object-assign@^4.1.0:
 
 object-inspect@~1.2.1:
   version "1.2.1"
-  resolved "http://registry.npmjs.org/object-inspect/-/object-inspect-1.2.1.tgz#3b62226eb8f6d441751c7d8f22a20ff80ac9dc3f"
+  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.2.1.tgz#3b62226eb8f6d441751c7d8f22a20ff80ac9dc3f"
 
 object-keys@^1.0.8:
   version "1.0.11"
@@ -1153,7 +1153,7 @@ punycode@^1.4.1:
 
 "purify-css@git://github.com/blitzprog/purifycss.git":
   version "1.1.9"
-  resolved "git://github.com/blitzprog/purifycss.git#7a7f512e95f0dc9fe4f97233898003763943033e"
+  resolved "git://github.com/blitzprog/purifycss.git#054ce579ac0d3fba54762722693ec876377ad5f9"
   dependencies:
     clean-css "^3.2.10"
     glob "^6.0.4"
