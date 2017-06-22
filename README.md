@@ -1,5 +1,3 @@
-# Aero
-
 ![Aero JS Logo](docs/aero.js.png)
 
 [![NPM Version][npm-image]][npm-url]
