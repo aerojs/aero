@@ -1,5 +1,7 @@
 # Aero
 
+![Aero JS Logo](docs/aero.js.png)
+
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Linux Build Status][travis-image]][travis-url]
