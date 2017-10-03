@@ -1,6 +1,6 @@
 {
 	"name": "aero",
-	"version": "2.0.8",
+	"version": "2.0.9",
 	"description": "The fastest node.js framework.",
 	"repository": "aerojs/aero",
 	"homepage": "https://github.com/aerojs/aero",
@@ -20,7 +20,7 @@
 		"node-cache": "4.x",
 		"node-watch": "0.x",
 		"pem": "1.x",
-		"pug": "2.0.0-beta6",
+		"pug": "2.0.0-rc.4",
 		"request": ">=2.81.0",
 		"spdy": "3.x",
 		"strict-mode": "*",
